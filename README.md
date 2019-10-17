@@ -1,5 +1,7 @@
 # Alan iOS SDK
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-ios)](https://github.com/alan-ai/alan-sdk-ios/releases)
+
 ## Setup
 1. Download Alan iOS SDK framework [here](https://github.com/alan-ai/alan-sdk-ios/releases)
 2. Copy framework to your project
