@@ -1,0 +1,11 @@
+framework module SAPCommon {
+  umbrella header "SAPCommon.h"
+
+  export *
+  module * { export * }
+}
+
+module SAPCommon.Swift {
+    header "SAPCommon-Swift.h"
+    requires objc
+}

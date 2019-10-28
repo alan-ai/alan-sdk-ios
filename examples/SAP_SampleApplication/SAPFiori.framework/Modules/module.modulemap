@@ -1,0 +1,57 @@
+framework module SAPFiori {
+    
+    umbrella header "SAPFiori.h"
+    
+    header "SZTextView.h"
+    // Add folloing line when supporting recording attachment
+    // header "SCSiriWaveformView.h"
+
+    //CoreParse
+    //header "CoreParse.h"
+
+    //The following gets rid of the warnings related to CoreParse:
+    //Umbrella header for module 'SAPFiori' does not include CoreParse headers:
+    header "FUICPEOFToken.h"
+    header "FUICPErrorToken.h"
+    header "FUICPGrammarInternal.h"
+    header "FUICPGrammarPrivate.h"
+    header "FUICPIdentifierToken.h"
+    header "FUICPItem.h"
+    header "FUICPJSONParser.h"
+    header "FUICPLR1Item.h"
+    header "FUICPNumberRecogniser.h"
+    header "FUICPNumberToken.h"
+    header "FUICPQuotedToken.h"
+    header "FUICPRegexpRecogniser.h"
+    header "FUICPRHSItem+Private.h"
+    header "FUICPRHSItem.h"
+    header "FUICPRHSItemResult.h"
+    header "FUICPRule+Internal.h"
+    header "FUICPSLRParser.h"
+    header "FUICPShiftAction.h"
+    header "FUICPShiftReduceAction.h"
+    header "FUICPShiftReduceActionTable.h"
+    header "FUICPShiftReduceGotoTable.h"
+    header "FUICPShiftReduceState.h"
+    header "FUICPWhiteSpaceToken.h"
+    header "FUICPShiftReduceParserProtectedMethods.h"
+    header "FUINSArray+Functional.h"
+    header "FUINSSetFunctional.h"
+
+    header "CommonCryptoWrapper.h"
+    
+//    header "MCAxisContext.h"
+//
+    explicit module RoambiChartKit {
+        header "MCChartKit.h"
+        export *
+    }
+
+    export *
+    module * { export * }
+}
+
+module SAPFiori.Swift {
+    header "SAPFiori-Swift.h"
+    requires objc
+}

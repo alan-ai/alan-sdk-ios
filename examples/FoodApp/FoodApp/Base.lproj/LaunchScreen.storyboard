@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Bg-rT-GLi">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="2AX-OE-b42">
+            <objects>
+                <viewController id="0Bg-rT-GLi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FWp-eg-jfJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="waves" translatesAutoresizingMaskIntoConstraints="NO" id="Uax-OS-6ZQ">
+                                <rect key="frame" x="0.0" y="-44" width="414" height="350"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="hmh-Sc-y0a"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="waves1" translatesAutoresizingMaskIntoConstraints="NO" id="nQy-KG-dBr">
+                                <rect key="frame" x="0.0" y="590" width="414" height="340"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="340" id="pRA-5B-QeL"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="alanIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YZu-l8-lp6">
+                                <rect key="frame" x="107" y="332" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Fsu-hD-03n"/>
+                                    <constraint firstAttribute="height" constant="200" id="ncL-H9-V2G"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alan Food" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaB-A8-bFA">
+                                <rect key="frame" x="128.5" y="523" width="157.5" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="Gfn-5U-oCE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZQS-pw-oaE" firstAttribute="trailing" secondItem="nQy-KG-dBr" secondAttribute="trailing" id="1jh-T1-DB0"/>
+                            <constraint firstItem="nQy-KG-dBr" firstAttribute="leading" secondItem="ZQS-pw-oaE" secondAttribute="leading" id="Gf7-9H-9FU"/>
+                            <constraint firstItem="ZQS-pw-oaE" firstAttribute="bottom" secondItem="nQy-KG-dBr" secondAttribute="bottom" constant="-68" id="HXM-wM-H2K"/>
+                            <constraint firstItem="YZu-l8-lp6" firstAttribute="centerX" secondItem="ZQS-pw-oaE" secondAttribute="centerX" id="Qtx-6g-6Ep"/>
+                            <constraint firstItem="Uax-OS-6ZQ" firstAttribute="top" secondItem="ZQS-pw-oaE" secondAttribute="top" constant="-88" id="Tu8-Vj-UeJ"/>
+                            <constraint firstItem="HaB-A8-bFA" firstAttribute="centerY" secondItem="FWp-eg-jfJ" secondAttribute="centerY" constant="95.5" id="eHD-Yy-U1D"/>
+                            <constraint firstItem="YZu-l8-lp6" firstAttribute="centerY" secondItem="FWp-eg-jfJ" secondAttribute="centerY" constant="-16" id="kyj-Sj-GzV"/>
+                            <constraint firstItem="Uax-OS-6ZQ" firstAttribute="leading" secondItem="ZQS-pw-oaE" secondAttribute="leading" id="lq3-RE-ItX"/>
+                            <constraint firstItem="HaB-A8-bFA" firstAttribute="centerX" secondItem="ZQS-pw-oaE" secondAttribute="centerX" id="nWx-sL-jCu"/>
+                            <constraint firstItem="ZQS-pw-oaE" firstAttribute="trailing" secondItem="Uax-OS-6ZQ" secondAttribute="trailing" id="tIy-zh-SvG"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ZQS-pw-oaE"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DDt-JB-451" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="46" y="172"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="alanIcon" width="200" height="200"/>
+        <image name="waves" width="375" height="259"/>
+        <image name="waves1" width="375" height="267"/>
+    </resources>
+</document>

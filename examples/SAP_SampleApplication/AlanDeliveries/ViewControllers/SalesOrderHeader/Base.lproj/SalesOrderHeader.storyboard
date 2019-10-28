@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="a59-Mb-pSm">
+<device id="retina4_7" orientation="portrait">
+<adaptation id="fullscreen"/>
+</device>
+<dependencies>
+<deployment identifier="iOS"/>
+<plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+<capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+</dependencies>
+<scenes>
+<!--Master-->
+<scene sceneID="RKw-IL-dqd">
+<objects>
+<tableViewController restorationIdentifier="SalesOrderHeaderMaster" storyboardIdentifier="SalesOrderHeaderMaster" title="Master" id="a59-Mb-pSm" customClass="SalesOrderHeaderMasterViewController" customModuleProvider="target" sceneMemberID="viewController">
+<tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nUO-hq-XXj">
+<rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+<autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+<color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+<prototypes>
+<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FUIObjectTableViewCell" id="hQV-CT-VYA" customClass="FUIObjectTableViewCell" customModule="SAPFiori">
+<rect key="frame" x="0.0" y="28" width="375" height="44"/>
+<autoresizingMask key="autoresizingMask"/>
+<tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hQV-CT-VYA" id="g1r-Wd-HA7">
+<rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+<autoresizingMask key="autoresizingMask"/>
+</tableViewCellContentView>
+<connections>
+<segue destination="AbA-MP-qfJ" kind="show" identifier="showDetail" id="f16-95-b25"/>
+</connections>
+</tableViewCell>
+</prototypes>
+<connections>
+<outlet property="dataSource" destination="a59-Mb-pSm" id="7GQ-5E-okA"/>
+<outlet property="delegate" destination="a59-Mb-pSm" id="rTS-ea-PgO"/>
+</connections>
+</tableView>
+<navigationItem key="navigationItem" title="" id="KGn-oz-Wwf">
+<barButtonItem key="rightBarButtonItem" systemItem="add" id="FVD-WG-jSQ">
+<connections>
+<segue destination="RAN-fi-s37" kind="presentation" modalPresentationStyle="formSheet" identifier="addEntity" id="1Mp-uy-6Yx"/>
+</connections>
+</barButtonItem>
+</navigationItem>
+<refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="u1a-DQ-31e">
+<rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+<autoresizingMask key="autoresizingMask"/>
+</refreshControl>
+</tableViewController>
+<placeholder placeholderIdentifier="IBFirstResponder" id="g6s-gv-8tM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+</objects>
+<point key="canvasLocation" x="-233" y="150"/>
+</scene>
+<!--Detail-->
+<scene sceneID="k9g-RP-XuX">
+<objects>
+<tableViewController storyboardIdentifier="SalesOrderHeaderDetailViewController" title="Detail" id="AbA-MP-qfJ" customClass="SalesOrderHeaderDetailViewController" customModuleProvider="target" sceneMemberID="viewController">
+<tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="msU-WP-HoT">
+<rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+<autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+<color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+<prototypes>
+<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FUITextFieldFormCell" id="Jik-1k-Com" customClass="FUITextFieldFormCell" customModule="SAPFiori">
+<rect key="frame" x="0.0" y="28" width="375" height="44"/>
+<autoresizingMask key="autoresizingMask"/>
+<tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jik-1k-Com" id="o94-pd-cV2">
+<rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+<autoresizingMask key="autoresizingMask"/>
+</tableViewCellContentView>
+</tableViewCell>
+<tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FUIObjectTableViewCell" id="fTr-3D-v6h" customClass="FUIObjectTableViewCell" customModule="SAPFiori">
+<rect key="frame" x="0.0" y="72" width="375" height="44"/>
+<autoresizingMask key="autoresizingMask"/>
+<tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fTr-3D-v6h" id="qTo-SK-E30">
+<rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+<autoresizingMask key="autoresizingMask"/>
+</tableViewCellContentView>
+</tableViewCell>
+</prototypes>
+<connections>
+<outlet property="dataSource" destination="AbA-MP-qfJ" id="Iuh-bL-3sr"/>
+<outlet property="delegate" destination="AbA-MP-qfJ" id="QOm-q4-gCY"/>
+</connections>
+</tableView>
+<navigationItem key="navigationItem" title="" id="sht-lU-R1A">
+<barButtonItem key="rightBarButtonItem" systemItem="edit" id="HZs-jd-fwP">
+<connections>
+<segue destination="8XE-iP-P2X" kind="presentation" identifier="updateEntity" modalPresentationStyle="formSheet" id="Vnb-38-Ux4"/>
+</connections>
+</barButtonItem>
+</navigationItem>
+</tableViewController>
+<placeholder placeholderIdentifier="IBFirstResponder" id="LVP-6q-0A2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+</objects>
+<point key="canvasLocation" x="534" y="152"/>
+</scene>
+<!--Navigation Controller-->
+<scene sceneID="ch5-fM-FqB">
+<objects>
+<navigationController id="RAN-fi-s37" sceneMemberID="viewController">
+<navigationBar key="navigationBar" contentMode="scaleToFill" id="Iqg-Xs-vAK">
+<rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+<autoresizingMask key="autoresizingMask"/>
+</navigationBar>
+<connections>
+<segue destination="AbA-MP-qfJ" kind="relationship" relationship="rootViewController" id="3Cy-1Q-3c5"/>
+</connections>
+</navigationController>
+<placeholder placeholderIdentifier="IBFirstResponder" id="94r-h3-mws" userLabel="First Responder" sceneMemberID="firstResponder"/>
+</objects>
+<point key="canvasLocation" x="-234" y="873"/>
+</scene>
+<!--Navigation Controller-->
+<scene sceneID="wJH-q1-mQE">
+<objects>
+<navigationController id="8XE-iP-P2X" sceneMemberID="viewController">
+<navigationBar key="navigationBar" contentMode="scaleToFill" id="1gC-Rc-cCT">
+<rect key="frame" x="0.0" y="20" width="375" height="44"/>
+<autoresizingMask key="autoresizingMask"/>
+</navigationBar>
+<connections>
+<segue destination="AbA-MP-qfJ" kind="relationship" relationship="rootViewController" id="tt5-tn-ZZX"/>
+</connections>
+</navigationController>
+<placeholder placeholderIdentifier="IBFirstResponder" id="zMw-ax-mWR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+</objects>
+<point key="canvasLocation" x="1334" y="-595"/>
+</scene>
+
+</scenes>
+<inferredMetricsTieBreakers>
+<segue reference="f16-95-b25"/>
+</inferredMetricsTieBreakers>
+</document>
+
