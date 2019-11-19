@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
         // Customize the UI to align SAP style
         // Read more: https://help.sap.com/doc/978e4f6c968c4cc5a30f9d324aa4b1d7/Latest/en-US/Documents/Frameworks/SAPFiori/Extensions/UINavigationBar.html
-        UINavigationBar.applyFioriStyle()
+//        UINavigationBar.applyFioriStyle()
 
         return true
     }

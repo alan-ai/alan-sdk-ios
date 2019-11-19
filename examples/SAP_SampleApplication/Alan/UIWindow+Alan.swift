@@ -120,7 +120,7 @@ extension UIWindow {
         let textWidth: CGFloat = self.frame.maxX - buttonSpace * 2
         let textHeight: CGFloat = 64
         
-        let config = AlanConfig(key: "78db842d8d49d133dcb0c8c4bf42500a2e956eca572e1d8b807a3e2338fdd0dc/prod", isButtonDraggable: false)
+        let config = AlanConfig(key: "844873b87c3e3e124d0bf347580da6fd2e956eca572e1d8b807a3e2338fdd0dc/prod", isButtonDraggable: false)
 
         self.alanButton = AlanButton(config: config)
         if let button = self.alanButton {

@@ -58,7 +58,7 @@ class CellCreationHelper {
         cell.isEditable = editingIsAllowed
 
         if !property.isOptional {
-            cell.valueTextField!.placeholder = NSLocalizedString("keyRequiredPlaceholder", value: "Required", comment: "XSEL: Placeholder text for required but currently empty textfield.")
+            cell.valueTextField.placeholder = NSLocalizedString("keyRequiredPlaceholder", value: "Required", comment: "XSEL: Placeholder text for required but currently empty textfield.")
         }
 
         cell.onChangeHandler = { (newValue) -> Void in

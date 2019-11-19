@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "052AA0A4234200320082D8F2"
-               BuildableName = "FoodApp.app"
+               BuildableName = "Alan Delivery.app"
                BlueprintName = "FoodApp"
                ReferencedContainer = "container:FoodApp.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "052AA0A4234200320082D8F2"
-            BuildableName = "FoodApp.app"
+            BuildableName = "Alan Delivery.app"
             BlueprintName = "FoodApp"
             ReferencedContainer = "container:FoodApp.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "052AA0A4234200320082D8F2"
-            BuildableName = "FoodApp.app"
+            BuildableName = "Alan Delivery.app"
             BlueprintName = "FoodApp"
             ReferencedContainer = "container:FoodApp.xcodeproj">
          </BuildableReference>

@@ -1,0 +1,2 @@
+SAPOData.framework/SAPOData filter=lfs diff=lfs merge=lfs -text
+SAPFiori.framework/SAPFiori filter=lfs diff=lfs merge=lfs -text
