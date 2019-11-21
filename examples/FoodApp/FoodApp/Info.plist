@@ -22,6 +22,8 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Scan QR codes</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Alan Button Voice</string>
 	<key>UIApplicationSceneManifest</key>
