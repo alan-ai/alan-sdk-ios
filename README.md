@@ -30,15 +30,16 @@ self.button = AlanButton(config: config)
 ```
 4. Layout button the same way as any UIView in your app
 
+
 ## Integrate into Objective C
 1. Simply import AlanSDK
 ```objective-c
 @import AlanSDK;
-```objective-c
+```
 2. Define AlanButton variable
 ```objective-c
 @property (nonatomic) AlanButton* button;
-```objective-c
+```
 3. Setup AlanButton in viewDidLoad
 ```objective-c
 AlanConfig* config = [[AlanConfig alloc] initWithKey:@"YOUR_KEY_FROM_ALAN_STUDIO_HERE"];
@@ -116,7 +117,8 @@ This class provides a view with voice button and instance methods to communicate
 | params  | NSDictionary | Function params |
 | callback  | (void(^)(NSError *error, NSString *object)) | Callback to handle result |
 
-#### Handle events from AlanSDK. Add observer for notification with name "kAlanSDKEventNotification":
+#### Handle events from AlanSDK. 
+Add observer for notification with name "kAlanSDKEventNotification":
 
 
 
