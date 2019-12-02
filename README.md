@@ -30,6 +30,96 @@ self.button = AlanButton(config: config)
 ```
 4. Layout button the same way as any UIView in your app
 
+## Integrate into Objective C
+1. Simply import AlanSDK
+```objective-c
+@import AlanSDK;
+```objective-c
+2. Define AlanButton variable
+```objective-c
+@property (nonatomic) AlanButton* button;
+```objective-c
+3. Setup AlanButton in viewDidLoad
+```objective-c
+AlanConfig* config = [[AlanConfig alloc] initWithKey:@"YOUR_KEY_FROM_ALAN_STUDIO_HERE"];
+self.button = [[AlanButton alloc] initWithConfig:config];
+```
+4. Layout button the same way as any UIView in your app
+
+### AlanConfig
+
+Object that describes parameters which will be provided for AlanButton.
+
+1. Create new AlanConfig instance with given project key:
+
+```
+- (instancetype)initWithKey:(NSString *)key;
+```
+
+|**Name**  | **Type** | **Description** |
+|--|--|--|
+| key  | NSString | Project key from Alan Studio |
+
+### AlanButton
+
+This class provides a view with voice button and instance methods to communicate with Alan Studio
+
+#### Create new AlanButton instance with given config object:
+
+```
+- (instancetype)initWithConfig:(AlanConfig *)config;
+```
+
+|**Name**  | **Type** | **Description** |
+|--|--|--|
+| config  | AlanConfig | AlanConfig object for configuration which is described above |
+
+#### Play text via Alan:
+
+```
+- (void)playText:(NSString *)textString;
+```
+
+|**Name**  | **Type** | **Description** |
+|--|--|--|
+| textString  | NSString | Text to be played |
+
+#### Send voice synchronized data event:
+
+```
+- (void)playData:(NSDictionary *)data;
+```
+
+|**Name**  | **Type** | **Description** |
+|--|--|--|
+| data  | NSDictionary | Data event to be send |
+
+#### Set visual state of an application:
+
+```
+- (void)setVisual:(NSDictionary *)data;
+```
+
+|**Name**  | **Type** | **Description** |
+|--|--|--|
+| data  | NSDictionary | Data with visual state description |
+
+#### Call a function from Alan Studio:
+
+```
+- (void)call:(NSString *)method withParams:(NSDictionary*)params callback:(void(^)(NSError *error, NSString *object))callback;
+```
+
+|**Name**  | **Type** | **Description** |
+|--|--|--|
+| method  | NSString | Function name |
+| params  | NSDictionary | Function params |
+| callback  | (void(^)(NSError *error, NSString *object)) | Callback to handle result |
+
+#### Handle events from AlanSDK. Add observer for notification with name "kAlanSDKEventNotification":
+
+
+
 ## Links
 1. Alan iOS SDK [documentation](https://alan.app/docs/integrations/ios.html#download)
 2. Integration info Swift [documentation](https://alan.app/docs/integrations/ios.html#integrate-into-swift)
