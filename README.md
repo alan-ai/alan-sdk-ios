@@ -47,6 +47,8 @@ self.button = [[AlanButton alloc] initWithConfig:config];
 ```
 4. Layout button the same way as any UIView in your app
 
+## AlanSDK classes 
+
 ### AlanConfig
 
 Object that describes parameters which will be provided for AlanButton.
@@ -65,7 +67,7 @@ Object that describes parameters which will be provided for AlanButton.
 
 This class provides a view with voice button and instance methods to communicate with Alan Studio
 
-#### Create new AlanButton instance with given config object:
+### Create new AlanButton instance with given config object:
 
 ```
 - (instancetype)initWithConfig:(AlanConfig *)config;
@@ -75,7 +77,7 @@ This class provides a view with voice button and instance methods to communicate
 |--|--|--|
 | config  | AlanConfig | AlanConfig object for configuration which is described above |
 
-#### Play text via Alan:
+### Play text via Alan:
 
 ```
 - (void)playText:(NSString *)textString;
@@ -85,7 +87,7 @@ This class provides a view with voice button and instance methods to communicate
 |--|--|--|
 | textString  | NSString | Text to be played |
 
-#### Send voice synchronized data event:
+### Send voice synchronized data event:
 
 ```
 - (void)playData:(NSDictionary *)data;
@@ -95,7 +97,7 @@ This class provides a view with voice button and instance methods to communicate
 |--|--|--|
 | data  | NSDictionary | Data event to be send |
 
-#### Set visual state of an application:
+### Set visual state of an application:
 
 ```
 - (void)setVisual:(NSDictionary *)data;
@@ -105,7 +107,7 @@ This class provides a view with voice button and instance methods to communicate
 |--|--|--|
 | data  | NSDictionary | Data with visual state description |
 
-#### Call a function from Alan Studio:
+### Call a function from Alan Studio:
 
 ```
 - (void)call:(NSString *)method withParams:(NSDictionary*)params callback:(void(^)(NSError *error, NSString *object))callback;
@@ -117,8 +119,13 @@ This class provides a view with voice button and instance methods to communicate
 | params  | NSDictionary | Function params |
 | callback  | (void(^)(NSError *error, NSString *object)) | Callback to handle result |
 
-#### Handle events from AlanSDK. 
+### Handle events from AlanSDK. 
 Add observer for notification with name "kAlanSDKEventNotification":
+
+### Print log information from Alan Studio
+```swift
+AlanLog.setEnableLogging(true)
+```
 
 
 
