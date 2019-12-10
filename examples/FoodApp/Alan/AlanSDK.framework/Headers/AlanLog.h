@@ -3,6 +3,7 @@
 //  AlanSDK
 //
 //  Copyright © 2019 Alan AI Inc. All rights reserved.
+//  Alan Studio - https://studio.alan.app
 //
 
 #import <Foundation/Foundation.h>

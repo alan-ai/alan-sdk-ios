@@ -3,6 +3,7 @@
 //  AlanSDK
 //
 //  Copyright © 2019 Alan AI Inc. All rights reserved.
+//  Alan Studio - https://studio.alan.app
 //
 
 #import "AlanConfig.h"
@@ -13,13 +14,21 @@
 
 /// AlanButton states
 typedef NS_ENUM(NSInteger, AlanSDKButtonState) {
+    /// Offline
     AlanSDKButtonStateOffline,
+    /// Connecting
     AlanSDKButtonStateConnecting,
+    /// Online (connected)
     AlanSDKButtonStateOnline,
+    /// Idle
     AlanSDKButtonStateIdle,
+    /// Listen
     AlanSDKButtonStateListen,
+    /// Process
     AlanSDKButtonStateProcess,
+    /// Reply
     AlanSDKButtonStateReply,
+    /// No mic permission
     AlanSDKButtonStateNoPermission,
 };
 

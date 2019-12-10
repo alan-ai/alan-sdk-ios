@@ -3,6 +3,7 @@
 //  AlanSDK
 //
 //  Copyright © 2019 Alan AI Inc. All rights reserved.
+//  Alan Studio - https://studio.alan.app
 //
 
 #import <UIKit/UIKit.h>
@@ -17,6 +18,6 @@
  2. Place AlanHint to some place in your application
  3. Once hint is received from server-side it will be displayed inside AlanHint
  */
-@interface AlanHint : UIView
+@interface AlanHint: UIView
 
 @end

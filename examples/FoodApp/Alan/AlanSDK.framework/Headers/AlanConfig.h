@@ -3,6 +3,7 @@
 //  AlanSDK
 //
 //  Copyright © 2019 Alan AI Inc. All rights reserved.
+//  Alan Studio - https://studio.alan.app
 //
 
 #import <Foundation/Foundation.h>
@@ -16,7 +17,7 @@
  1. Create AlanConfig with one of listed methods
  2. Create AlanButton with -initWithConfig: and provide created AlanConfig object
  */
-@interface AlanConfig : NSObject
+@interface AlanConfig: NSObject
 
 /**
  Given project key. Read only
@@ -98,7 +99,6 @@
  @return AlanConfig object
  */
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key host:(nullable NSString *)host dataObject:(nullable NSDictionary *)dataObject;
-
 
 /**
  Creates AlanConfig object with key, host, dialogId and given data

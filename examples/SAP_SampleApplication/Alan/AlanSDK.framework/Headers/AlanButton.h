@@ -3,6 +3,7 @@
 //  AlanSDK
 //
 //  Copyright © 2019 Alan AI Inc. All rights reserved.
+//  Alan Studio - https://studio.alan.app
 //
 
 #import <UIKit/UIKit.h>
@@ -19,7 +20,7 @@
  2. Place AlanButton to some place in your application
  3. AlanButton will handle tap actions to start and stop recording
  */
-@interface AlanButton : UIView
+@interface AlanButton: UIView
 
 /**
  Creates new AlanButton instance
