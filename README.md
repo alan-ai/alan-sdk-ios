@@ -80,51 +80,51 @@ This class provides a view with voice button and instance methods to communicate
 ### Play text via Alan:
 
 ```
-- (void)playText:(NSString *)textString;
+- (void)playText:(NSString *)text;
 ```
 
 |**Name**  | **Type** | **Description** |
 |--|--|--|
-| textString  | NSString | Text to be played |
+| text  | NSString | Text to be played |
 
 ### Send voice synchronized data event:
 
 ```
-- (void)playData:(NSDictionary *)data;
+- (void)playCommand:(NSDictionary *)command;
 ```
 
 |**Name**  | **Type** | **Description** |
 |--|--|--|
-| data  | NSDictionary | Data event to be send |
+| command  | NSDictionary | Data event to be send |
 
 ### Set visual state of an application:
 
 ```
-- (void)setVisual:(NSDictionary *)data;
+- (void)setVisualState:(NSDictionary *)visualStateData;
 ```
 
 |**Name**  | **Type** | **Description** |
 |--|--|--|
-| data  | NSDictionary | Data with visual state description |
+| visualStateData  | NSDictionary | Data with visual state description |
 
 ### Call a function from Alan Studio:
 
 ```
-- (void)call:(NSString *)method withParams:(NSDictionary*)params callback:(void(^)(NSError *error, NSString *object))callback;
+- (void)callProjectApi:(NSString *)method withData:(NSDictionary*)data callback:(void(^)(NSError *error, NSString *object))callback;
 ```
 
 |**Name**  | **Type** | **Description** |
 |--|--|--|
 | method  | NSString | Function name |
-| params  | NSDictionary | Function params |
+| data  | NSDictionary | Function params |
 | callback  | (void(^)(NSError *error, NSString *object)) | Callback to handle result |
 
 ### Handle events from AlanSDK. 
 Add observer for notification with name "kAlanSDKEventNotification":
 
 ### Print log information from Alan Studio
-```swift
-AlanLog.setEnableLogging(true)
+```
+[AlanLog setEnableLogging:YES];
 ```
 
 
