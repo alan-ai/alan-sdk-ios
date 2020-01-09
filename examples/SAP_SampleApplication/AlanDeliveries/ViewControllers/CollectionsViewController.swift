@@ -51,6 +51,19 @@ class CollectionsViewController: FUIFormTableViewController, NavigateViewDelegat
     }
     
     func navigateCategory(_ category: String) {
+        if category == "Main" {
+            DispatchQueue.main.async {
+                if let navigation1 = self.splitViewController?.viewControllers.last as? UINavigationController {
+                    navigation1.popToRootViewController(animated: true)
+                }
+            }
+            return
+        }
+        let screens = ["Sales", "PurchaseOrderItems", "ProductText", "PurchaseOrderHeaders", "Supplier", "Product", "Stock", "ProductCategory", "SalesOrder", "Customer"]
+        if !screens.contains(category) {
+            return
+        }
+        
         var indexPath = IndexPath(row: 0, section: 0)
         if( category == "Sales") {
             indexPath = IndexPath(row: 6, section: 0)
