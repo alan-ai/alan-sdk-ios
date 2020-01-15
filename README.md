@@ -119,10 +119,26 @@ This class provides a view with voice button and instance methods to communicate
 | data  | NSDictionary | Function params |
 | callback  | (void(^)(NSError *error, NSString *object)) | Callback to handle result |
 
-### Handle events from AlanSDK. 
-Add observer for notification with name "kAlanSDKEventNotification":
+### Handle events from AlanSDK: 
 
-### Print log information from Alan Studio
+```
+[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEvent:) name:@"kAlanSDKEventNotification" object:nil];
+```
+
+```
+- (void)handleEvent:(NSNotification*)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    NSLog(@"%@", userInfo);
+}
+```
+
+|**Name**  | **Description** |
+|--|--|
+| kAlanSDKEventNotification  | Notification name for Alan SDK events |
+
+### Print log information from Alan Studio:
+
 ```
 [AlanLog setEnableLogging:YES];
 ```
