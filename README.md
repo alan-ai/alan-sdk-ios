@@ -137,7 +137,7 @@ This class provides a view with voice button and instance methods to communicate
 |--|--|
 | kAlanSDKEventNotification  | Notification name for Alan SDK events |
 
-### Print log information from Alan Studio:
+### Print debug log information from Alan Studio:
 
 ```
 [AlanLog setEnableLogging:YES];
