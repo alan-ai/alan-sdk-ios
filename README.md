@@ -147,8 +147,8 @@ This class provides a view with voice button and instance methods to communicate
 
 ## Links
 1. Alan iOS SDK [documentation](https://alan.app/docs/integrations/ios.html#download)
-2. Integration info Swift [documentation](https://alan.app/docs/integrations/ios.html#integrate-into-swift)
-3. Integration info Objective-C [documentation](https://alan.app/docs/integrations/ios.html#integrate-into-objective-c)
+2. Integration with Swift [documentation](https://alan.app/docs/integrations/ios.html#integrate-into-swift)
+3. Integration with Objective-C [documentation](https://alan.app/docs/integrations/ios.html#integrate-into-objective-c)
 
 ## Other platforms:
 * [Native Android](https://github.com/alan-ai/alan-sdk-android)
