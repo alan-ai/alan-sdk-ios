@@ -55,7 +55,7 @@ Object that describes parameters which will be provided for AlanButton.
 
 1. Create new AlanConfig instance with given project key:
 
-```
+```objective-c
 - (instancetype)initWithKey:(NSString *)key;
 ```
 
@@ -69,7 +69,7 @@ This class provides a view with voice button and instance methods to communicate
 
 ### Create new AlanButton instance with given config object:
 
-```
+```objective-c
 - (instancetype)initWithConfig:(AlanConfig *)config;
 ```
 
@@ -79,7 +79,7 @@ This class provides a view with voice button and instance methods to communicate
 
 ### Play text via Alan:
 
-```
+```objective-c
 - (void)playText:(NSString *)text;
 ```
 
@@ -89,7 +89,7 @@ This class provides a view with voice button and instance methods to communicate
 
 ### Send voice synchronized data event:
 
-```
+```objective-c
 - (void)playCommand:(NSDictionary *)command;
 ```
 
@@ -99,7 +99,7 @@ This class provides a view with voice button and instance methods to communicate
 
 ### Set visual state of an application:
 
-```
+```objective-c
 - (void)setVisualState:(NSDictionary *)visualStateData;
 ```
 
@@ -109,7 +109,7 @@ This class provides a view with voice button and instance methods to communicate
 
 ### Call a function from Alan Studio:
 
-```
+```objective-c
 - (void)callProjectApi:(NSString *)method withData:(NSDictionary*)data callback:(void(^)(NSError *error, NSString *object))callback;
 ```
 
@@ -121,11 +121,11 @@ This class provides a view with voice button and instance methods to communicate
 
 ### Handle events from AlanSDK: 
 
-```
+```objective-c
 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleEvent:) name:@"kAlanSDKEventNotification" object:nil];
 ```
 
-```
+```objective-c
 - (void)handleEvent:(NSNotification*)notification
 {
     NSDictionary *userInfo = notification.userInfo;
@@ -139,7 +139,7 @@ This class provides a view with voice button and instance methods to communicate
 
 ### Print debug log information from Alan Studio:
 
-```
+```objective-c
 [AlanLog setEnableLogging:YES];
 ```
 
