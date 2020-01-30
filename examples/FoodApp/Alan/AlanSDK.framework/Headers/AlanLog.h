@@ -16,8 +16,8 @@
 + (void)setEnableLogging:(BOOL)flag;
 
 /**
-* Check Alan debug mode logging
-*/
+ * Check Alan debug mode logging
+ */
 + (BOOL)isEnableLogging;
 
 @end
