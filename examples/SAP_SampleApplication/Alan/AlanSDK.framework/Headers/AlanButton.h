@@ -33,32 +33,55 @@
 /**
  Plays text via Alan
 
- @param textString Text to be played
+ @param text Text to be played
  */
-- (void)playText:(NSString *)textString;
+- (void)playText:(NSString *)text;
 
 /**
  Sends voice synchronized data event
 
- @param data Data event to be send
+ @param data Command data event to be send
  */
-- (void)playData:(NSDictionary *)data;
+- (void)playData:(NSDictionary *)data __attribute__((deprecated("Use 'playCommand'")));
+
+/**
+ Sends voice synchronized data event
+
+ @param command Command data event to be send
+ */
+- (void)playCommand:(NSDictionary *)command;
 
 /**
  Set visual state of an application
  
  @param data Data with visual state description
  */
-- (void)setVisual:(NSDictionary *)data;
+- (void)setVisual:(NSDictionary *)data __attribute__((deprecated("Use 'setVisualState'")));
 
 /**
- Calls specific method from Alan Base
+ Set visual state of an application
  
- @param method Method name
- @param params Method params
+ @param visualStateData Data with visual state description
+ */
+- (void)setVisualState:(NSDictionary *)visualStateData;
+
+/**
+Calls specific Alan studio project api
+ 
+ @param method Method name, like "script::someApiName", or just - "someApiName"
+ @param params Method data params
  @param callback Callback to handle result
  */
-- (void)call:(NSString *)method withParams:(NSDictionary*)params callback:(void(^)(NSError *error, NSString *object))callback;
+- (void)call:(NSString *)method withParams:(NSDictionary*)params callback:(void(^)(NSError *error, NSString *object))callback __attribute__((deprecated("Use 'callProjectApi(_:withData:callback:)'")));
+
+/**
+Calls specific Alan studio project api
+
+@param method Method name, like "script::someApiName", or just - "someApiName"
+@param data Method data params
+@param callback Callback to handle result
+*/
+- (void)callProjectApi:(NSString *)method withData:(NSDictionary*)data callback:(void(^)(NSError *error, NSString *object))callback;
 
 /**
  * Activate Alan voice button
