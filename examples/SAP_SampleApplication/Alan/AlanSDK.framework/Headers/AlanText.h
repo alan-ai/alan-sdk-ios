@@ -16,7 +16,7 @@
  
  1. Create AlanText class as usual UIView
  2. Place AlanText to some place in your application
- 3. Once recognised text is received from server-side it will be displayed inside AlanHint
+ 3. Once recognised text is received from server-side it will be displayed inside AlanText
  */
 @interface AlanText : UIView
 
