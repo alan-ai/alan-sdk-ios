@@ -20,5 +20,8 @@ Pod::Spec.new do |s|
     #s.public_header_files = 'AlanSDK-iOS/Classes/**/*.h', 'AlanSDK/Frameworks/AlanSDK.framework/Headers/*'
     s.ios.deployment_target = '11.0'
     s.ios.vendored_frameworks = 'AlanSDK-iOS/Frameworks/AlanSDK.framework'
+    s.xcconfig = {
+        'ENABLE_BITCODE' => 'NO'
+    }
     
 end
