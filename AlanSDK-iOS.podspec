@@ -16,8 +16,8 @@ Pod::Spec.new do |s|
     
     s.frameworks = 'UIKit', 'CoreVideo', 'CoreMedia', 'CoreImage', 'CoreImage', 'CoreAudio', 'AVFoundation', 'AudioToolbox', 'VideoToolbox', 'Accelerate', 'MediaPlayer'
     
-    s.source_files = 'AlanSDK-iOS/Classes/**/*'
-    s.public_header_files = 'AlanSDK-iOS/Classes/**/*.h', 'AlanSDK/Frameworks/AlanSDK.framework/Headers/*'
+    #s.source_files = 'AlanSDK-iOS/Classes/**/*'
+    #s.public_header_files = 'AlanSDK-iOS/Classes/**/*.h', 'AlanSDK/Frameworks/AlanSDK.framework/Headers/*'
     s.ios.deployment_target = '11.0'
     s.ios.vendored_frameworks = 'AlanSDK-iOS/Frameworks/AlanSDK.framework'
     
