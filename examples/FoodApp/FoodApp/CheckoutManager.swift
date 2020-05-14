@@ -9,7 +9,7 @@
 import Foundation
 
 extension Notification.Name {
-     static let checkoutItems = Notification.Name("checkoutItems")
+    static let checkoutItems = Notification.Name("checkoutItems")
 }
 
 class CheckoutManager {

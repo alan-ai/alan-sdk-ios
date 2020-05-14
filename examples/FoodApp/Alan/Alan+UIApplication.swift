@@ -45,7 +45,7 @@ extension UIApplication {
     /// Send visual state via Alan button
     func sendVisual(_ data: [String: Any]) {
         if let button = self.alanButton {
-            button.setVisual(data)
+            button.setVisualState(data)
         }
     }
         
@@ -59,14 +59,14 @@ extension UIApplication {
     /// Play data via Alan button
     func playData(_ data: [String: String]) {
         if let button = self.alanButton {
-            button.playData(data)
+            button.playCommand(data)
         }
     }
         
     /// Call method via Alan button
     func call(method: String, params: [String: Any], callback:@escaping ((Error?, String?) -> Void)) {
         if let button = self.alanButton {
-            button.call(method, withParams: params, callback: callback)
+            button.callProjectApi(method, withData: params, callback: callback)
         }
     }
 
@@ -88,7 +88,7 @@ extension UIApplication {
     
     fileprivate func setupLogs() {
         /// Set to true to show all Alan SDK logs
-        // AlanLog.setEnableLogging(false)
+         AlanLog.setEnableLogging(true)
     }
     
     fileprivate func setupButton() {
@@ -149,15 +149,14 @@ extension UIApplication {
     }
         
     fileprivate func setupHandlers() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleEvent(_:)), name:NSNotification.Name(rawValue: "kAlanSDKEventNotification"), object:nil)
-            
-        NotificationCenter.default.addObserver(self, selector: #selector(self.handleState(_:)), name:NSNotification.Name(rawValue: "kAlanSDKAlanButtonStateNotification"), object:nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAlanEvent(_:)), name: .handleEvent, object:nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAlanState(_:)), name: .handleState, object:nil)
     }
     
     
     // MARK: - Handlers
     
-    @objc func handleState(_ notification: Notification) {
+    @objc func handleAlanState(_ notification: Notification) {
         guard let userInfo = notification.userInfo else {
             return
         }
@@ -169,14 +168,14 @@ extension UIApplication {
         }
         switch state {
         case .online:
-            print("connected")
+            print("Connected")
             break
         default:
             break
         }
     }
     
-    @objc func handleEvent(_ notification: Notification) {
+    @objc func handleAlanEvent(_ notification: Notification) {
         guard let userInfo = notification.userInfo,
             let event = userInfo["onEvent"] as? String,
             event == "command",
@@ -190,7 +189,7 @@ extension UIApplication {
             return
         }
         
-        print("handleEvent: \(userInfo)")
+        print("handleAlanEvent: \(userInfo)")
         
         if command == "showCategory" {
             if let value = json["value"] as? String {
@@ -316,4 +315,9 @@ public final class ObjectAssociation<T: AnyObject> {
         get { return objc_getAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque()) as! T? }
         set { objc_setAssociatedObject(index, Unmanaged.passUnretained(self).toOpaque(), newValue, policy) }
     }
+}
+
+extension Notification.Name {
+    static let handleEvent = Notification.Name("kAlanSDKEventNotification")
+    static let handleState = Notification.Name("kAlanSDKAlanButtonStateNotification")
 }

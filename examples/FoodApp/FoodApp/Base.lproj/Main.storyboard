@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gWx-qi-SO2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gWx-qi-SO2">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +11,7 @@
         <!--Menu View Controller-->
         <scene sceneID="cEB-HZ-Sdj">
             <objects>
-                <collectionViewController id="75Z-oC-OYC" userLabel="Menu View Controller" customClass="MenuViewController" customModule="FoodApp" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="75Z-oC-OYC" userLabel="Menu View Controller" customClass="MenuViewController" customModule="Alan_Delivery" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Rk7-7j-Cgc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="730"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -76,7 +76,7 @@
         <!--Item View Controller-->
         <scene sceneID="oQX-AW-KPd">
             <objects>
-                <collectionViewController id="ILH-sJ-M2M" customClass="ItemViewController" customModule="FoodApp" sceneMemberID="viewController">
+                <collectionViewController id="ILH-sJ-M2M" customClass="ItemViewController" customModule="Alan_Delivery" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dFK-Od-iwN">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="730"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -167,7 +167,7 @@
         <!--Checkout-->
         <scene sceneID="hxG-Qa-b6F">
             <objects>
-                <viewController id="03C-mg-h39" customClass="CheckoutViewController" customModule="FoodApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="03C-mg-h39" customClass="CheckoutViewController" customModule="Alan_Delivery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZXd-jg-Jep">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="730"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -261,7 +261,7 @@
         <!--Container View Controller-->
         <scene sceneID="nwc-VW-trT">
             <objects>
-                <viewController id="gWx-qi-SO2" customClass="ContainerViewController" customModule="FoodApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gWx-qi-SO2" customClass="ContainerViewController" customModule="Alan_Delivery" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="19S-AC-iCq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
