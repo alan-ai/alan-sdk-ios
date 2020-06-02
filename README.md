@@ -13,7 +13,7 @@ Add a voice assistant to your application. With no or minimal changes to the exi
 2. Use the Alan iOS SDK to embed the Alan button to your application or page. For details, see [Alan AI documentation]( https://alan.app/docs/client-api/ios/ios).
 
 ## Downloads
-* [AlanSDK-iOS on CocoaPods.org](https://cocoapods.org/pods/AlanSDK-iOS)
+* [Alan iOS SDK on CocoaPods.org](https://cocoapods.org/pods/AlanSDK-iOS)
 * [Alan iOS SDK releases](https://github.com/alan-ai/alan-sdk-ios/releases)
 
 
