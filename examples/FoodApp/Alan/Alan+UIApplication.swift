@@ -108,7 +108,7 @@ extension UIApplication {
         /// check Alan button
         guard let button = self.alanButton else {
             return
-        }
+        }        
         
         // align button on view
         button.translatesAutoresizingMaskIntoConstraints = false

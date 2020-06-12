@@ -93,7 +93,27 @@ Calls specific Alan studio project api
  */
 - (void)deactivate;
 
+/**
+ * Indicator that Alan voice button is activated or not
+ */
+- (BOOL)isActive;
+
 /// Indicator that Alan voice button is activated
-@property (readonly) BOOL isActivated;
+@property (readonly) BOOL isActivated __attribute__((deprecated("Use 'isActive'")));
+
+/**
+ * Provides information about SDK base version
+ *
+ * @return Version of AlanSDK base as string
+ */
+- (NSString*)getVersion;
+
+/**
+ * Provides information about SDK version
+ *
+ * @return Version of AlanSDK as string
+ */
+- (NSString*)getSDKVersion;
+
 
 @end

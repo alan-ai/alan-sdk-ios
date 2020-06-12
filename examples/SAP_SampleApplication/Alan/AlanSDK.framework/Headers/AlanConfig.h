@@ -35,6 +35,16 @@
 @property (nonatomic, strong, readonly, nullable) NSString* dialogId;
 
 /**
+ Given platform name. Read only
+ */
+@property (nonatomic, strong, readonly, nullable) NSString* platform;
+
+/**
+ Given platform version. Read only
+ */
+@property (nonatomic, strong, readonly, nullable) NSString* platformVersion;
+
+/**
  Given data object which passed to Alan Studio project. Read only
  */
 @property (nonatomic, strong, readonly, nullable) NSDictionary* dataObject;
@@ -52,6 +62,16 @@
  @return AlanConfig object
  */
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key;
+
+/**
+ Creates AlanConfig object with key
+ 
+ @param key Project key
+ @param platform Plarform/plugin name
+ @param platformVersion Plarform/plugin version
+ @return AlanConfig object
+ */
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key platform:(nullable NSString*)platform platformVersion:(nullable NSString*)platformVersion;
 
 /**
  Creates AlanConfig object with key and data object
@@ -99,6 +119,18 @@
  @return AlanConfig object
  */
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key host:(nullable NSString *)host dataObject:(nullable NSDictionary *)dataObject;
+
+/**
+ Creates AlanConfig object with key, host and given data
+ 
+ @param key Project key
+ @param host Host to connect
+ @param dataObject Given data object which will be passed to Alan Studio project
+ @param platform Plarform/plugin name
+ @param platformVersion Plarform/plugin version
+ @return AlanConfig object
+ */
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key host:(nullable NSString *)host dataObject:(nullable NSDictionary *)dataObject platform:(nullable NSString*)platform platformVersion:(nullable NSString*)platformVersion;
 
 /**
  Creates AlanConfig object with key, host, dialogId and given data
