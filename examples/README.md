@@ -1,9 +1,9 @@
 # Examples for Alan iOS SDK 
 
-## BasicIntegrationSwift
+## alan-example-integration-swift
 Simple example how to integrate AlanSDK to you Swift application
 
-## BasicIntegrationObjectiveC
+## alan-example-integration-objectivec
 Simple example how to integrate AlanSDK to you Objective-C application
 
 ## FoodApp
