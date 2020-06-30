@@ -1,14 +1,22 @@
-# Examples for Alan iOS SDK 
+# Examples for Alan iOS SDK
+
+[Alan Platform](https://alan.app/) • [Alan Studio](https://studio.alan.app/register) • [Docs](https://alan.app/docs) • [FAQ](https://alan.app/docs/usage/additional/faq) •
+[Blog](https://alan.app/blog/) • [Twitter](https://twitter.com/alanvoiceai)
+
+These are premade examples of iOS apps integrated with Alan. To use these apps:
+
+1. Clone this repository to your computer.
+2. Select an app, explore it in the IDE and run it.
+3. In the app, tap the Alan button and ask: `What is this app?` and `What can I do?` Then follow Alan's instructions.
 
 ## alan-example-integration-swift
-Simple example how to integrate AlanSDK to you Swift application
+A simple example on how to integrate the Alan iOS SDK into a Swift app.
 
 ## alan-example-integration-objectivec
-Simple example how to integrate AlanSDK to you Objective-C application
+A simple example on how to integrate the Alan iOS SDK into an Objective-C app.
 
 ## FoodApp
-Example how to use Alan iOS SDK. 
-
+An example on how to integrate the Alan iOS SDK into a food delivery app.
 
 ## SAP_SampleApplication
-Example how to integrate Alan iOS SDK to existing SAP application
+An example on how to integrate the Alan iOS SDK into an existing SAP app.
