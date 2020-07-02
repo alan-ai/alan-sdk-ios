@@ -4,8 +4,8 @@ Pod::Spec.new do |s|
     s.version          = '2.11.0'
     s.summary          = 'Conversational Voice AI Platform.'
     s.description      = <<-DESC
-    The Alan Voice AI Platform provides a framework for fast and easy development and deployment voice experiences for your application.
-    Alan voice enables any application, on any platform.
+    The Alan Voice AI Platform provides a framework for fast and easy development and deployment of voice experiences for your applications.
+    Alan adds voice to any application, on any platform.
     DESC
     
     s.homepage         = 'https://github.com/alan-ai/alan-sdk-ios'
