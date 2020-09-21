@@ -1,0 +1,13 @@
+framework module SAPFioriFlows {
+    
+    umbrella header "SAPFioriFlows.h"
+    
+    export *
+    module * { export * }
+}
+
+
+module SAPFioriFlows.Swift {
+    header "SAPFioriFlows-Swift.h"
+    requires objc
+}

@@ -1,0 +1,2484 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SAPFoundation
+import AuthenticationServices
+import SystemConfiguration.CaptiveNetwork
+import Combine
+import CoreLocation
+import CoreTelephony
+import Dispatch
+import Foundation
+import SAPCommon
+@_exported import SAPFoundation
+import SafariServices
+import Swift
+import SystemConfiguration
+import UIKit
+import WebKit
+open class JSONConfigurationProvider : SAPFoundation.ConfigurationProviding {
+  public init()
+  public var providerIdentifier: Swift.String {
+    get
+  }
+  public var expectedInput: [Swift.String : Any] {
+    get
+  }
+  public func provideConfiguration(input: [Swift.String : Any] = [:]) -> (providerSuccess: Swift.Bool, configuration: Foundation.NSDictionary, returnError: Swift.Error?)
+  @objc deinit
+}
+public enum IdentityError : Swift.Error {
+  case failedToCreateIdentity
+  case failedToCreatePkcs12Data
+  case failedToExportCertificateData
+  case failedToExportPrivateKey
+  public static func == (a: SAPFoundation.IdentityError, b: SAPFoundation.IdentityError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension IdentityError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class OAuth2Authenticator : SAPFoundation.OAuth2Authentication {
+  public static func defaultSAPURLSession() -> SAPFoundation.SAPURLSession
+  public func authenticate(completionHandler: @escaping (SAPFoundation.OAuth2Token?, Swift.Error?) -> Swift.Void)
+  public func refresh(token: SAPFoundation.OAuth2Token, completionHandler: @escaping (SAPFoundation.OAuth2Token?, Swift.Error?) -> Swift.Void)
+  public func cancelAuthentication()
+  @objc deinit
+}
+public protocol AuthenticationHandling : AnyObject {
+  func authenticationObserver(_ observer: SAPFoundation.SAPURLSessionObserving, didAuthenticate session: SAPFoundation.SAPURLSession, requestBypassIdentifier: Foundation.UUID, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  func authenticationObserver(_ observer: SAPFoundation.SAPURLSessionObserving, didFailToAuthenticate session: SAPFoundation.SAPURLSession, error: Swift.Error)
+}
+public struct ResourceInfo {
+  public let resourceName: Swift.String
+  public let resourceVersion: Swift.String
+  public let resourceExtension: Swift.String
+  public let isDefault: Swift.Bool
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class SAPURLSessionDownloadTask : SAPFoundation.SAPURLSessionTask {
+  public func cancel(byProducingResumeData completionHandler: @escaping (Foundation.Data?) -> Swift.Void)
+  @objc deinit
+}
+open class UserIdentityObserver {
+  public var authenticationHandler: SAPFoundation.AuthenticationHandling?
+  public init(userIdentityDiscovery: SAPFoundation.UserIdentityObtaining, identityStore: SAPFoundation.UserIdentityStoring)
+  @objc deinit
+}
+extension UserIdentityObserver : SAPFoundation.SAPURLSessionObserving {
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didReceive challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (SAPFoundation.SAPURLSession.AuthChallengeDisposition) -> Swift.Void)
+  public func copy() -> Any?
+}
+public enum SAPcpmsUserBlockedError : Swift.Error {
+  case traffic
+  case trafficAndRegistration
+  case registration
+  public static func == (a: SAPFoundation.SAPcpmsUserBlockedError, b: SAPFoundation.SAPcpmsUserBlockedError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+open class SAPcpmsUserBlockedObserver : SAPFoundation.SAPURLSessionObserving {
+  final public let blockedHTTPStatusCode: Swift.Int
+  final public let blockedHTTPHeaderName: Swift.String
+  final public let userBlockedHandler: (SAPFoundation.SAPcpmsUserBlockedError) -> Swift.Void
+  public init(userBlockedHandler: @escaping (SAPFoundation.SAPcpmsUserBlockedError) -> Swift.Void)
+  open func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.ResponseDisposition) -> Swift.Void)
+  open func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didFinishDownloadingTo location: Foundation.URL, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  open func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  public func copy() -> Any?
+  @objc deinit
+}
+extension UserIdentityObserver {
+  convenience public init(userIdentityConfigurationParameters: SAPFoundation.SAPcpmsUserIdentityConfigurationParameters, oAuth2AuthenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, identityStore: SAPFoundation.UserIdentityStoring, applicationID: Swift.String? = nil)
+  convenience public init?(certificateDiscoveryConfiguration configuration: [Swift.String : Any], identityStore: SAPFoundation.UserIdentityStoring, applicationID: Swift.String? = nil)
+}
+public enum AuthenticationObserverError : Swift.Error {
+  case retryCountReached
+  public static func == (a: SAPFoundation.AuthenticationObserverError, b: SAPFoundation.AuthenticationObserverError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension AuthenticationObserverError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+open class SAPcpmsUserRoles {
+  public struct SAPcpmsUserInfo {
+    public let id: Swift.String
+    public let userName: Swift.String
+    public let roles: [Swift.String]?
+    public let detail: Swift.String?
+    public let familyName: Swift.String?
+    public let givenName: Swift.String?
+    public let emails: [[Swift.String : Any]]?
+    public let others: [Swift.String : Any]?
+    public init(id: Swift.String, userName: Swift.String, roles: [Swift.String]? = nil, detail: Swift.String? = nil, familyName: Swift.String? = nil, givenName: Swift.String? = nil, emails: [[Swift.String : Any]]? = nil, others: [Swift.String : Any]? = nil)
+  }
+  public init(sapURLSession: SAPFoundation.SAPURLSession, roleServiceUrl: Foundation.URL)
+  convenience public init(sapURLSession: SAPFoundation.SAPURLSession, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters)
+  open func load(completionHandler: @escaping (SAPFoundation.SAPcpmsUserRoles.SAPcpmsUserInfo?, Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+open class SecureStoreCache<Value> : SAPFoundation.Caching where Value : Foundation.NSCoding {
+  public typealias KeyType = Swift.String
+  public typealias ValueType = Value
+  public typealias SecureStoreCacheEntry = SAPFoundation.CacheEntry<Value>
+  final public let maximumNumberOfEntries: Swift.Int
+  final public let maximumCost: Swift.Double
+  public var store: SAPFoundation.SecureDatabaseStore? {
+    get
+  }
+  required public init(maximumNumberOfEntries: Swift.Int = 0, maximumCost: Swift.Double = 0, secureStore: SAPFoundation.SecureDatabaseStore, tableName: Swift.String = "SApcpSDKSecureStoreCache")
+  open var costOfEntries: Swift.Double {
+    get
+  }
+  open var numberOfEntries: Swift.Int {
+    get
+  }
+  open func set(value: SAPFoundation.SecureStoreCache<Value>.ValueType, forKey key: SAPFoundation.SecureStoreCache<Value>.KeyType, withCost cost: Swift.Double = 0)
+  open func value(forKey key: SAPFoundation.SecureStoreCache<Value>.KeyType) -> SAPFoundation.SecureStoreCache<Value>.ValueType?
+  open func entry(forKey key: SAPFoundation.SecureStoreCache<Value>.KeyType) -> SAPFoundation.CacheEntry<SAPFoundation.SecureStoreCache<Value>.ValueType>?
+  open func removeValue(forKey key: SAPFoundation.SecureStoreCache<Value>.KeyType)
+  open func removeAllValues()
+  open func keys() -> Swift.AnySequence<SAPFoundation.SecureStoreCache<Value>.KeyType>
+  @objc deinit
+}
+public let DiscoveryServiceHost: Swift.String
+public let DiscoveryServicePort: Swift.String
+public let DiscoveryServiceProtocol: Swift.String
+public let DiscoveryServiceAuth: Swift.String
+public let DiscoveryServiceType: Swift.String
+public let DiscoveryServiceConfig: Swift.String
+public let DiscoveryServiceAppID: Swift.String
+@_hasMissingDesignatedInitializers public class SecureDatabaseStore {
+  final public let databaseURL: Foundation.URL
+  convenience public init(databaseFileName: Swift.String = "SAPcpSDKDefaultSecureDatabaseStore.db")
+  convenience public init(fullDatabasePath: Swift.String)
+  public func open(with encryptionKey: Swift.String, initializationHandler: ((SAPFoundation.SecureDatabaseStore) -> Swift.Error?) = SecureDatabaseStore.defaultInitializationHandler) throws
+  public func open(with encryptionKeyData: Foundation.Data, initializationHandler: (SAPFoundation.SecureDatabaseStore) -> Swift.Error? = SecureDatabaseStore.defaultInitializationHandler) throws
+  public func isOpen() -> Swift.Bool
+  public func close()
+  public func changeEncryptionKey(with newEncryptionKey: Swift.String) throws
+  public func changeEncryptionKey(with newEncryptionKeyData: Foundation.Data) throws
+  public func executeUpdate(_ sql: Swift.String) throws
+  public func executeUpdate(_ sql: Swift.String, values: [SAPFoundation.SQLiteDatatypeBridgeable?]) throws
+  public func executeUpdate(_ sql: Swift.String, parameterDictionary: [Swift.String : SAPFoundation.SQLiteDatatypeBridgeable?]) throws
+  public func executeStatements(_ sql: Swift.String) throws
+  public func executeStatements(_ sql: Swift.String, resultBlock: @escaping ([Swift.String : Swift.String?]) -> Swift.Bool) throws
+  public func lastInsertRowId() throws -> Swift.Int64
+  public func changedRowCount() throws -> Swift.Int
+  public func executeQuery(_ sql: Swift.String) throws -> SAPFoundation.SecureDatabaseResultSet
+  public func executeQuery(_ sql: Swift.String, values: [SAPFoundation.SQLiteDatatypeBridgeable?]) throws -> SAPFoundation.SecureDatabaseResultSet
+  public func executeQuery(_ sql: Swift.String, parameterDictionary: [Swift.String : SAPFoundation.SQLiteDatatypeBridgeable?]) throws -> SAPFoundation.SecureDatabaseResultSet
+  public func beginExclusiveTransaction() throws
+  public func beginDeferredTransaction() throws
+  public func commit() throws
+  public func rollback() throws
+  public func isInTransaction() throws -> Swift.Bool
+  public var shouldCacheStatements: Swift.Bool {
+    get
+    set(shouldCache)
+  }
+  public func clearCachedStatements()
+  public var hasOpenResultSets: Swift.Bool {
+    get
+  }
+  public func closeOpenResultSets()
+  public static func defaultInitializationHandler(_ store: SAPFoundation.SecureDatabaseStore) -> Swift.Error?
+  @objc deinit
+}
+public struct SLSLoginInputFieldValue {
+  public let fieldName: Swift.String
+  public let value: Swift.String
+  public init(fieldName: Swift.String, value: Swift.String)
+}
+public protocol CoderProtocol {
+  func encode<Value>(_ value: Value) throws -> Foundation.Data where Value : Swift.Encodable
+  func decode<T>(_ type: T.Type, from data: Foundation.Data) throws -> T where T : Swift.Decodable
+}
+public enum SAPcpmsAuthenticationManagerError : Swift.Error {
+  case userSwitch
+  public static func == (a: SAPFoundation.SAPcpmsAuthenticationManagerError, b: SAPFoundation.SAPcpmsAuthenticationManagerError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension SAPcpmsAuthenticationManagerError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+open class SAPPassportObserver : SAPFoundation.SAPURLSessionObserving {
+  public init(passportManager: SAPFoundation.SAPPassportManaging = MeteringPassportManager())
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  @objc deinit
+}
+public let BasicAuthenticationParametersDiscoveryServiceAuthType: Swift.String
+public let NoneAuthenticationParametersDiscoveryServiceAuthType: Swift.String
+public struct BasicCredential : Swift.Codable {
+  public let username: Swift.String
+  public let password: Swift.String
+  public init(username: Swift.String, password: Swift.String)
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+open class BasicAuthenticationObserver {
+  public var authenticationHandler: SAPFoundation.AuthenticationHandling?
+  public var persistence: Foundation.URLCredential.Persistence
+  public init(basicCredentialDiscovery: SAPFoundation.BasicCredentialDiscovery = DefaultBasicCredentialDiscovery(), basicCredentialStore: SAPFoundation.BasicCredentialStoring, retryCount: Swift.Int = 3)
+  @objc deinit
+}
+extension BasicAuthenticationObserver : SAPFoundation.SAPURLSessionObserving {
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willPerformHTTPRedirection response: Foundation.HTTPURLResponse, newRequest request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.HTTPRedirectDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didReceive challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (SAPFoundation.SAPURLSession.AuthChallengeDisposition) -> Swift.Void)
+  public func copy() -> Any?
+}
+@_hasMissingDesignatedInitializers open class UsageBroker {
+  public static let shared: SAPFoundation.UsageBroker
+  public var store: SAPFoundation.UsageStore? {
+    get
+  }
+  public var injectOSlifecycleSession: Swift.Bool {
+    get
+  }
+  public var collectionItems: SAPFoundation.UsageDataCollectionItems {
+    get
+  }
+  public var sapURLSession: SAPFoundation.SAPURLSession?
+  public var onboardingID: Swift.String?
+  public var enableServerOverride: Swift.Bool
+  public var uploadInterval: Swift.Int
+  public var sapcpmsSettingsParameters: SAPFoundation.SAPcpmsSettingsParameters {
+    get
+    set
+  }
+  public var enableReporting: Swift.Bool {
+    get
+    set
+  }
+  public func start(OSlifecycleSessionInjection enabled: Swift.Bool = true, DataCollection items: SAPFoundation.UsageDataCollectionItems = UsageDataCollectionItems.all, retainLastUnattributedSession: Swift.Bool = true) throws
+  public func configure(path: Foundation.URL = UsageStore.defaultFolderURL, storageID: Foundation.UUID? = nil, encryptionKey: Swift.String? = nil, retainLastUnattributedSession: Swift.Bool = true) throws
+  public func upload(overrideInterval force: Swift.Bool = false, sapcpmsSettingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil, sendUnattributed unattributed: Swift.Bool = true, completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsUsageUploader.defaultCompletionHandler)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SAPcpmsUsageUploader {
+  public enum UploadError : SAPCommon.SAPError {
+    case fileSystem(Swift.Error)
+    case network(Swift.Error)
+    case invalidResponse(Foundation.Data?, Foundation.URLResponse?)
+    case emptyStore
+    public var description: Swift.String {
+      get
+    }
+    public var errorDescription: Swift.String? {
+      get
+    }
+    public var debugDescription: Swift.String {
+      get
+    }
+  }
+  public static func upload(to settings: SAPFoundation.SAPcpmsSettingsParameters, sapURLSession: SAPFoundation.SAPURLSession, target: Swift.String = Usage.defaultTargetID, unattributedData: SAPCommon.UsageSnapshotting? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsUsageUploader.defaultCompletionHandler)
+  public static func upload(to uploadEndPoint: Foundation.URL, sapURLSession: SAPFoundation.SAPURLSession, target: Swift.String = Usage.defaultTargetID, sapcpmsSettingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil, unattributedData: SAPCommon.UsageSnapshotting? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsUsageUploader.defaultCompletionHandler)
+  public static func defaultCompletionHandler(_ error: Swift.Error?)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class SecureKeyValueStore : SAPFoundation.KeyValueStoreProtocol {
+  final public let secureDatabaseStore: SAPFoundation.SecureDatabaseStore
+  public static let defaultDatabaseFileName: Swift.String
+  open var storeName: Swift.String
+  convenience public init(databaseFileName: Swift.String = defaultDatabaseFileName, name: Swift.String = SecureStoreDefaultStoreName)
+  convenience public init(fullDatabasePath: Swift.String, name: Swift.String = SecureStoreDefaultStoreName)
+  convenience public init(databaseStore: SAPFoundation.SecureDatabaseStore, name: Swift.String = SecureStoreDefaultStoreName) throws
+  @objc deinit
+  open func open(with encryptionKey: Swift.String) throws
+  open func open(with encryptionKeyData: Foundation.Data) throws
+  open func isOpen() -> Swift.Bool
+  open func close()
+  open func changeEncryptionKey(with newEncryptionKey: Swift.String) throws
+  open func changeEncryptionKey(with newEncryptionKeyData: Foundation.Data) throws
+  open func put<T>(_ value: T?, forKey key: Swift.String) throws where T : SAPFoundation.SQLiteDatatypeBridgeable
+  open func put<T>(_ value: T?, forKey key: Swift.String) throws where T : Foundation.NSCoding
+  open func putAll(_ keyValueDict: [Swift.String : Foundation.NSCoding?]) throws
+  open func get<T>(_ key: Swift.String) throws -> T? where T : SAPFoundation.SQLiteDatatypeBridgeable
+  open func get<T>(_ key: Swift.String) throws -> T? where T : Foundation.NSCoding
+  open func getString(_ key: Swift.String) throws -> Swift.String?
+  open func getInt8(_ key: Swift.String) throws -> Swift.Int8?
+  open func getInt16(_ key: Swift.String) throws -> Swift.Int16?
+  open func getInt32(_ key: Swift.String) throws -> Swift.Int32?
+  open func getInt64(_ key: Swift.String) throws -> Swift.Int64?
+  open func getInt(_ key: Swift.String) throws -> Swift.Int?
+  open func getUInt8(_ key: Swift.String) throws -> Swift.UInt8?
+  open func getUInt16(_ key: Swift.String) throws -> Swift.UInt16?
+  open func getUInt32(_ key: Swift.String) throws -> Swift.UInt32?
+  open func getUInt64(_ key: Swift.String) throws -> Swift.UInt64?
+  open func getUInt(_ key: Swift.String) throws -> Swift.UInt?
+  open func getFloat(_ key: Swift.String) throws -> Swift.Float?
+  open func getDouble(_ key: Swift.String) throws -> Swift.Double?
+  open func getBool(_ key: Swift.String) throws -> Swift.Bool?
+  open func getData(_ key: Swift.String) throws -> Foundation.Data?
+  open func get<T>(_ key: Swift.String, defaultValue: T?) throws -> T? where T : Foundation.NSCoding
+  open func get<T>(_ key: Swift.String, defaultValue: T?) throws -> T? where T : SAPFoundation.SQLiteDatatypeBridgeable
+  open func keys() throws -> Swift.Set<Swift.String>
+  open func hasKey(_ key: Swift.String) throws -> Swift.Bool
+  open func count() throws -> Swift.Int
+  open func isEmpty() throws -> Swift.Bool
+  @discardableResult
+  open func remove(_ key: Swift.String) throws -> Swift.Bool
+  open func removeAll() throws
+}
+public protocol KeyValueStoreProtocol {
+  func put<T>(_ value: T?, forKey key: Swift.String) throws where T : SAPFoundation.SQLiteDatatypeBridgeable
+  func put<T>(_ value: T?, forKey key: Swift.String) throws where T : Foundation.NSCoding
+  func putAll(_ keyValueDict: [Swift.String : Foundation.NSCoding?]) throws
+  func get<T>(_ key: Swift.String) throws -> T? where T : Foundation.NSCoding
+  func get<T>(_ key: Swift.String) throws -> T? where T : SAPFoundation.SQLiteDatatypeBridgeable
+  func getString(_ key: Swift.String) throws -> Swift.String?
+  func getInt8(_ key: Swift.String) throws -> Swift.Int8?
+  func getInt16(_ key: Swift.String) throws -> Swift.Int16?
+  func getInt32(_ key: Swift.String) throws -> Swift.Int32?
+  func getInt64(_ key: Swift.String) throws -> Swift.Int64?
+  func getInt(_ key: Swift.String) throws -> Swift.Int?
+  func getUInt8(_ key: Swift.String) throws -> Swift.UInt8?
+  func getUInt16(_ key: Swift.String) throws -> Swift.UInt16?
+  func getUInt32(_ key: Swift.String) throws -> Swift.UInt32?
+  func getUInt64(_ key: Swift.String) throws -> Swift.UInt64?
+  func getUInt(_ key: Swift.String) throws -> Swift.UInt?
+  func getFloat(_ key: Swift.String) throws -> Swift.Float?
+  func getDouble(_ key: Swift.String) throws -> Swift.Double?
+  func getBool(_ key: Swift.String) throws -> Swift.Bool?
+  func getData(_ key: Swift.String) throws -> Foundation.Data?
+  func get<T>(_ key: Swift.String, defaultValue: T?) throws -> T? where T : SAPFoundation.SQLiteDatatypeBridgeable
+  func get<T>(_ key: Swift.String, defaultValue: T?) throws -> T? where T : Foundation.NSCoding
+  func keys() throws -> Swift.Set<Swift.String>
+  func hasKey(_ key: Swift.String) throws -> Swift.Bool
+  func count() throws -> Swift.Int
+  func isEmpty() throws -> Swift.Bool
+  @discardableResult
+  func remove(_ key: Swift.String) throws -> Swift.Bool
+  func removeAll() throws
+}
+extension OAuth2Authenticator {
+  convenience public init(authenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession = defaultSAPURLSession())
+  convenience public init(authenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession = defaultSAPURLSession(), webViewPresenter: SAPFoundation.WKWebViewPresenting)
+  convenience public init(authenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession = defaultSAPURLSession(), webViewPresenter: SAPFoundation.SFSafariViewControllerPresenting)
+  @available(iOS 12.0, *)
+  convenience public init(authenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession = defaultSAPURLSession(), webViewPresenter: SAPFoundation.ASWebAuthenticationSessionPresenting)
+}
+public enum SAPcpmsUserIdentityDiscoveryError : Swift.Error {
+  case getCertificateAttributes
+  case parseCertificateAttributes
+  case createCSR
+  case getCertificate(statusCode: Swift.Int)
+  case parseCertificate
+  case invalidUserIdentity
+  case cancelled
+}
+extension SAPcpmsUserIdentityDiscoveryError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public class SAPcpmsObserver : SAPFoundation.SAPURLSessionObserving {
+  final public let applicationID: Swift.String
+  final public let deviceID: Swift.String?
+  final public let applicationVersion: Swift.String?
+  public init(applicationID: Swift.String, deviceID: Swift.String? = SAPcpmsSettingsParameters.defaultDeviceID, applicationVersion: Swift.String? = nil)
+  convenience public init(settingsParameters parameters: SAPFoundation.SAPcpmsSettingsParameters)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func copy() -> Any?
+  @objc deinit
+}
+open class PlistCoder : SAPFoundation.CoderProtocol {
+  final public let encoder: Foundation.PropertyListEncoder
+  final public let decoder: Foundation.PropertyListDecoder
+  public init()
+  open func decode<T>(_ type: T.Type, from data: Foundation.Data) throws -> T where T : Swift.Decodable
+  open func encode<Value>(_ value: Value) throws -> Foundation.Data where Value : Swift.Encodable
+  @objc deinit
+}
+extension UserIdentityObserver {
+  convenience public init(slsConfigurationParameters: SAPFoundation.SLSConfigurationParameters, loginInputDelegate: SAPFoundation.SLSLoginInputDelegate, identityStore: SAPFoundation.UserIdentityStoring)
+}
+public enum SAPcpmsClientResourcesError : Swift.Error {
+  case network
+  case invalidHTTPStatus(statusCode: Swift.Int)
+  case malformed
+}
+extension SAPcpmsClientResourcesError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+extension SAPURLSession {
+  public enum CancellableDisposition {
+    case allow
+    case cancel(Swift.Error)
+  }
+  public enum DataDisposition {
+    case allow(Foundation.Data)
+    case cancel(Swift.Error)
+  }
+  public enum ResponseDisposition {
+    case allow(Foundation.URLResponse)
+    case cancel(Swift.Error)
+    case becomeDownload
+    case resend
+  }
+  public enum RequestDisposition {
+    case allow(Foundation.URLRequest)
+    case cancel(Swift.Error)
+  }
+  public enum DidCompleteDisposition {
+    case allow
+    case fail(Swift.Error)
+    case resend
+  }
+  public enum AuthChallengeDisposition {
+    case use(Foundation.URLCredential)
+    case rejectProtectionSpace
+    case performDefaultHandling
+    case cancel(Swift.Error)
+    case resend
+  }
+  public enum DelayedRequestDisposition {
+    case continueLoading
+    case use(new: Foundation.URLRequest)
+    case cancel(Swift.Error)
+  }
+  public enum InputStreamDisposition {
+    case bypass
+    case use(Foundation.InputStream)
+    case cancel(Swift.Error)
+  }
+  public enum HTTPRedirectDisposition {
+    case allow(Foundation.URLRequest)
+    case cancel(Swift.Error)
+  }
+  public enum CacheResponseDisposition {
+    case use(Foundation.CachedURLResponse?)
+    case cancel(Swift.Error)
+  }
+}
+extension SAPURLSession {
+  public struct HTTPHeader {
+    public static let contentType: Swift.String
+    public static let contentLength: Swift.String
+    public static let accept: Swift.String
+    public static let acceptLanguage: Swift.String
+    public static let acceptCharset: Swift.String
+  }
+  public struct HTTPContentType {
+    public static let applicationJSON: Swift.String
+    public static let applicationData: Swift.String
+    public static let applicationOctetStream: Swift.String
+    public static let applicationXML: Swift.String
+    public static let applicationPDF: Swift.String
+    public static let audioMIDI: Swift.String
+    public static let audioMPEG: Swift.String
+    public static let audioOGG: Swift.String
+    public static let audioWAV: Swift.String
+    public static let audioWAVE: Swift.String
+    public static let imageBMP: Swift.String
+    public static let imageGIF: Swift.String
+    public static let imageJPEG: Swift.String
+    public static let imagePNG: Swift.String
+    public static let imageSVGXML: Swift.String
+    public static let multipartByteRanges: Swift.String
+    public static let multipartFormData: Swift.String
+    public static let textHTML: Swift.String
+    public static let textPlain: Swift.String
+    public static let videoMP4: Swift.String
+    public static let videoOGG: Swift.String
+  }
+  public struct HTTPStatusCode {
+    public static let ok: Swift.Int
+    public static let created: Swift.Int
+    public static let noContent: Swift.Int
+    public static let notModified: Swift.Int
+    public static let badRequest: Swift.Int
+    public static let unauthorized: Swift.Int
+    public static let forbidden: Swift.Int
+    public static let notFound: Swift.Int
+    public static let internalServerError: Swift.Int
+  }
+  public struct HTTPMethod {
+    public static let delete: Swift.String
+    public static let get: Swift.String
+    public static let head: Swift.String
+    public static let options: Swift.String
+    public static let patch: Swift.String
+    public static let post: Swift.String
+    public static let put: Swift.String
+  }
+}
+public class SLSUserIdentityDiscovery : SAPFoundation.UserIdentityObtaining {
+  public init(slsConfigurationParameters: SAPFoundation.SLSConfigurationParameters, loginInputDelegate: SAPFoundation.SLSLoginInputDelegate, sapURLSession: SAPFoundation.SAPURLSession = SAPURLSession())
+  public func obtainUserIdentity(completionHandler: @escaping (Foundation.Data?, Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+public let OTPParametersAuthorizationEndpointURL: Swift.String
+public let OTPParametersFinishEndpointURL: Swift.String
+public struct OTPParameters {
+  public let authorizationEndpointURL: Foundation.URL
+  public let finishEndpointURL: Foundation.URL
+  public let challengeHeaderName: Swift.String
+  public let challengeHeaderValue: Swift.String
+  public init(authorizationEndpointURL: Foundation.URL, finishEndpointURL: Foundation.URL, challengeHeaderName: Swift.String = OTPChallengeHeaderName, challengeHeaderValue: Swift.String = OTPChallengeHeaderValue)
+}
+extension OTPParameters {
+  public init(settingsParameters: SAPFoundation.SAPcpmsSettingsParameters)
+}
+extension OTPParameters : SAPFoundation.DiscoveryServiceConfigurable {
+  public init(discoveryServiceConfig config: Any) throws
+}
+@available(iOS 12.0, *)
+public class ASWebAuthenticationSessionPresenter : SAPFoundation.ASWebAuthenticationSessionPresenting {
+  weak public var delegate: SAPFoundation.WebViewPresenterDelegate?
+  public var callbackURLScheme: Swift.String?
+  public var authenticationSession: AuthenticationServices.ASWebAuthenticationSession?
+  public var webViewPresentingViewController: UIKit.UIViewController? {
+    get
+    set
+  }
+  public init(delegate: SAPFoundation.WebViewPresenterDelegate? = nil, callbackURLScheme: Swift.String?)
+  public func presentWebView(with url: Foundation.URL, sessionCompletionHandler: @escaping AuthenticationServices.ASWebAuthenticationSession.CompletionHandler, completionHandler: @escaping (AuthenticationServices.ASWebAuthenticationSession?, Swift.Error?) -> Swift.Void)
+  public func dismissWebView()
+  public func reloadWebView()
+  @objc deinit
+}
+public protocol ConfigurationProviding {
+  var providerIdentifier: Swift.String { get }
+  var expectedInput: [Swift.String : Any] { get }
+  func provideConfiguration(input: [Swift.String : Any]) -> (providerSuccess: Swift.Bool, configuration: Foundation.NSDictionary, returnError: Swift.Error?)
+}
+public protocol ConfigurationLoaderDelegate : AnyObject {
+  func configurationProvider(_ provider: SAPFoundation.ConfigurationProviding?, didCompleteWith result: Swift.Bool)
+  func configurationProvider(_ provider: SAPFoundation.ConfigurationProviding, didEncounter error: Swift.Error)
+  func configurationProvider(_ loader: SAPFoundation.ConfigurationLoader, requestedInput: [Swift.String : [Swift.String : Any]], completionHandler: @escaping ([Swift.String : [Swift.String : Any]]) -> Swift.Void)
+}
+public struct ConfigurationProviderNames {
+  public static let managed: Swift.String
+  public static let file: Swift.String
+  public static let discoveryService: Swift.String
+  public static let json: Swift.String
+  public static let url: Swift.String
+}
+public let ConfigurationProviderUserDefaultsKey: Swift.String
+public protocol ConfigurationPersisting {
+  func persistConfiguration(_ configuration: [Swift.AnyHashable : Any])
+  func resetPersistedConfiguration()
+}
+public struct ConfigurationProviderInputKeys : Swift.RawRepresentable {
+  public typealias RawValue = Swift.String
+  public let rawValue: SAPFoundation.ConfigurationProviderInputKeys.RawValue
+  public init?(rawValue: SAPFoundation.ConfigurationProviderInputKeys.RawValue)
+  public static let emailAddress: SAPFoundation.ConfigurationProviderInputKeys
+  public static let JSONstring: SAPFoundation.ConfigurationProviderInputKeys
+}
+public struct SAPcpmsLockWipePolicy {
+  public let lockDisconnectedPeriod: Swift.Int
+  public let wipeDisconnectedPeriod: Swift.Int
+  public init(lockDisconnectedPeriod: Swift.Int = 0, wipeDisconnectedPeriod: Swift.Int = 0)
+}
+extension SAPcpmsLockWipePolicy {
+  public init?(sapcpmsSettings: Any) throws
+  @available(*, deprecated, renamed: "init(sapcpmsLockWipePolicy:)")
+  public init?(spcpmsLockWipeSettings: Any) throws
+  public init?(sapcpmsLockWipePolicy: Any) throws
+}
+extension SAPcpmsLockWipePolicy : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public enum SLSUserIdentityDiscoveryError : Swift.Error {
+  case getCertificateAttributes
+  case requestForSaltFailed
+  case getCertificate(statusCode: Swift.Int, message: Swift.String)
+  case invalidUserIdentity
+  case authenticationFailed
+}
+extension SLSUserIdentityDiscoveryError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+open class OAuth2TokenStorage : SAPFoundation.OAuth2TokenStore {
+  open var store: SAPFoundation.CodableStoring
+  open var keyHandler: (Foundation.URL) -> Swift.String
+  public init(store: SAPFoundation.CodableStoring, keyHandler: @escaping (Foundation.URL) -> Swift.String = OAuth2TokenStorage.key)
+  open func store(token: SAPFoundation.OAuth2Token, for url: Foundation.URL) throws
+  open func token(for url: Foundation.URL) throws -> SAPFoundation.OAuth2Token?
+  open func deleteToken(for url: Foundation.URL) throws
+  public static let keyPrefix: Swift.String
+  public class func key(for url: Foundation.URL) -> Swift.String
+  @objc deinit
+}
+open class NetworkActivityIndicatorObserver {
+  public init()
+  @objc deinit
+}
+extension NetworkActivityIndicatorObserver : SAPFoundation.SAPURLSessionObserving {
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCreate sessionTask: Foundation.URLSessionTask)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?)
+  public func copy() -> Any?
+}
+public struct SAPcpmsNetworkSynchronizationPolicy {
+  public let analytics: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions
+  public let clientResource: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions
+  public let logs: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions
+  public let offlineOData: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions
+  public init(analytics: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions = .default, clientResource: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions = .default, logs: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions = .default, offlineOData: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions = .default)
+}
+extension SAPcpmsNetworkSynchronizationPolicy {
+  public init?(sapcpmsSettings: Any) throws
+  public init?(sapcpmsNetworkPolicy: Any) throws
+}
+extension SAPcpmsNetworkSynchronizationPolicy : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class SecureDatabaseResultSet {
+  public var query: Swift.String {
+    get
+  }
+  @objc deinit
+  public func close()
+  public func next() throws -> Swift.Bool
+  public var hasNext: Swift.Bool {
+    get
+  }
+  public var columnCount: Swift.Int {
+    get
+  }
+  public var columnNameToIndexMap: [Swift.String : Swift.Int] {
+    get
+  }
+  public func columnIndex(forColumnName columnName: Swift.String) -> Swift.Int
+  public func columnName(forColumnIndex columnIndex: Swift.Int) -> Swift.String?
+  public func isColumnValueNull(forColumnIndex columnIndex: Swift.Int) -> Swift.Bool
+  public func isColumnValueNull(forColumnName columnName: Swift.String) -> Swift.Bool
+  public var row: [Swift.String : Foundation.NSCoding?] {
+    get
+  }
+  public func int(forColumnName columnName: Swift.String) -> Swift.Int?
+  public func int(forColumnIndex columnIndex: Swift.Int) -> Swift.Int?
+  public func int64(forColumnName columnName: Swift.String) -> Swift.Int64?
+  public func int64(forColumnIndex columnIndex: Swift.Int) -> Swift.Int64?
+  public func uint64(forColumnName columnName: Swift.String) -> Swift.UInt64?
+  public func uint64(forColumnIndex columnIndex: Swift.Int) -> Swift.UInt64?
+  public func double(forColumnName columnName: Swift.String) -> Swift.Double?
+  public func double(forColumnIndex columnIndex: Swift.Int) -> Swift.Double?
+  public func bool(forColumnName columnName: Swift.String) -> Swift.Bool?
+  public func bool(forColumnIndex columnIndex: Swift.Int) -> Swift.Bool?
+  public func string(forColumnName columnName: Swift.String) -> Swift.String?
+  public func string(forColumnIndex columnIndex: Swift.Int) -> Swift.String?
+  public func date(forColumnName columnName: Swift.String) -> Foundation.Date?
+  public func date(forColumnIndex columnIndex: Swift.Int) -> Foundation.Date?
+  public func data(forColumnName columnName: Swift.String) -> Foundation.Data?
+  public func data(forColumnIndex columnIndex: Swift.Int) -> Foundation.Data?
+  public func object<T>(forColumnName columnName: Swift.String) throws -> T? where T : SAPFoundation.SQLiteDatatypeBridgeable
+  public func object<T>(forColumnIndex columnIndex: Swift.Int) throws -> T? where T : SAPFoundation.SQLiteDatatypeBridgeable
+}
+public protocol OAuth2TokenStore {
+  func store(token: SAPFoundation.OAuth2Token, for url: Foundation.URL) throws
+  func token(for url: Foundation.URL) throws -> SAPFoundation.OAuth2Token?
+  func deleteToken(for url: Foundation.URL) throws
+}
+public enum SecureStorageError : Swift.Error {
+  case openFailed(code: Swift.Int, message: Swift.String)
+  case closed
+  case authenticationFailed(message: Swift.String)
+  case encryptionKeyChangeFailed(code: Swift.Int, message: Swift.String)
+  case typeConversionFailed
+  case backingStoreError(code: Swift.Int, message: Swift.String)
+}
+extension SecureStorageError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class SAPcpmsLogUploader {
+  public static var logLevel: SAPCommon.LogLevel {
+    get
+    set(loglevel)
+  }
+  public static var logExpiration: Swift.Int
+  public static var defaultMaxFileSize: Swift.UInt64
+  @available(*, deprecated, renamed: "defaultMaxFileNum")
+  public static var defaultMaxBackups: Swift.Int
+  public static var defaultMaxFileNum: Swift.Int {
+    get
+    set
+  }
+  public static func apply(sapcpmsLogSettings: SAPCommon.SAPcpmsLogSettings)
+  public static func attachToRootLogger(maxFileSize: Swift.UInt64 = defaultMaxFileSize, maxFileNum: Swift.Int = defaultMaxFileNum) throws
+  @available(*, deprecated, renamed: "attachToRootLogger(maxFileSize:maxFileNum:)")
+  public static func attachToRootLogger(maxFileSize: Swift.UInt64, maxBackups: Swift.Int) throws
+  public static func uploadLogs(sapURLSession: SAPFoundation.SAPURLSession, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, completionHandler: @escaping (SAPFoundation.SAPcpmsLogUploaderError?) -> Swift.Void = SAPcpmsLogUploader.defaultCompletionHandler)
+  public static func uploadLogs(sapURLSession: SAPFoundation.SAPURLSession, endpoint: Foundation.URL, completionHandler: @escaping (SAPFoundation.SAPcpmsLogUploaderError?) -> Swift.Void = SAPcpmsLogUploader.defaultCompletionHandler)
+  public static func deleteLogFiles() throws
+  public static func defaultCompletionHandler(error: Swift.Error?)
+  @objc deinit
+}
+public enum SAPcpmsUserRolesError : Swift.Error {
+  case invalidServerResponse
+  case invalidHTTPStatus(statusCode: Swift.Int)
+  case malformed(type: SAPFoundation.SAPcpmsUserRolesError.MalformedType, description: Swift.String)
+  public enum MalformedType {
+    case missingKey
+    case invalidType
+    public static func == (a: SAPFoundation.SAPcpmsUserRolesError.MalformedType, b: SAPFoundation.SAPcpmsUserRolesError.MalformedType) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+}
+extension SAPcpmsUserRolesError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public let OTPChallengeHeaderName: Swift.String
+public let OTPChallengeHeaderValue: Swift.String
+open class OTPObserver {
+  final public let challengeHeaderName: Swift.String
+  final public let challengeHeaderValue: Swift.String
+  public init(authenticator: SAPFoundation.OTPAuthenticator, challengeHeaderName: Swift.String = OTPChallengeHeaderName, challengeHeaderValue: Swift.String = OTPChallengeHeaderValue)
+  convenience public init(authenticationParameters: SAPFoundation.OTPParameters)
+  convenience public init(settingsParameters: SAPFoundation.SAPcpmsSettingsParameters)
+  open func isChallenge(dataTask: SAPFoundation.SAPURLSessionTask, response: Foundation.URLResponse) -> Swift.Bool
+  @objc deinit
+}
+extension OTPObserver : SAPFoundation.SAPURLSessionObserving {
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.ResponseDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didFinishDownloadingTo location: Foundation.URL, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  public func copy() -> Any?
+}
+public class MeteringPassportManager : SAPFoundation.SAPPassportManaging {
+  public init()
+  open func getPassport() throws -> SAPFoundation.Passport
+  open func setPassport(_ passport: SAPFoundation.Passport)
+  open func clearPassport()
+  public static var rootContextId: Foundation.UUID {
+    get
+  }
+  @objc deinit
+}
+public enum UsageBrokerError : Swift.Error {
+  case usageStoreInit
+  case reporterInit
+  case invalidUploadUrl
+  case invalidUploadOnboardingID
+  public static func == (a: SAPFoundation.UsageBrokerError, b: SAPFoundation.UsageBrokerError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension UsageBrokerError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public protocol CodableCaching {
+  associatedtype KeyType
+  var costOfEntries: Swift.Double { get }
+  var numberOfEntries: Swift.Int { get }
+  func get<T>(_ type: T.Type, for key: Self.KeyType) throws -> T? where T : Swift.Decodable, T : Swift.Encodable
+  func put<T>(_ value: T, for key: Self.KeyType, with cost: Swift.Double) throws where T : Swift.Decodable, T : Swift.Encodable
+  func entry<T>(_ type: T.Type, for key: Self.KeyType) throws -> SAPFoundation.CacheEntry<T>? where T : Swift.Decodable, T : Swift.Encodable
+  func remove(for key: Self.KeyType)
+  func removeAllValues()
+  func keys() throws -> Swift.AnySequence<Self.KeyType>
+}
+public struct CacheEntry<EntryValueType> {
+}
+public protocol Caching {
+  associatedtype KeyType
+  associatedtype ValueType
+  var costOfEntries: Swift.Double { get }
+  var numberOfEntries: Swift.Int { get }
+  func set(value: Self.ValueType, forKey: Self.KeyType, withCost: Swift.Double)
+  func value(forKey: Self.KeyType) -> Self.ValueType?
+  func entry(forKey: Self.KeyType) -> SAPFoundation.CacheEntry<Self.ValueType>?
+  func removeValue(forKey: Self.KeyType)
+  func removeAllValues()
+  func keys() -> Swift.AnySequence<Self.KeyType>
+}
+open class CodableStorage : SAPFoundation.CodableStoring {
+  public init(store: SAPCommon.DataStoring, coder: SAPFoundation.CoderProtocol = PlistCoder())
+  open func get<T>(_ type: T.Type, for key: Swift.String) throws -> T? where T : Swift.Decodable, T : Swift.Encodable
+  open func put<T>(_ value: T, for key: Swift.String) throws where T : Swift.Decodable, T : Swift.Encodable
+  open func remove(for key: Swift.String) throws
+  public func keys() throws -> Swift.Set<Swift.String>
+  @objc deinit
+}
+open class OAuth2Observer {
+  public var authenticationHandler: SAPFoundation.AuthenticationHandling?
+  public init(authenticator: SAPFoundation.OAuth2Authentication, tokenStore: SAPFoundation.OAuth2TokenStore)
+  convenience public init(authenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, tokenStore: SAPFoundation.OAuth2TokenStore)
+  convenience public init(clientCredentialsAuthenticationParameters authenticationParameters: SAPFoundation.OAuth2ClientCredentialsAuthenticationParameters, tokenStore: SAPFoundation.OAuth2TokenStore)
+  open func isChallenge(dataTask: SAPFoundation.SAPURLSessionTask, response: Foundation.URLResponse) -> Swift.Bool
+  @objc deinit
+}
+extension OAuth2Observer : SAPFoundation.SAPURLSessionObserving {
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willPerformHTTPRedirection response: Foundation.HTTPURLResponse, newRequest request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.HTTPRedirectDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.ResponseDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didFinishDownloadingTo location: Foundation.URL, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?)
+  public func copy() -> Any?
+}
+extension SecureKeyValueStore : SAPCommon.DataStoring {
+  public func put(data: Foundation.Data, for key: Swift.String) throws
+  public func data(for key: Swift.String) throws -> Foundation.Data?
+  public func removeData(for key: Swift.String) throws
+}
+open class SAPcpmsSettings {
+  public enum SettingsTarget {
+    case application
+    case user
+    case device
+    public static func == (a: SAPFoundation.SAPcpmsSettings.SettingsTarget, b: SAPFoundation.SAPcpmsSettings.SettingsTarget) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+  public init(sapURLSession: SAPFoundation.SAPURLSession, applicationSettingsURL: Foundation.URL, userSettingsURL: Foundation.URL?, deviceSettingsURL: Foundation.URL?)
+  public init(sapURLSession: SAPFoundation.SAPURLSession, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters)
+  open func loadSAPcpmsSettings(completionHandler: @escaping ([Swift.String : Any]?, Swift.Error?) -> Swift.Void)
+  open func load(settingsKeyPath: Swift.String? = nil, for settingsTarget: SAPFoundation.SAPcpmsSettings.SettingsTarget = .user, completionHandler: @escaping ([Swift.String : Any]?, Swift.Error?) -> Swift.Void)
+  open func delete(settingsKeyPath: Swift.String, for settingsTarget: SAPFoundation.SAPcpmsSettings.SettingsTarget = .user, completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsSettings.defaultCompletionHandler)
+  open func store(settings: [Swift.String : Any], settingsKeyPath: Swift.String, for settingsTarget: SAPFoundation.SAPcpmsSettings.SettingsTarget = .user, completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsSettings.defaultCompletionHandler)
+  public static func defaultCompletionHandler(_ error: Swift.Error?)
+  @objc deinit
+}
+public protocol UserIdentityObtaining {
+  func obtainUserIdentity(completionHandler: @escaping (Foundation.Data?, Swift.Error?) -> Swift.Void)
+}
+@objc public class SFSafariViewControllerPresenter : ObjectiveC.NSObject, SAPFoundation.SFSafariViewControllerPresenting, SafariServices.SFSafariViewControllerDelegate {
+  weak public var delegate: SAPFoundation.WebViewPresenterDelegate?
+  public var safariViewController: SafariServices.SFSafariViewController?
+  public var webViewPresentingViewController: UIKit.UIViewController? {
+    get
+    set
+  }
+  public init(delegate: SAPFoundation.WebViewPresenterDelegate? = nil)
+  public func presentWebView(with url: Foundation.URL, completionHandler: @escaping (SafariServices.SFSafariViewController?, Swift.Error?) -> Swift.Void)
+  public func dismissWebView()
+  @objc public func safariViewControllerDidFinish(_ controller: SafariServices.SFSafariViewController)
+  @objc override dynamic public init()
+  @objc deinit
+}
+public protocol CSRFTokenStoring {
+  func store(token: Swift.String, for url: Foundation.URL) throws
+  func token(for url: Foundation.URL) throws -> Swift.String?
+  func deleteToken(for url: Foundation.URL) throws
+}
+public enum SAPcpmsRemoteNotificationError : Swift.Error {
+  case emptyDeviceToken
+  case networkCommunicationFailed(error: Swift.Error?, httpStatuscode: Swift.Int?, response: Swift.String?)
+  case notificationIDMissing
+  case feedbackUrlMissing
+  case invalidArguments(error: Swift.Error?)
+}
+extension SAPcpmsRemoteNotificationError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public let OAuth2AuthenticationParametersAuthorizationEndpointURL: Swift.String
+public let OAuth2AuthenticationParametersRedirectURL: Swift.String
+public let OAuth2AuthenticationParametersTokenEndpointURL: Swift.String
+public let OAuth2AuthenticationParametersClientID: Swift.String
+public let OAuth2AuthenticationParametersClientSecret: Swift.String
+public let OAuth2AuthenticationParametersScope: Swift.String
+public let OAuth2AuthenticationParametersState: Swift.String
+public struct OAuth2AuthenticationParameters {
+  public let authorizationEndpointURL: Foundation.URL
+  public let tokenEndpointURL: Foundation.URL
+  public let redirectURL: Foundation.URL
+  public let clientID: Swift.String
+  public let clientSecret: Swift.String?
+  public let requestingScopes: Swift.Set<Swift.String>
+  public let state: Swift.String?
+  public init(authorizationEndpointURL: Foundation.URL, clientID: Swift.String, redirectURL: Foundation.URL, tokenEndpointURL: Foundation.URL, requestingScopes: Swift.Set<Swift.String> = [], state: Swift.String? = nil, clientSecret: Swift.String? = nil)
+}
+public let OAuth2AuthenticationParametersDiscoveryServiceAuthType: Swift.String
+public let OAuth2AuthenticationParametersDiscoveryServiceAuthorizationEndpointURL: Swift.String
+public let OAuth2AuthenticationParametersDiscoveryServiceTokenEndpointURL: Swift.String
+public let OAuth2AuthenticationParametersDiscoveryServiceEndUserUIURL: Swift.String
+public let OAuth2AuthenticationParametersDiscoveryServiceClients: Swift.String
+public let OAuth2AuthenticationParametersDiscoveryServiceClientID: Swift.String
+public let OAuth2AuthenticationParametersDiscoveryServiceRedirectURL: Swift.String
+public let OAuth2AuthenticationParametersDiscoveryServiceGrantType: Swift.String
+extension OAuth2AuthenticationParameters : SAPFoundation.DiscoveryServiceConfigurable {
+  public init(discoveryServiceConfig config: Any) throws
+  public init(config: Any) throws
+}
+public class SAMLAuthenticator : SAPFoundation.SAMLAuthentication {
+  public init(authenticationParameters: SAPFoundation.SAMLAuthenticationParameters, webViewPresenter: SAPFoundation.WKWebViewPresenting)
+  convenience public init(settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, webViewPresenter: SAPFoundation.WKWebViewPresenting)
+  public func authenticate(session: SAPFoundation.SAPURLSession, completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAMLAuthenticator.defaultCompletionHandler)
+  public func authenticate(cookies: [Foundation.HTTPCookie], completionHandler: @escaping ([Foundation.HTTPCookie]?, Swift.Error?) -> Swift.Void)
+  public func cancelAuthentication()
+  public static func defaultCompletionHandler(error: Swift.Error?)
+  @objc deinit
+}
+public struct UsageDataCollectionItems : Swift.OptionSet {
+  public var rawValue: Swift.Int {
+    get
+  }
+  public static let deviceItems: SAPFoundation.UsageDataCollectionItems
+  public static let memoryItems: SAPFoundation.UsageDataCollectionItems
+  public static let networkingItems: SAPFoundation.UsageDataCollectionItems
+  public static let locationItems: SAPFoundation.UsageDataCollectionItems
+  public static let all: SAPFoundation.UsageDataCollectionItems
+  public static let none: SAPFoundation.UsageDataCollectionItems
+  public init(rawValue items: Swift.Int)
+  public typealias Element = SAPFoundation.UsageDataCollectionItems
+  public typealias ArrayLiteralElement = SAPFoundation.UsageDataCollectionItems
+  public typealias RawValue = Swift.Int
+}
+public enum SAPcpmsDestinationsError : Swift.Error {
+  case invalidServerResponse
+  case invalidHTTPStatus(statusCode: Swift.Int)
+  case decodingFailed(error: Swift.Error)
+  case malformed(type: SAPFoundation.SAPcpmsDestinationsError.MalformedType, description: Swift.String)
+  public enum MalformedType {
+    case missingKey
+    case invalidType
+    public static func == (a: SAPFoundation.SAPcpmsDestinationsError.MalformedType, b: SAPFoundation.SAPcpmsDestinationsError.MalformedType) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+}
+extension SAPcpmsDestinationsError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public struct OAuth2Token {
+  public let accessToken: Swift.String
+  public let tokenType: Swift.String
+  public let scopes: Swift.Set<Swift.String>
+  public let expiryDate: Foundation.Date?
+  public let refreshToken: Swift.String?
+  public init(accessToken: Swift.String, tokenType: Swift.String, expiryDate: Foundation.Date? = nil, scopes: Swift.Set<Swift.String> = [], refreshToken: Swift.String? = nil)
+}
+extension OAuth2Token : Swift.Equatable {
+  public static func == (lhs: SAPFoundation.OAuth2Token, rhs: SAPFoundation.OAuth2Token) -> Swift.Bool
+}
+extension OAuth2Token : Swift.Codable {
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+@_hasMissingDesignatedInitializers public class NetworkActivityIndicatorController {
+  public static var shared: SAPFoundation.NetworkActivityIndicatorController {
+    get
+  }
+  public func shouldShowActivityIndicator()
+  public func shouldHideActivityIndicator()
+  @objc deinit
+}
+public enum LocationCollectorError : Swift.Error {
+  case invalidLocationManager
+  case invalidGeoCoder
+  public static func == (a: SAPFoundation.LocationCollectorError, b: SAPFoundation.LocationCollectorError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension LocationCollectorError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public enum ComponentType : Swift.Int16 {
+  case BROWSER
+  case TRACELIB
+  case WEBAS
+  case J2EE
+  case TREX
+  case ICM
+  case GATEWAY
+  case CPIC
+  case DOTNET
+  case ECLIPSE
+  case PI_FOR_SAP_SENDER
+  case SCP_FOR_NONSAP_SENDER
+  case PI_FOR_NONSAP_SENDER
+  case SAP_PARTNER
+  case SCP_REQUEST_OR_DETERMINATION_LATER_IN_PROCESSING
+  case S4
+  case SFSF
+  case ARIBA
+  case CONCUR
+  case FIELDGLASS
+  case CALLIDUS
+  case BYD
+  case IBP
+  case HYBRIS
+  case SMB_B1
+  case INDUSTRY_CLOUD
+  case LEONARDO
+  case CUSTOMER_CHECKOUT
+  case COPILOT
+  public typealias RawValue = Swift.Int16
+  public init?(rawValue: Swift.Int16)
+  public var rawValue: Swift.Int16 {
+    get
+  }
+}
+public enum TraceFlags : Swift.Int16 {
+  case SAPTRACELEVEL_SQL
+  case SAPTRACELEVEL_BUFFER
+  case SAPTRACELEVEL_ENQUEU
+  case SAPTRACELEVEL_RFC
+  case SAPTRACELEVEL_PERMISSION
+  case SAPTRACELEVEL_FREE
+  case SAPTRACELEVEL_CFUNCTION
+  case DSR_ABAP_TRACE_FLAG
+  case SAPTRACELEVEL_ABAPCONDENS0
+  case SAPTRACELEVEL_ABAPCONDENS1
+  case DSR_SAT_TRACE_FLAG
+  case ESP_WEBSERVICE_FLAG
+  case HTTP
+  case TRCLVL_NONE
+  case TRCLVL_LOW
+  case TRCLVL_MEDIUM
+  case TRCLVL_HIGH
+  public typealias RawValue = Swift.Int16
+  public init?(rawValue: Swift.Int16)
+  public var rawValue: Swift.Int16 {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class Passport {
+  public func toString() -> Swift.String
+  public class PassportBuilder {
+    public init()
+    public func actionName(_ newValue: Swift.String) throws -> SAPFoundation.Passport.PassportBuilder
+    public func traceFlag(_ newValue: SAPFoundation.TraceFlags) -> SAPFoundation.Passport.PassportBuilder
+    public func userId(_ newValue: Swift.String) throws -> SAPFoundation.Passport.PassportBuilder
+    public func componentName(_ newValue: Swift.String) throws -> SAPFoundation.Passport.PassportBuilder
+    public func prevComponentName(_ newValue: Swift.String) throws -> SAPFoundation.Passport.PassportBuilder
+    public func componentType(_ newValue: SAPFoundation.ComponentType) -> SAPFoundation.Passport.PassportBuilder
+    public func transactionId(_ newValue: Foundation.UUID) -> SAPFoundation.Passport.PassportBuilder
+    public func rootContextId(_ newValue: Foundation.UUID) -> SAPFoundation.Passport.PassportBuilder
+    public func build() throws -> SAPFoundation.Passport
+    @objc deinit
+  }
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers open class FileConfigurationProvider : SAPFoundation.ConfigurationProviding {
+  public var filename: Swift.String {
+    get
+  }
+  public init(_ configurationFilename: Swift.String = "ConfigurationProvider")
+  public var providerIdentifier: Swift.String {
+    get
+  }
+  public var expectedInput: [Swift.String : Any] {
+    get
+  }
+  public func provideConfiguration(input: [Swift.String : Any] = [:]) -> (providerSuccess: Swift.Bool, configuration: Foundation.NSDictionary, returnError: Swift.Error?)
+  @objc deinit
+}
+public class CSRFTokenObserver : SAPFoundation.SAPURLSessionObserving {
+  convenience public init(rootUrl: Foundation.URL, tokenStore: SAPFoundation.CSRFTokenStoring = CSRFTokenStorage(store: CompositeStorage()))
+  public init(tokenUrlProvider: SAPFoundation.CSRFTokenURLProviding, tokenStore: SAPFoundation.CSRFTokenStoring = CSRFTokenStorage(store: CompositeStorage()))
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.ResponseDisposition) -> Swift.Void)
+  public func copy() -> Any?
+  @objc deinit
+}
+extension SAPcpmsUsage {
+  public class func sessionStart(settingsParameters settings: SAPFoundation.SAPcpmsSettingsParameters)
+}
+extension SAPcpmsRecord {
+  public class func sessionStart(settingsParameters settings: SAPFoundation.SAPcpmsSettingsParameters) -> SAPCommon.UsageRecord
+}
+@_hasMissingDesignatedInitializers open class DiscoveryServiceConfigurationProvider : SAPFoundation.ConfigurationProviding {
+  convenience public init()
+  public init(applicationID: Swift.String? = nil)
+  public var providerIdentifier: Swift.String {
+    get
+  }
+  public var expectedInput: [Swift.String : Any] {
+    get
+  }
+  public func provideConfiguration(input: [Swift.String : Any] = [:]) -> (providerSuccess: Swift.Bool, configuration: Foundation.NSDictionary, returnError: Swift.Error?)
+  @objc deinit
+}
+public enum BasicCredentialDiscoveryError : Swift.Error {
+  case cancelled
+  case inconsistentState
+  public static func == (a: SAPFoundation.BasicCredentialDiscoveryError, b: SAPFoundation.BasicCredentialDiscoveryError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension BasicCredentialDiscoveryError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public protocol AppDelegateObserving : AnyObject {
+  func application(_ app: UIKit.UIApplication, open url: Foundation.URL, options: [UIKit.UIApplication.OpenURLOptionsKey : Any]) -> Swift.Bool
+  func application(_ application: UIKit.UIApplication, continue userActivity: Foundation.NSUserActivity, restorationHandler: @escaping ([UIKit.UIUserActivityRestoring]?) -> Swift.Void) -> Swift.Bool
+  func application(_ application: UIKit.UIApplication, handleEventsForBackgroundURLSession identifier: Swift.String, completionHandler: @escaping () -> Swift.Void)
+}
+extension AppDelegateObserving {
+  public func application(_ app: UIKit.UIApplication, open url: Foundation.URL, options: [UIKit.UIApplication.OpenURLOptionsKey : Any]) -> Swift.Bool
+  public func application(_ application: UIKit.UIApplication, continue userActivity: Foundation.NSUserActivity, restorationHandler: @escaping ([UIKit.UIUserActivityRestoring]?) -> Swift.Void) -> Swift.Bool
+  public func application(_ application: UIKit.UIApplication, handleEventsForBackgroundURLSession identifier: Swift.String, completionHandler: @escaping () -> Swift.Void)
+}
+public protocol BasicCredentialDiscovery : AnyObject {
+  func provideBasicCredential(for url: Foundation.URL, challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (SAPFoundation.BasicCredential?, Swift.Error?) -> Swift.Void)
+}
+public class MemoryDataStorage : SAPCommon.DataStoring {
+  public init()
+  public func put(data: Foundation.Data, for key: Swift.String) throws
+  public func data(for key: Swift.String) throws -> Foundation.Data?
+  public func removeData(for key: Swift.String) throws
+  public func keys() throws -> Swift.Set<Swift.String>
+  @objc deinit
+}
+open class MemoryCache<Key, Value> : SAPFoundation.Caching where Key : Swift.Hashable {
+  public typealias KeyType = Key
+  public typealias ValueType = Value
+  public typealias MemoryCacheEntry = SAPFoundation.CacheEntry<Value>
+  final public let maximumNumberOfEntries: Swift.Int
+  final public let maximumCost: Swift.Double
+  required public init(maximumNumberOfEntries: Swift.Int = 0, maximumCost: Swift.Double = 0, clearCacheOnMemoryWarning clearOnMemWarning: Swift.Bool = true)
+  @objc deinit
+  open var costOfEntries: Swift.Double {
+    get
+  }
+  open var numberOfEntries: Swift.Int {
+    get
+  }
+  open func set(value: Value, forKey key: Key, withCost cost: Swift.Double = 0)
+  open func entry(forKey key: Key) -> SAPFoundation.CacheEntry<Value>?
+  open func value(forKey key: Key) -> Value?
+  open func removeAllValues()
+  open func removeValue(forKey key: Key)
+  open func keys() -> Swift.AnySequence<SAPFoundation.MemoryCache<Key, Value>.KeyType>
+}
+open class CompositeCache<CompositeCacheKeyType, CompositeCacheValueType> : SAPFoundation.Caching {
+  public typealias KeyType = CompositeCacheKeyType
+  public typealias ValueType = CompositeCacheValueType
+  public init()
+  open func addCache<C>(_ cache: C) where CompositeCacheKeyType == C.KeyType, CompositeCacheValueType == C.ValueType, C : SAPFoundation.Caching
+  open var costOfEntries: Swift.Double {
+    get
+  }
+  open var numberOfEntries: Swift.Int {
+    get
+  }
+  open func keys() -> Swift.AnySequence<SAPFoundation.CompositeCache<CompositeCacheKeyType, CompositeCacheValueType>.KeyType>
+  open func set(value: SAPFoundation.CompositeCache<CompositeCacheKeyType, CompositeCacheValueType>.ValueType, forKey key: SAPFoundation.CompositeCache<CompositeCacheKeyType, CompositeCacheValueType>.KeyType, withCost cost: Swift.Double = 0)
+  open func value(forKey key: SAPFoundation.CompositeCache<CompositeCacheKeyType, CompositeCacheValueType>.KeyType) -> SAPFoundation.CompositeCache<CompositeCacheKeyType, CompositeCacheValueType>.ValueType?
+  open func entry(forKey key: SAPFoundation.CompositeCache<CompositeCacheKeyType, CompositeCacheValueType>.KeyType) -> SAPFoundation.CacheEntry<CompositeCacheValueType>?
+  open func removeValue(forKey key: SAPFoundation.CompositeCache<CompositeCacheKeyType, CompositeCacheValueType>.KeyType)
+  open func removeAllValues()
+  @objc deinit
+}
+open class SAPcpmsClientResources {
+  public init(sapURLSession: SAPFoundation.SAPURLSession, clientResourcesURL: Foundation.URL)
+  convenience public init(sapURLSession: SAPFoundation.SAPURLSession, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters)
+  open func downloadResource(named: Swift.String? = nil, version: Swift.String? = nil, completionHandler: @escaping (Foundation.Data?, Swift.Error?) -> Swift.Void)
+  open func downloadResource(named: Swift.String? = nil, version: Swift.String? = nil, toFile: Foundation.URL, canOverwrite: Swift.Bool = true, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func fetchResourceInfo(completionHandler: @escaping ([SAPFoundation.ResourceInfo]?, Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+public class SecureDatabaseQueue {
+  public var databaseStore: SAPFoundation.SecureDatabaseStore {
+    get
+  }
+  public init(databaseStore: SAPFoundation.SecureDatabaseStore)
+  public func inDatabase(_ block: @escaping (SAPFoundation.SecureDatabaseStore) throws -> Swift.Void) throws
+  public func inExclusiveTransaction(_ block: (SAPFoundation.SecureDatabaseStore) throws -> Swift.Bool) throws
+  public func inDeferredTransaction(_ block: (SAPFoundation.SecureDatabaseStore) throws -> Swift.Bool) throws
+  @objc deinit
+}
+public class UsageStore : SAPCommon.UsageStoring {
+  public static let unattributedStorageID: Swift.String
+  public static let defaultFolderURL: Foundation.URL
+  public var storageID: Swift.String {
+    get
+  }
+  public var initTimestamp: Foundation.Date {
+    get
+  }
+  public init(with path: Foundation.URL = defaultFolderURL, storageID: Foundation.UUID? = nil, encryptionKey: Swift.String? = nil) throws
+  public func removeRecords(before date: Foundation.Date = Date(), after end: Foundation.Date? = nil, targetID: Swift.String)
+  public func snapshot(for targetID: Swift.String) -> SAPCommon.UsageSnapshotting
+  public func store(record: SAPCommon.UsageRecord, for targetID: Swift.String)
+  public func targetIdentifiers() -> [Swift.String]
+  public func removeRecords(using snapshot: SAPCommon.UsageSnapshotting)
+  public func records(for snapshot: SAPCommon.UsageSnapshotting, _ body: (SAPCommon.UsageRecord) -> Swift.Bool)
+  public func recordCount(for snapshot: SAPCommon.UsageSnapshotting) -> Swift.Int
+  @objc deinit
+}
+public enum OAuth2Error : Swift.Error {
+  case server(error: SAPFoundation.OAuth2ServerError)
+  case webView(error: Swift.Error)
+  case invalidArgument(detail: Swift.String)
+  case http(error: Swift.Error, statusCode: Swift.Int?, response: Swift.String?)
+  case missingHTTPResponse
+  case parse(error: Swift.String, httpUrlResponse: Foundation.HTTPURLResponse, data: Foundation.Data)
+  case authenticationInProgress
+  case authorizationCode
+  case tokenRejected
+  case backgroundAuthentication
+  case cancelled
+  case webViewReloaded
+}
+extension OAuth2Error : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public let SecureStoreDefaultStoreName: Swift.String
+public let OAuth2ClientCredentialsAuthenticationParametersTokenEndpointURL: Swift.String
+public let OAuth2ClientCredentialsAuthenticationParametersName: Swift.String
+public let OAuth2ClientCredentialsAuthenticationParametersSecret: Swift.String
+public let OAuth2ClientCredentialsAuthenticationParametersScope: Swift.String
+public struct OAuth2ClientCredentialsAuthenticationParameters {
+  public let tokenEndpointURL: Foundation.URL
+  public let requestingScopes: Swift.Set<Swift.String>
+  public let clientCredentialsHandler: (Foundation.URLRequest) throws -> Foundation.URLRequest
+  public init(tokenEndpointURL: Foundation.URL, requestingScopes: Swift.Set<Swift.String> = [], clientCredentialsHandler: @escaping (Foundation.URLRequest) throws -> Foundation.URLRequest)
+  public init(tokenEndpointURL: Foundation.URL, requestingScopes: Swift.Set<Swift.String> = [], name: Swift.String, secret: Swift.String)
+}
+extension OAuth2ClientCredentialsAuthenticationParameters : SAPFoundation.DiscoveryServiceConfigurable {
+  public init(discoveryServiceConfig config: Any) throws
+}
+public protocol CSRFTokenURLProviding {
+  func csrfTokenURL(for: Foundation.URL) -> Foundation.URL
+}
+open class SAPcpmsDestinations {
+  public init(sapURLSession: SAPFoundation.SAPURLSession, destinationsServiceUrl: Foundation.URL)
+  convenience public init(sapURLSession: SAPFoundation.SAPURLSession, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters)
+  open func load(completionHandler: @escaping ([Swift.String : Swift.String]?, Swift.Error?) -> Swift.Void)
+  open func load(to settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, completionHandler: @escaping (SAPFoundation.SAPcpmsSettingsParameters?, Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class ConnectivityReceiver {
+  public static var observers: [SAPFoundation.ConnectivityObserver]
+  public static func registerObserver(_ observer: SAPFoundation.ConnectivityObserver)
+  public static func unregisterObserver(_ observer: SAPFoundation.ConnectivityObserver)
+  @objc deinit
+}
+public protocol SLSLoginInputDelegate : AnyObject {
+  func slsUserIdentityDiscovery(_ sls: SAPFoundation.SLSUserIdentityDiscovery, needsInputForLogin: SAPFoundation.SLSLoginInput, completionHandler: @escaping ([SAPFoundation.SLSLoginInputFieldValue]?, Swift.Error?) -> Swift.Void)
+  func slsUserIdentityDiscoveryDidFinishReceivingInput(_ sls: SAPFoundation.SLSUserIdentityDiscovery)
+}
+public class SAPcpmsAuthenticationManager : SAPFoundation.AuthenticationHandling {
+  weak public var delegate: SAPFoundation.AuthenticationDelegate?
+  final public let roleServiceURL: Foundation.URL
+  final public let store: SAPFoundation.CodableStoring
+  final public let currentUserIDKey: Swift.String
+  public init(roleServiceURL: Foundation.URL, store: SAPFoundation.CodableStoring, delegate: SAPFoundation.AuthenticationDelegate?)
+  convenience public init(settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, store: SAPFoundation.CodableStoring, delegate: SAPFoundation.AuthenticationDelegate?)
+  public func authenticationObserver(_ observer: SAPFoundation.SAPURLSessionObserving, didAuthenticate session: SAPFoundation.SAPURLSession, requestBypassIdentifier: Foundation.UUID, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func authenticationObserver(_ observer: SAPFoundation.SAPURLSessionObserving, didFailToAuthenticate session: SAPFoundation.SAPURLSession, error: Swift.Error)
+  @objc deinit
+}
+public struct SAPcpmsUsagePolicy {
+  public let uploadDataAfterDays: Swift.Int
+  public init(uploadDataAfterDays: Swift.Int = 0)
+}
+extension SAPcpmsUsagePolicy {
+  public init?(sapcpmsSettings: Any) throws
+  public init?(sapcpmsUsagePolicy: Any) throws
+}
+extension SAPcpmsUsagePolicy : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public enum ConfigurationError : Swift.Error {
+  case missingKey(Swift.String, source: Swift.String)
+  case invalidStructure(detail: Swift.String, source: Swift.String)
+}
+extension ConfigurationError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+@objc public class SAPHTTPCookieStorage : Foundation.HTTPCookieStorage {
+  final public let persistentStorage: SAPFoundation.CodableStoring?
+  public init(persistentStorage: SAPFoundation.CodableStoring? = nil)
+  @objc override dynamic public var cookieAcceptPolicy: Foundation.HTTPCookie.AcceptPolicy {
+    @objc get
+    @objc set
+  }
+  @objc override dynamic public var cookies: [Foundation.HTTPCookie]? {
+    @objc get
+  }
+  @objc override dynamic public func cookies(for URL: Foundation.URL) -> [Foundation.HTTPCookie]?
+  @objc override dynamic public func sortedCookies(using sortOrder: [Foundation.NSSortDescriptor]) -> [Foundation.HTTPCookie]
+  @objc override dynamic public func setCookie(_ cookie: Foundation.HTTPCookie)
+  @objc override dynamic public func setCookies(_ cookies: [Foundation.HTTPCookie], for URL: Foundation.URL?, mainDocumentURL: Foundation.URL?)
+  @objc override dynamic public func deleteCookie(_ cookie: Foundation.HTTPCookie)
+  @objc override dynamic public func removeCookies(since date: Foundation.Date)
+  @objc override dynamic public func storeCookies(_ cookies: [Foundation.HTTPCookie], for task: Foundation.URLSessionTask)
+  @objc override dynamic public func getCookiesFor(_ task: Foundation.URLSessionTask, completionHandler: @escaping ([Foundation.HTTPCookie]?) -> Swift.Void)
+  @objc deinit
+  @objc override dynamic public init()
+}
+public protocol DiscoveryServiceConfigurable {
+  init(discoveryServiceConfig config: Any) throws
+}
+open class BasicCredentialStorage : SAPFoundation.BasicCredentialStoring {
+  public static let keyPrefix: Swift.String
+  open var store: SAPFoundation.CodableStoring
+  open var keyHandler: (Foundation.URL) -> Swift.String
+  public init(store: SAPFoundation.CodableStoring, keyHandler: @escaping (Foundation.URL) -> Swift.String = BasicCredentialStorage.key)
+  open func store(credential: SAPFoundation.BasicCredential, for url: Foundation.URL) throws
+  public func credential(for url: Foundation.URL) throws -> SAPFoundation.BasicCredential?
+  open func delete(for url: Foundation.URL) throws
+  public class func key(for url: Foundation.URL) -> Swift.String
+  @objc deinit
+}
+public class SAPcpmsUserIdentityDiscovery : SAPFoundation.UserIdentityObtaining {
+  public var oauthToken: Swift.String?
+  convenience public init(certificateDiscoveryParameters: SAPFoundation.SAPcpmsUserIdentityConfigurationParameters, oAuth2AuthenticationParameters: SAPFoundation.OAuth2AuthenticationParameters)
+  public init(certificateDiscoveryParameters: SAPFoundation.SAPcpmsUserIdentityConfigurationParameters, sapURLSession: SAPFoundation.SAPURLSession)
+  public func obtainUserIdentity(completionHandler: @escaping (Foundation.Data?, Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+open class LanguageObserver : SAPFoundation.SAPURLSessionObserving {
+  public var language: Swift.String?
+  public init(language: Swift.String? = nil)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func copy() -> Any?
+  @objc deinit
+}
+public class WKWebViewPresenter : SAPFoundation.WKWebViewPresenting {
+  weak public var delegate: SAPFoundation.WebViewPresenterDelegate?
+  weak public var webViewDelegate: SAPFoundation.SAPWKNavigationDelegate?
+  public var webViewPresentingViewController: UIKit.UIViewController? {
+    get
+    set
+  }
+  public init(delegate: SAPFoundation.WebViewPresenterDelegate? = nil, webViewDelegate: SAPFoundation.SAPWKNavigationDelegate? = nil)
+  public func presentWebView(completionHandler: @escaping (WebKit.WKWebView?, Swift.Error?) -> Swift.Void)
+  public func dismissWebView()
+  @objc deinit
+}
+public class SAPURLSession {
+  public var delegate: SAPFoundation.SAPURLSessionDelegate? {
+    get
+  }
+  public var delegateQueue: Foundation.OperationQueue {
+    get
+  }
+  public var configuration: Foundation.URLSessionConfiguration {
+    get
+  }
+  public var sessionDescription: Swift.String? {
+    get
+    set
+  }
+  public var observers: [SAPFoundation.SAPURLSessionObserving] {
+    get
+  }
+  public init(configuration: Foundation.URLSessionConfiguration = URLSessionConfiguration.default, delegate: SAPFoundation.SAPURLSessionDelegate? = nil, delegateQueue queue: Foundation.OperationQueue? = nil)
+  @objc deinit
+  public func finishTasksAndInvalidate()
+  public func invalidateAndCancel()
+  public func reset(completionHandler: @escaping () -> Swift.Void)
+  public func flush(completionHandler: @escaping () -> Swift.Void)
+  public func copy(configuration: Foundation.URLSessionConfiguration = URLSessionConfiguration.default, delegate: SAPFoundation.SAPURLSessionDelegate? = nil, delegateQueue queue: Foundation.OperationQueue? = nil) -> SAPFoundation.SAPURLSession
+  public func dataTask(with request: Foundation.URLRequest) -> SAPFoundation.SAPURLSessionTask
+  public func dataTask(with url: Foundation.URL) -> SAPFoundation.SAPURLSessionTask
+  public func uploadTask(with request: Foundation.URLRequest, fromFile fileURL: Foundation.URL) -> SAPFoundation.SAPURLSessionTask
+  public func uploadTask(with request: Foundation.URLRequest, from bodyData: Foundation.Data) -> SAPFoundation.SAPURLSessionTask
+  public func uploadTask(withStreamedRequest request: Foundation.URLRequest) -> SAPFoundation.SAPURLSessionTask
+  public func downloadTask(with request: Foundation.URLRequest) -> SAPFoundation.SAPURLSessionDownloadTask
+  public func downloadTask(with url: Foundation.URL) -> SAPFoundation.SAPURLSessionDownloadTask
+  public func downloadTask(withResumeData resumeData: Foundation.Data) -> SAPFoundation.SAPURLSessionDownloadTask
+  public func dataTask(with request: Foundation.URLRequest, completionHandler: @escaping (Foundation.Data?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void) -> SAPFoundation.SAPURLSessionTask
+  public func dataTask(with url: Foundation.URL, completionHandler: @escaping (Foundation.Data?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void) -> SAPFoundation.SAPURLSessionTask
+  public func uploadTask(with request: Foundation.URLRequest, fromFile fileURL: Foundation.URL, completionHandler: @escaping (Foundation.Data?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void) -> SAPFoundation.SAPURLSessionTask
+  public func uploadTask(with request: Foundation.URLRequest, from bodyData: Foundation.Data, completionHandler: @escaping (Foundation.Data?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void) -> SAPFoundation.SAPURLSessionTask
+  public func downloadTask(with request: Foundation.URLRequest, completionHandler: @escaping (Foundation.URL?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void) -> SAPFoundation.SAPURLSessionDownloadTask
+  public func downloadTask(with url: Foundation.URL, completionHandler: @escaping (Foundation.URL?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void) -> SAPFoundation.SAPURLSessionDownloadTask
+  public func downloadTask(withResumeData resumeData: Foundation.Data, completionHandler: @escaping (Foundation.URL?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void) -> SAPFoundation.SAPURLSessionDownloadTask
+  public func uploadTask(withStreamedRequest request: Foundation.URLRequest, needNewBodyStream: @escaping () -> Foundation.InputStream?, completionHandler: @escaping (Foundation.Data?, Foundation.URLResponse?, Swift.Error?) -> Swift.Void) -> SAPFoundation.SAPURLSessionTask
+  public func dataTask(with request: Foundation.URLRequest, receivedResponseHandler: ((Foundation.URLResponse) -> Swift.Void)? = nil, receivedDataHandler: @escaping (Foundation.Data) -> Swift.Void, completionHandler: @escaping (Swift.Error?) -> Swift.Void) -> SAPFoundation.SAPURLSessionTask
+  public func register(_ observer: SAPFoundation.SAPURLSessionObserving)
+  public func unregister(_ observer: SAPFoundation.SAPURLSessionObserving)
+  public func isRegistered(_ observer: SAPFoundation.SAPURLSessionObserving) -> Swift.Bool
+  public func configure(_ request: Foundation.URLRequest, completionHandler: @escaping (Foundation.URLRequest?, Swift.Error?) -> Swift.Void)
+  public func configure(_ webView: WebKit.WKWebView, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func configure(_ cookieStore: Foundation.HTTPCookieStorage, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func configure(_ cookieStore: WebKit.WKHTTPCookieStore, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func close(completionHandler: @escaping () -> Swift.Void)
+}
+extension WKWebView {
+  public func configure(with urlSession: SAPFoundation.SAPURLSession, completionHandler: @escaping () -> Swift.Void)
+}
+public protocol OptionalCopying {
+  func copy() -> Any?
+}
+extension OptionalCopying {
+  public func copy() -> Any?
+}
+extension SAPURLSession {
+  @_hasMissingDesignatedInitializers public class DataTaskPublisher : Combine.Publisher {
+    public typealias Output = (data: Foundation.Data, response: Foundation.URLResponse)
+    public typealias Failure = Swift.Error
+    public func receive<S>(subscriber: S) where S : Combine.Subscriber, S.Failure == SAPFoundation.SAPURLSession.DataTaskPublisher.Failure, S.Input == SAPFoundation.SAPURLSession.DataTaskPublisher.Output
+    @objc deinit
+  }
+  public class DataTaskSubscriber : Combine.Subscriber, Combine.Cancellable {
+    public typealias Input = (data: Foundation.Data, response: Foundation.URLResponse)
+    public typealias Failure = Swift.Error
+    public init(sapUrlSession: SAPFoundation.SAPURLSession)
+    public func receive(subscription: Combine.Subscription)
+    public func receive(_ input: SAPFoundation.SAPURLSession.DataTaskSubscriber.Input) -> Combine.Subscribers.Demand
+    public func receive(completion: Combine.Subscribers.Completion<Swift.Error>)
+    public func cancel()
+    @objc deinit
+  }
+  public func dataTaskPublisher(for urlRequest: Foundation.URLRequest) -> SAPFoundation.SAPURLSession.DataTaskPublisher
+  public func dataTaskPublisher(for url: Foundation.URL) -> SAPFoundation.SAPURLSession.DataTaskPublisher
+}
+@_hasMissingDesignatedInitializers public class OTPAuthenticator : SAPFoundation.AppDelegateObserving {
+  public var externalAuthenticatorApplicationID: Swift.String
+  convenience public init(otpParameters: SAPFoundation.OTPParameters, webViewPresenter: SAPFoundation.WKWebViewPresenting)
+  convenience public init(settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, webViewPresenter: SAPFoundation.WKWebViewPresenting)
+  public func authenticate(session: SAPFoundation.SAPURLSession, completionHandler: @escaping (Swift.Error?) -> Swift.Void = OTPAuthenticator.defaultCompletionHandler)
+  public func cancelAuthentication()
+  public func application(_ app: UIKit.UIApplication, open url: Foundation.URL, options: [UIKit.UIApplication.OpenURLOptionsKey : Any]) -> Swift.Bool
+  public func validationEndpointURL(from queryItems: [Foundation.URLQueryItem]) -> Foundation.URL?
+  public static func defaultCompletionHandler(error: Swift.Error?)
+  @objc deinit
+}
+extension OAuth2Authenticator {
+  convenience public init(clientCredentialsAuthenticationParameters authenticationParameters: SAPFoundation.OAuth2ClientCredentialsAuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession = defaultSAPURLSession())
+}
+public protocol ConnectivityObserver : AnyObject {
+  func connectionEstablished()
+  func connectionChanged(_ previousReachabilityType: SAPFoundation.ReachabilityType, reachabilityType: SAPFoundation.ReachabilityType)
+  func connectionLost()
+}
+public let SAMLAuthenticationParametersAuthorizationEndpointURL: Swift.String
+public let SAMLAuthenticationParametersFinishEndpointURL: Swift.String
+public struct SAMLAuthenticationParameters {
+  public let authorizationEndpointURL: Foundation.URL
+  public let finishEndpointURL: Foundation.URL
+  public let challengeHeaderName: Swift.String
+  public let challengeHeaderValue: Swift.String
+  public init(authorizationEndpointURL: Foundation.URL, finishEndpointURL: Foundation.URL, challengeHeaderName: Swift.String = SAMLChallengeHeaderName, challengeHeaderValue: Swift.String = SAMLChallengeHeaderValue)
+}
+extension SAMLAuthenticationParameters {
+  public init(settingsParameters: SAPFoundation.SAPcpmsSettingsParameters)
+}
+public let SAMLAuthenticationParametersDiscoveryServiceAuthType: Swift.String
+public let SAMLAuthenticationParametersDiscoveryServiceAuthChallengeHeaderName: Swift.String
+public let SAMLAuthenticationParametersDiscoveryServiceEndpointURLPath: Swift.String
+public let SAMLAuthenticationParametersDiscoveryServiceEndpointRedirectURLParameter: Swift.String
+extension SAMLAuthenticationParameters : SAPFoundation.DiscoveryServiceConfigurable {
+  public init(discoveryServiceConfig config: Any) throws
+  public init(backendURL: Foundation.URL, config: Any) throws
+}
+open class UserIdentityStorage : SAPFoundation.UserIdentityStoring {
+  open var store: SAPFoundation.CodableStoring
+  open var keyHandler: (Foundation.URL) -> Swift.String
+  public static let keyPrefix: Swift.String
+  public init(store: SAPFoundation.CodableStoring, keyHandler: @escaping (Foundation.URL) -> Swift.String = UserIdentityStorage.key)
+  public func store(identity: Foundation.Data, for url: Foundation.URL) throws
+  public func identity(for url: Foundation.URL) throws -> Foundation.Data?
+  public func delete(for url: Foundation.URL) throws
+  public class func key(for url: Foundation.URL) -> Swift.String
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SAPURLSessionTask {
+  final public let taskID: Foundation.UUID
+  public var urlSessionTask: Foundation.URLSessionTask? {
+    get
+  }
+  public var priority: Swift.Float {
+    get
+    set
+  }
+  public var taskDescription: Swift.String?
+  public var state: Foundation.URLSessionTask.State {
+    get
+  }
+  final public let originalRequest: Foundation.URLRequest?
+  public var currentRequest: Foundation.URLRequest? {
+    get
+  }
+  public var response: Foundation.URLResponse? {
+    get
+  }
+  public var context: [Swift.String : Any]
+  public func resume()
+  public func cancel()
+  public func suspend()
+  @objc deinit
+}
+extension SAPURLSessionTask {
+  public func markBypass(id: Foundation.UUID)
+  public func shouldBypass(id: Foundation.UUID) -> Swift.Bool
+}
+public protocol CompositeCodableStoring : SAPFoundation.CodableStoring {
+  var persistentStore: SAPCommon.DataStoring? { get }
+  func setPersistentStore(_ store: SAPCommon.DataStoring) throws
+  func releasePersistentStore()
+}
+open class ConfigurationLoader {
+  public var providers: [SAPFoundation.ConfigurationProviding] {
+    get
+    set
+  }
+  weak public var delegate: SAPFoundation.ConfigurationLoaderDelegate?
+  public var outputHandler: SAPFoundation.ConfigurationPersisting? {
+    get
+    set
+  }
+  public init(delegate: SAPFoundation.ConfigurationLoaderDelegate? = nil, providers: [SAPFoundation.ConfigurationProviding]? = nil, outputHandler: SAPFoundation.ConfigurationPersisting? = nil)
+  open func resetStoredData()
+  @discardableResult
+  open func loadConfiguration(userInputs: [Swift.String : [Swift.String : Any]] = [:]) -> Swift.Bool
+  @discardableResult
+  open func constructDefaultConfigurationProviderQueue() -> Swift.Int
+  @objc deinit
+}
+open class CSRFTokenStorage : SAPFoundation.CSRFTokenStoring {
+  open var store: SAPFoundation.CodableStoring
+  public init(store: SAPFoundation.CodableStoring)
+  public func store(token: Swift.String, for url: Foundation.URL) throws
+  public func token(for url: Foundation.URL) throws -> Swift.String?
+  public func deleteToken(for url: Foundation.URL) throws
+  @objc deinit
+}
+public struct SAPcpmsRemoteNotificationParameters {
+  public struct Capability {
+    public let category: Swift.String
+    public let name: Swift.String
+    public let value: Swift.String
+    public init(category: Swift.String, name: Swift.String, value: Swift.String)
+  }
+  public struct LastKnownLocation {
+    public let latitude: Swift.String
+    public let longitude: Swift.String
+    public init(latitude: Swift.String, longitude: Swift.String)
+  }
+  public let deviceType: Swift.String
+  public let pushGroup: Swift.String
+  public let userLocale: Swift.String
+  public let timeZone: Swift.String
+  public let formFactor: Swift.String
+  public let capabilities: [SAPFoundation.SAPcpmsRemoteNotificationParameters.Capability]
+  public let lastKnownLocation: SAPFoundation.SAPcpmsRemoteNotificationParameters.LastKnownLocation?
+  public static let deviceModel: Swift.String
+  public static let deviceLanguageCode: Swift.String
+  public static let deviceTimeZone: Swift.String
+  public init(deviceType: Swift.String = deviceModel, pushGroup: Swift.String = "", userLocale: Swift.String = deviceLanguageCode, timeZone: Swift.String = deviceTimeZone, formFactor: Swift.String = "", capabilities: [SAPFoundation.SAPcpmsRemoteNotificationParameters.Capability] = [], lastKnownLocation: SAPFoundation.SAPcpmsRemoteNotificationParameters.LastKnownLocation? = nil)
+}
+extension UIDevice {
+  public var modelName: Swift.String {
+    get
+  }
+  public var deviceIdentifier: Swift.String {
+    get
+  }
+  public var environment: Swift.String {
+    get
+  }
+}
+public class DefaultBasicCredentialDiscovery : SAPFoundation.BasicCredentialDiscovery {
+  public init()
+  public var presentingViewController: UIKit.UIViewController? {
+    get
+    set
+  }
+  public func provideBasicCredential(for url: Foundation.URL, challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (SAPFoundation.BasicCredential?, Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+public class PKCS12UserIdentityDiscovery : SAPFoundation.UserIdentityObtaining {
+  convenience public init(resourceInBundle: Swift.String, resourceType: Swift.String, passphrase: Swift.String, bundle: Foundation.Bundle = Bundle.main) throws
+  convenience public init(path: Swift.String, passphrase: Swift.String) throws
+  convenience public init(fileURL: Foundation.URL, passphrase: Swift.String) throws
+  public init(data: Foundation.Data, passphrase: Swift.String)
+  public func obtainUserIdentity(completionHandler: @escaping (Foundation.Data?, Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+public struct SAPcpmsUserIdentityConfigurationParameters {
+  public let attributesEndpoint: Foundation.URL
+  public let requestEndpoint: Foundation.URL
+  public let retireEndpoint: Foundation.URL
+  public let publicKeyPinSet: [Swift.String]
+  public init(attributesEndpoint: Foundation.URL, requestEndpoint: Foundation.URL, retireEndpoint: Foundation.URL, publicKeyPinSet: [Swift.String])
+}
+extension SAPcpmsUserIdentityConfigurationParameters {
+  public init?(certificateDiscoveryConfiguration configuration: [Swift.String : Any])
+}
+extension OAuth2AuthenticationParameters {
+  public init?(certificateDiscoveryAuthenticationConfiguration configuration: [Swift.String : Any])
+  public init?(certificateDiscoveryConfiguration configuration: [Swift.String : Any])
+}
+public struct SLSLoginInputField {
+  public enum InputType {
+    case plain
+    case secure
+    public static func == (a: SAPFoundation.SLSLoginInputField.InputType, b: SAPFoundation.SLSLoginInputField.InputType) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+  public let fieldName: Swift.String
+  public let preset: Swift.String
+  public let prompt: Swift.String
+  public let type: SAPFoundation.SLSLoginInputField.InputType
+  public let confirmField: Swift.String
+  public init(fieldName: Swift.String = "", preset: Swift.String = "", prompt: Swift.String = "", type: SAPFoundation.SLSLoginInputField.InputType = InputType.plain, confirmField: Swift.String = "")
+}
+public struct OAuth2ServerError {
+  public let responseData: Foundation.Data?
+  public let code: Swift.String?
+  public let message: Swift.String?
+  public let uri: Swift.String?
+  public let state: Swift.String?
+  public init(code: Swift.String, message: Swift.String?, uri: Swift.String?, state: Swift.String?)
+  public init(data: Foundation.Data)
+}
+@_hasMissingDesignatedInitializers public class AppDelegateDispatcher {
+  public static func application(_ app: UIKit.UIApplication, open url: Foundation.URL, options: [UIKit.UIApplication.OpenURLOptionsKey : Any] = [:]) -> Swift.Bool
+  public static func application(_ application: UIKit.UIApplication, continue userActivity: Foundation.NSUserActivity, restorationHandler: @escaping ([UIKit.UIUserActivityRestoring]?) -> Swift.Void) -> Swift.Bool
+  public static func application(_ application: UIKit.UIApplication, handleEventsForBackgroundURLSession identifier: Swift.String, completionHandler: @escaping () -> Swift.Void)
+  public static func register(_ observer: SAPFoundation.AppDelegateObserving)
+  public static func unregister(_ observer: SAPFoundation.AppDelegateObserving)
+  @objc deinit
+}
+public struct SAPcpmsNetworkSynchronizationPolicyOptions : Swift.OptionSet {
+  public let rawValue: Swift.Int
+  public init(rawValue: Swift.Int)
+  public static let wifi: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions
+  public static let mobileNetwork: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions
+  public static let roaming: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions
+  public static let `default`: SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions
+  public typealias Element = SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions
+  public typealias ArrayLiteralElement = SAPFoundation.SAPcpmsNetworkSynchronizationPolicyOptions
+  public typealias RawValue = Swift.Int
+}
+public enum SAPcpmsSettingsError : Swift.Error {
+  case malformed(type: SAPFoundation.SAPcpmsSettingsError.MalformedType, description: Swift.String)
+  case network
+  case invalidHTTPStatus(statusCode: Swift.Int)
+  case missingValueForSettingsTarget
+  public enum MalformedType {
+    case missingKey
+    case invalidType
+    public static func == (a: SAPFoundation.SAPcpmsSettingsError.MalformedType, b: SAPFoundation.SAPcpmsSettingsError.MalformedType) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+}
+extension SAPcpmsSettingsError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public protocol WebViewPresenterDelegate : AnyObject {
+  func didReloadWebView()
+  func didDismissWebView()
+}
+public protocol SAPWKNavigationDelegate : AnyObject {
+  func webView(_ webView: WebKit.WKWebView, handleFailedProvisionalNavigation navigation: WebKit.WKNavigation!, withError error: Swift.Error) -> Swift.Error?
+  func webView(_ webView: WebKit.WKWebView, handleFailed navigation: WebKit.WKNavigation!, withError error: Swift.Error) -> Swift.Error?
+}
+public protocol WKWebViewPresenting : AnyObject {
+  var delegate: SAPFoundation.WebViewPresenterDelegate? { get set }
+  var webViewDelegate: SAPFoundation.SAPWKNavigationDelegate? { get set }
+  func presentWebView(completionHandler: @escaping (WebKit.WKWebView?, Swift.Error?) -> Swift.Void)
+  func dismissWebView()
+  func reloadWebView()
+}
+public protocol SFSafariViewControllerPresenting : AnyObject {
+  var delegate: SAPFoundation.WebViewPresenterDelegate? { get set }
+  func presentWebView(with url: Foundation.URL, completionHandler: @escaping (SafariServices.SFSafariViewController?, Swift.Error?) -> Swift.Void)
+  func dismissWebView()
+}
+@available(iOS 12.0, *)
+public protocol ASWebAuthenticationSessionPresenting : AnyObject {
+  var delegate: SAPFoundation.WebViewPresenterDelegate? { get set }
+  func presentWebView(with url: Foundation.URL, sessionCompletionHandler: @escaping AuthenticationServices.ASWebAuthenticationSession.CompletionHandler, completionHandler: @escaping (AuthenticationServices.ASWebAuthenticationSession?, Swift.Error?) -> Swift.Void)
+  func dismissWebView()
+  func reloadWebView()
+}
+extension SAPWKNavigationDelegate {
+  public func webView(_ webView: WebKit.WKWebView, handleFailedProvisionalNavigation navigation: WebKit.WKNavigation!, withError error: Swift.Error) -> Swift.Error?
+  public func webView(_ webView: WebKit.WKWebView, handleFailed navigation: WebKit.WKNavigation!, withError error: Swift.Error) -> Swift.Error?
+}
+extension WKWebViewPresenting {
+  public var webViewDelegate: SAPFoundation.SAPWKNavigationDelegate? {
+    get
+    set
+  }
+  public func reloadWebView()
+}
+extension WebViewPresenterDelegate {
+  public func didReloadWebView()
+}
+extension ASWebAuthenticationSessionPresenting {
+  public func reloadWebView()
+}
+public protocol AuthenticationDelegate : AnyObject {
+  func authenticationHandler(_ handler: SAPFoundation.AuthenticationHandling, user: Swift.String, didChange to: Swift.String)
+  func authenticationHandler(_ handler: SAPFoundation.AuthenticationHandling, user: Swift.String?, didFailToAuthenticate error: Swift.Error)
+}
+public protocol SAPPassportManaging {
+  func getPassport() throws -> SAPFoundation.Passport
+  func setPassport(_ passport: SAPFoundation.Passport)
+  func clearPassport()
+}
+public class SAPcpmsRemoteNotificationClient {
+  public init(sapURLSession: SAPFoundation.SAPURLSession, destinationURL: Foundation.URL, feedbackURL: Foundation.URL? = nil)
+  convenience public init(sapURLSession: SAPFoundation.SAPURLSession, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters)
+  public func registerDeviceToken(_ deviceToken: Foundation.Data, withParameters parameters: SAPFoundation.SAPcpmsRemoteNotificationParameters? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func unregisterDeviceToken(completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsRemoteNotificationClient.defaultCompletionHandler)
+  @available(*, deprecated, renamed: "unregisterDeviceToken")
+  public func deregisterDeviceToken(completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsRemoteNotificationClient.defaultCompletionHandler)
+  public func updateNotificationStatus(userInfo: [Swift.AnyHashable : Any], completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsRemoteNotificationClient.defaultCompletionHandler)
+  public static func defaultCompletionHandler(_ error: Swift.Error?)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class IdentityHelper {
+  public static var shared: SAPFoundation.IdentityHelper {
+    get
+  }
+  public static let passphrase: Swift.String
+  public func pkcs12Data(fromIdentity identity: Security.SecIdentity, passphrase: Swift.String = passphrase) throws -> Foundation.Data
+  public func identity(fromPKCS12Data pkcs12Data: Foundation.Data, passphrase: Swift.String = passphrase) throws -> (identity: Security.SecIdentity, certificates: [Security.SecCertificate]?)
+  public func urlCredentialFromIdentity(identityData: Foundation.Data, passphrase: Swift.String = passphrase) throws -> Foundation.URLCredential
+  @objc deinit
+}
+public enum SAMLError : Swift.Error {
+  case webView(error: Swift.Error)
+  case invalidArgument(detail: Swift.String)
+  case authenticationInProgress
+  case credentialsRejected
+  case backgroundAuthentication
+  case cancelled
+}
+extension SAMLError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public enum SAPURLSessionError : Swift.Error {
+  case invalidRequest
+  case unexpectedHTTPMethod
+  case invalidURLSession
+  case failedToRetriveCSRFToken(Swift.String?)
+}
+extension SAPURLSessionError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+open class CodableCache<Cache> : SAPFoundation.CodableCaching where Cache : SAPFoundation.Caching, Cache.ValueType == Foundation.NSData {
+  public typealias KeyType = Cache.KeyType
+  open var costOfEntries: Swift.Double {
+    get
+  }
+  open var numberOfEntries: Swift.Int {
+    get
+  }
+  public init(cache: Cache, coder: SAPFoundation.CoderProtocol = PlistCoder())
+  public func get<T>(_ type: T.Type, for key: SAPFoundation.CodableCache<Cache>.KeyType) throws -> T? where T : Swift.Decodable, T : Swift.Encodable
+  public func put<T>(_ value: T, for key: SAPFoundation.CodableCache<Cache>.KeyType, with cost: Swift.Double = 0) throws where T : Swift.Decodable, T : Swift.Encodable
+  public func entry<T>(_ type: T.Type, for key: SAPFoundation.CodableCache<Cache>.KeyType) throws -> SAPFoundation.CacheEntry<T>? where T : Swift.Decodable, T : Swift.Encodable
+  public func remove(for key: SAPFoundation.CodableCache<Cache>.KeyType)
+  public func removeAllValues()
+  public func keys() -> Swift.AnySequence<SAPFoundation.CodableCache<Cache>.KeyType>
+  @objc deinit
+}
+public struct ConnectivityUtils {
+  public static func isMobileConnected() -> Swift.Bool
+  public static func isWiFiConnected() -> Swift.Bool
+  public static func isConnected() -> Swift.Bool
+  public static func isConnected(_ reachabilityType: SAPFoundation.ReachabilityType) -> Swift.Bool
+}
+public enum UserIdentityObserverError : Swift.Error {
+  case invalidUserIdentity
+  case cancelled
+  public static func == (a: SAPFoundation.UserIdentityObserverError, b: SAPFoundation.UserIdentityObserverError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension UserIdentityObserverError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public protocol OAuth2Authentication {
+  func authenticate(completionHandler: @escaping (SAPFoundation.OAuth2Token?, Swift.Error?) -> Swift.Void)
+  func refresh(token: SAPFoundation.OAuth2Token, completionHandler: @escaping (SAPFoundation.OAuth2Token?, Swift.Error?) -> Swift.Void)
+  func cancelAuthentication()
+}
+public enum ReachabilityType : Swift.CustomStringConvertible {
+  case wwan
+  case wifi
+  case offline
+  public var description: Swift.String {
+    get
+  }
+  public static func == (a: SAPFoundation.ReachabilityType, b: SAPFoundation.ReachabilityType) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public struct SLSLoginInput {
+  public let clientMessage: Swift.String
+  public let disclaimer: Swift.String
+  public let messageType: SAPFoundation.SLSLoginInput.ClientMessageType
+  public let inputFields: [SAPFoundation.SLSLoginInputField]
+  public enum ClientMessageType : Swift.Int {
+    case ok
+    case warning
+    case error
+    case none
+    public typealias RawValue = Swift.Int
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public init(clientMessage: Swift.String = "", disclaimer: Swift.String = "", messageType: SAPFoundation.SLSLoginInput.ClientMessageType = SLSLoginInput.ClientMessageType.none, inputFields: [SAPFoundation.SLSLoginInputField])
+}
+public protocol UserIdentityStoring : AnyObject {
+  func store(identity: Foundation.Data, for: Foundation.URL) throws
+  func identity(for: Foundation.URL) throws -> Foundation.Data?
+  func delete(for: Foundation.URL) throws
+}
+open class CorrelationObserver : SAPFoundation.SAPURLSessionObserving {
+  public init()
+  open func newCorrelationID() -> Swift.String
+  open func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func copy() -> Any?
+  @objc deinit
+}
+public protocol SAPURLSessionObserving : AnyObject, SAPFoundation.OptionalCopying {
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, didBecomeInvalidWithError error: Swift.Error?, completionHandler: @escaping () -> Swift.Void)
+  func sapURLSessionDidFinishEvents(forBackgroundURLSession session: SAPFoundation.SAPURLSession, completionHandler: @escaping () -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willBeginDelayedRequest request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.DelayedRequestDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, taskIsWaitingForConnectivity task: SAPFoundation.SAPURLSessionTask)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willPerformHTTPRedirection response: Foundation.HTTPURLResponse, newRequest request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.HTTPRedirectDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didReceive challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (SAPFoundation.SAPURLSession.AuthChallengeDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willUse credential: Foundation.URLCredential, for challenge: Foundation.URLAuthenticationChallenge)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, needNewBodyStream completionHandler: @escaping (SAPFoundation.SAPURLSession.InputStreamDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didSendBodyData bytesSent: Swift.Int64, totalBytesSent: Swift.Int64, totalBytesExpectedToSend: Swift.Int64, completionHandler: @escaping (SAPFoundation.SAPURLSession.CancellableDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didFinishCollecting metrics: Foundation.URLSessionTaskMetrics, completionHandler: @escaping () -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.ResponseDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didBecome downloadTask: Foundation.URLSessionDownloadTask, completionHandler: @escaping (SAPFoundation.SAPURLSession.CancellableDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive data: Foundation.Data, completionHandler: @escaping (SAPFoundation.SAPURLSession.DataDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, willCacheResponse proposedResponse: Foundation.CachedURLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.CacheResponseDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didFinishDownloadingTo location: Foundation.URL, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didWriteData bytesWritten: Swift.Int64, totalBytesWritten: Swift.Int64, totalBytesExpectedToWrite: Swift.Int64, completionHandler: @escaping (SAPFoundation.SAPURLSession.CancellableDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didResumeAtOffset fileOffset: Swift.Int64, expectedTotalBytes: Swift.Int64, completionHandler: @escaping (SAPFoundation.SAPURLSession.CancellableDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCreate sessionTask: Foundation.URLSessionTask)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, didCreate task: SAPFoundation.SAPURLSessionTask, for sessionTask: Foundation.URLSessionTask)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?)
+}
+extension SAPURLSessionObserving {
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, didBecomeInvalidWithError error: Swift.Error?, completionHandler: @escaping () -> Swift.Void)
+  public func sapURLSessionDidFinishEvents(forBackgroundURLSession session: SAPFoundation.SAPURLSession, completionHandler: @escaping () -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willBeginDelayedRequest request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.DelayedRequestDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, taskIsWaitingForConnectivity task: SAPFoundation.SAPURLSessionTask)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willPerformHTTPRedirection response: Foundation.HTTPURLResponse, newRequest request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.HTTPRedirectDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didReceive challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (SAPFoundation.SAPURLSession.AuthChallengeDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willUse credential: Foundation.URLCredential, for challenge: Foundation.URLAuthenticationChallenge)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, needNewBodyStream completionHandler: @escaping (SAPFoundation.SAPURLSession.InputStreamDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didSendBodyData bytesSent: Swift.Int64, totalBytesSent: Swift.Int64, totalBytesExpectedToSend: Swift.Int64, completionHandler: @escaping (SAPFoundation.SAPURLSession.CancellableDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didFinishCollecting metrics: Foundation.URLSessionTaskMetrics, completionHandler: @escaping () -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.ResponseDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didBecome downloadTask: Foundation.URLSessionDownloadTask, completionHandler: @escaping (SAPFoundation.SAPURLSession.CancellableDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive data: Foundation.Data, completionHandler: @escaping (SAPFoundation.SAPURLSession.DataDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, willCacheResponse proposedResponse: Foundation.CachedURLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.CacheResponseDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didFinishDownloadingTo location: Foundation.URL, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didWriteData bytesWritten: Swift.Int64, totalBytesWritten: Swift.Int64, totalBytesExpectedToWrite: Swift.Int64, completionHandler: @escaping (SAPFoundation.SAPURLSession.CancellableDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didResumeAtOffset fileOffset: Swift.Int64, expectedTotalBytes: Swift.Int64, completionHandler: @escaping (SAPFoundation.SAPURLSession.CancellableDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCreate sessionTask: Foundation.URLSessionTask)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, didCreate task: SAPFoundation.SAPURLSessionTask, for sessionTask: Foundation.URLSessionTask)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?)
+  public func copy() -> Any?
+}
+open class CompositeStorage : SAPFoundation.CompositeCodableStoring {
+  public var persistentStore: SAPCommon.DataStoring? {
+    get
+  }
+  public init(memoryStore: SAPCommon.DataStoring = MemoryDataStorage(), coder: SAPFoundation.CoderProtocol = PlistCoder())
+  open func get<T>(_ type: T.Type, for key: Swift.String) throws -> T? where T : Swift.Decodable, T : Swift.Encodable
+  open func put<T>(_ value: T, for key: Swift.String) throws where T : Swift.Decodable, T : Swift.Encodable
+  open func remove(for key: Swift.String) throws
+  open func keys() throws -> Swift.Set<Swift.String>
+  open func setPersistentStore(_ store: SAPCommon.DataStoring) throws
+  open func releasePersistentStore()
+  @objc deinit
+}
+public protocol SAMLAuthentication {
+  func authenticate(session: SAPFoundation.SAPURLSession, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  func authenticate(cookies: [Foundation.HTTPCookie], completionHandler: @escaping ([Foundation.HTTPCookie]?, Swift.Error?) -> Swift.Void)
+  func cancelAuthentication()
+}
+extension SAMLAuthentication {
+  public func authenticate(session: SAPFoundation.SAPURLSession, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func authenticate(cookies: [Foundation.HTTPCookie], completionHandler: @escaping ([Foundation.HTTPCookie]?, Swift.Error?) -> Swift.Void)
+}
+extension Logger {
+  public func apply(sapcpmsLogSettings: SAPCommon.SAPcpmsLogSettings)
+}
+extension SAPcpmsLogSettings {
+  public init?(sapcpmsSettings: Any) throws
+  public init?(sapcpmsLogSettings: Any) throws
+}
+public enum SAPcpmsLogUploaderError : Swift.Error {
+  case missingLogFiles
+  case emptyLogFiles
+  case networkError(error: Swift.Error?, httpStatuscode: Swift.Int?, response: Swift.String?)
+  case uploadAlreadyInProgress
+  case couldNotDeleteLogs
+  case internalError(error: Swift.Error?)
+}
+extension SAPcpmsLogUploaderError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public enum OTPError : Swift.Error {
+  case webView(error: Swift.Error)
+  case authenticationInProgress
+  case credentialsRejected
+  case backgroundAuthentication
+  case cancelled
+}
+extension OTPError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class FeedbackUploader {
+  public static func upload(feedbacks: [SAPCommon.Feedback], sapURLSession: SAPFoundation.SAPURLSession, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, anonymous: Swift.Bool = true, completionHandler: @escaping (Swift.Error?) -> Swift.Void = FeedbackUploader.defaultCompletionHandler)
+  public static func upload(to uploadEndpoint: Foundation.URL, feedbacks: [SAPCommon.Feedback], sapURLSession: SAPFoundation.SAPURLSession, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, anonymous: Swift.Bool = true, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public static func defaultCompletionHandler(_ error: Swift.Error?)
+  public enum FeedbackUploadError : SAPCommon.SAPError {
+    case network(Swift.Error)
+    case invalidResponse(Foundation.Data?, Foundation.URLResponse?)
+    case reportGenerationFailed
+    public var description: Swift.String {
+      get
+    }
+    public var errorDescription: Swift.String? {
+      get
+    }
+    public var debugDescription: Swift.String {
+      get
+    }
+  }
+  @objc deinit
+}
+public enum URLConfigurationProviderError : Swift.Error {
+  case invalid(detail: Swift.String)
+  case missing(argument: Swift.String)
+  case missingConfiguration
+}
+extension URLConfigurationProviderError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+  public var recoverySuggestion: Swift.String? {
+    get
+  }
+  public var helpAnchor: Swift.String? {
+    get
+  }
+}
+open class URLConfigurationProvider : SAPFoundation.ConfigurationProviding, SAPFoundation.AppDelegateObserving {
+  public static let hostParameterName: Swift.String
+  public static let portParameterName: Swift.String
+  public static let protocolParameterName: Swift.String
+  public static let authTypeParameterName: Swift.String
+  public static let tokenEndpointParameterName: Swift.String
+  public static let authorizationEndpointParameterName: Swift.String
+  public static let oauthEndUserUIParameterName: Swift.String
+  public static let oauthClientIDParameterName: Swift.String
+  public static let oauthRedirectURLParameterName: Swift.String
+  public static let oauthGrantTypeParameterName: Swift.String
+  public static let authChallengeHeaderParameterName: Swift.String
+  public static let endpointUriParameterName: Swift.String
+  public static let redirectParamParameterName: Swift.String
+  public var providerIdentifier: Swift.String
+  public var expectedInput: [Swift.String : Any]
+  final public let defaultTimeout: Swift.Double
+  public init(defaultTimeout: Swift.Double = 1)
+  @objc deinit
+  public func provideConfiguration(input: [Swift.String : Any]) -> (providerSuccess: Swift.Bool, configuration: Foundation.NSDictionary, returnError: Swift.Error?)
+  public func application(_ app: UIKit.UIApplication, open url: Foundation.URL, options: [UIKit.UIApplication.OpenURLOptionsKey : Any]) -> Swift.Bool
+  public func application(_ application: UIKit.UIApplication, continue userActivity: Foundation.NSUserActivity, restorationHandler: @escaping ([UIKit.UIUserActivityRestoring]?) -> Swift.Void) -> Swift.Bool
+  open func isConfigurationURL(_ url: Foundation.URL) -> Swift.Bool
+}
+public protocol SAPURLSessionDelegate : AnyObject {
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, didBecomeInvalidWithError error: Swift.Error?)
+  func sapURLSessionDidFinishEvents(forBackgroundURLSession session: SAPFoundation.SAPURLSession)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willBeginDelayedRequest request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.DelayedRequestDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, taskIsWaitingForConnectivity task: SAPFoundation.SAPURLSessionTask)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willPerformHTTPRedirection response: Foundation.HTTPURLResponse, newRequest request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.HTTPRedirectDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didReceive challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (SAPFoundation.SAPURLSession.AuthChallengeDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, needNewBodyStream completionHandler: @escaping (SAPFoundation.SAPURLSession.InputStreamDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didSendBodyData bytesSent: Swift.Int64, totalBytesSent: Swift.Int64, totalBytesExpectedToSend: Swift.Int64)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didFinishCollecting metrics: Foundation.URLSessionTaskMetrics)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.ResponseDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didBecome downloadTask: Foundation.URLSessionDownloadTask)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive data: Foundation.Data)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, willCacheResponse proposedResponse: Foundation.CachedURLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.CacheResponseDisposition) -> Swift.Void)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didFinishDownloadingTo location: Foundation.URL)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didWriteData bytesWritten: Swift.Int64, totalBytesWritten: Swift.Int64, totalBytesExpectedToWrite: Swift.Int64)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didResumeAtOffset fileOffset: Swift.Int64, expectedTotalBytes: Swift.Int64)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCreate sessionTask: Foundation.URLSessionTask)
+  func sapURLSession(_ session: SAPFoundation.SAPURLSession, didCreate task: SAPFoundation.SAPURLSessionTask, for sessionTask: Foundation.URLSessionTask)
+}
+extension SAPURLSessionDelegate {
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, didBecomeInvalidWithError error: Swift.Error?)
+  public func sapURLSessionDidFinishEvents(forBackgroundURLSession session: SAPFoundation.SAPURLSession)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willBeginDelayedRequest request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.DelayedRequestDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, taskIsWaitingForConnectivity task: SAPFoundation.SAPURLSessionTask)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willPerformHTTPRedirection response: Foundation.HTTPURLResponse, newRequest request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.HTTPRedirectDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didReceive challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (SAPFoundation.SAPURLSession.AuthChallengeDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, needNewBodyStream completionHandler: @escaping (SAPFoundation.SAPURLSession.InputStreamDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didSendBodyData bytesSent: Swift.Int64, totalBytesSent: Swift.Int64, totalBytesExpectedToSend: Swift.Int64)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didFinishCollecting metrics: Foundation.URLSessionTaskMetrics)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.ResponseDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didBecome downloadTask: Foundation.URLSessionDownloadTask)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive data: Foundation.Data)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, willCacheResponse proposedResponse: Foundation.CachedURLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.CacheResponseDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didFinishDownloadingTo location: Foundation.URL)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didWriteData bytesWritten: Swift.Int64, totalBytesWritten: Swift.Int64, totalBytesExpectedToWrite: Swift.Int64)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didResumeAtOffset fileOffset: Swift.Int64, expectedTotalBytes: Swift.Int64)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCreate sessionTask: Foundation.URLSessionTask)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, didCreate task: SAPFoundation.SAPURLSessionTask, for sessionTask: Foundation.URLSessionTask)
+}
+public struct SLSConfigurationParameters {
+  public let subjectName: Swift.String
+  public let subjectAltNamesRfc822: Swift.String
+  public let subjectAltNamesDNS: Swift.String
+  public let loginURL: Foundation.URL
+  public let certificateURL: Foundation.URL
+  public init(loginURL: Foundation.URL, certificateURL: Foundation.URL, subjectName: Swift.String = "", subjectAltNamesRfc822: Swift.String = "", subjectAltNamesDNS: Swift.String = "")
+  public init?(slsServerURL: Foundation.URL, profile: Swift.String, subjectName: Swift.String = "", subjectAltNamesRfc822: Swift.String = "", subjectAltNamesDNS: Swift.String = "")
+  public init?(baseURL: Foundation.URL, applicationID: Swift.String, subjectName: Swift.String = "", subjectAltNamesRfc822: Swift.String = "", subjectAltNamesDNS: Swift.String = "")
+  public init?(settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, subjectName: Swift.String = "", subjectAltNamesRfc822: Swift.String = "", subjectAltNamesDNS: Swift.String = "")
+}
+public let SLSConfigurationParametersServerURL: Swift.String
+public let SLSConfigurationParametersProfile: Swift.String
+public let SLSConfigurationParametersSubjectName: Swift.String
+public let SLSConfigurationParametersSubjectAltNamesRFC822: Swift.String
+public let SLSConfigurationParametersSubjectAltNamesDNS: Swift.String
+extension SLSConfigurationParameters : SAPFoundation.DiscoveryServiceConfigurable {
+  public init(discoveryServiceConfig config: Any) throws
+}
+public let SAMLChallengeHeaderName: Swift.String
+public let SAMLChallengeHeaderValue: Swift.String
+open class SAMLObserver {
+  final public let challengeHeaderName: Swift.String
+  final public let challengeHeaderValue: Swift.String
+  public var authenticationHandler: SAPFoundation.AuthenticationHandling?
+  public init(authenticator: SAPFoundation.SAMLAuthentication, challengeHeaderName: Swift.String = SAMLChallengeHeaderName, challengeHeaderValue: Swift.String = SAMLChallengeHeaderValue)
+  convenience public init(authenticationParameters: SAPFoundation.SAMLAuthenticationParameters)
+  convenience public init(settingsParameters: SAPFoundation.SAPcpmsSettingsParameters)
+  open func isChallenge(dataTask: SAPFoundation.SAPURLSessionTask, response: Foundation.URLResponse) -> Swift.Bool
+  @objc deinit
+}
+extension SAMLObserver : SAPFoundation.SAPURLSessionObserving {
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, willSend request: Foundation.URLRequest, completionHandler: @escaping (SAPFoundation.SAPURLSession.RequestDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, dataTask: SAPFoundation.SAPURLSessionTask, didReceive response: Foundation.URLResponse, completionHandler: @escaping (SAPFoundation.SAPURLSession.ResponseDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, downloadTask: SAPFoundation.SAPURLSessionTask, didFinishDownloadingTo location: Foundation.URL, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?, completionHandler: @escaping (SAPFoundation.SAPURLSession.DidCompleteDisposition) -> Swift.Void)
+  public func sapURLSession(_ session: SAPFoundation.SAPURLSession, task: SAPFoundation.SAPURLSessionTask, didCompleteWithError error: Swift.Error?)
+  public func copy() -> Any?
+}
+@_hasMissingDesignatedInitializers open class ManagedConfigurationProvider : SAPFoundation.ConfigurationProviding {
+  public init()
+  public var providerIdentifier: Swift.String {
+    get
+  }
+  public var expectedInput: [Swift.String : Any] {
+    get
+  }
+  public func provideConfiguration(input: [Swift.String : Any] = [:]) -> (providerSuccess: Swift.Bool, configuration: Foundation.NSDictionary, returnError: Swift.Error?)
+  @objc deinit
+}
+public protocol BasicCredentialStoring : AnyObject {
+  func store(credential: SAPFoundation.BasicCredential, for: Foundation.URL) throws
+  func credential(for: Foundation.URL) throws -> SAPFoundation.BasicCredential?
+  func delete(for: Foundation.URL) throws
+}
+public protocol SQLiteDatatypeBridgeable {
+}
+extension String : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension Bool : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension Float : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension Double : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension Int : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension Int8 : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension Int16 : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension Int32 : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension Int64 : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension UInt : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension UInt8 : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension UInt16 : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension UInt32 : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension UInt64 : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension Data : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+extension Date : SAPFoundation.SQLiteDatatypeBridgeable {
+}
+public protocol CodableStoring : AnyObject {
+  func get<T>(_ type: T.Type, for: Swift.String) throws -> T? where T : Swift.Decodable, T : Swift.Encodable
+  func put<T>(_ value: T, for: Swift.String) throws where T : Swift.Decodable, T : Swift.Encodable
+  func remove(for: Swift.String) throws
+  func keys() throws -> Swift.Set<Swift.String>
+}
+public let SAPcpmsSettingsParametersBackendURL: Swift.String
+public let SAPcpmsSettingsParametersApplicationID: Swift.String
+public let SAPcpmsSettingsParametersDeviceID: Swift.String
+public let SAPcpmsSettingsParametersApplicationVersion: Swift.String
+public let CFBundleShortVersionString: Swift.String
+public struct SAPcpmsSettingsParameters : Swift.Codable {
+  public var backendURL: Foundation.URL
+  public var applicationID: Swift.String
+  public var deviceID: Swift.String?
+  public var applicationVersion: Swift.String?
+  public var destinations: [Swift.String : Swift.String]?
+  public static let defaultApplicationVersion: Swift.String?
+  public static let defaultApplicationID: Swift.String?
+  public static let defaultDeviceID: Swift.String?
+  @available(*, deprecated, renamed: "defaultDeviceID")
+  public static let uuid: Swift.String?
+  public init(backendURL: Foundation.URL, applicationID: Swift.String? = defaultApplicationID, deviceID: Swift.String? = defaultDeviceID, applicationVersion: Swift.String? = defaultApplicationVersion, destinations: [Swift.String : Swift.String]? = nil)
+  public func url(forDestination name: Swift.String) -> Foundation.URL?
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+extension SAPcpmsSettingsParameters : SAPFoundation.DiscoveryServiceConfigurable {
+  public init(discoveryServiceConfig config: Any) throws
+  public init(applicationID: Swift.String, discoveryServiceConfig config: Any) throws
+}
+extension SAPcpmsSettingsParameters : Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class UsageSnapshot : SAPCommon.UsageSnapshotting {
+  @objc deinit
+  public func records(_ body: (SAPCommon.UsageRecord) -> Swift.Bool)
+  public func recordCount() -> Swift.Int
+  public func removeRecords()
+}
+extension SAPFoundation.IdentityError : Swift.Equatable {}
+extension SAPFoundation.IdentityError : Swift.Hashable {}
+extension SAPFoundation.SAPcpmsUserBlockedError : Swift.Equatable {}
+extension SAPFoundation.SAPcpmsUserBlockedError : Swift.Hashable {}
+extension SAPFoundation.AuthenticationObserverError : Swift.Equatable {}
+extension SAPFoundation.AuthenticationObserverError : Swift.Hashable {}
+extension SAPFoundation.SAPcpmsAuthenticationManagerError : Swift.Equatable {}
+extension SAPFoundation.SAPcpmsAuthenticationManagerError : Swift.Hashable {}
+extension SAPFoundation.SAPcpmsUserRolesError.MalformedType : Swift.Equatable {}
+extension SAPFoundation.SAPcpmsUserRolesError.MalformedType : Swift.Hashable {}
+extension SAPFoundation.UsageBrokerError : Swift.Equatable {}
+extension SAPFoundation.UsageBrokerError : Swift.Hashable {}
+extension SAPFoundation.SAPcpmsSettings.SettingsTarget : Swift.Equatable {}
+extension SAPFoundation.SAPcpmsSettings.SettingsTarget : Swift.Hashable {}
+extension SAPFoundation.SAPcpmsDestinationsError.MalformedType : Swift.Equatable {}
+extension SAPFoundation.SAPcpmsDestinationsError.MalformedType : Swift.Hashable {}
+extension SAPFoundation.LocationCollectorError : Swift.Equatable {}
+extension SAPFoundation.LocationCollectorError : Swift.Hashable {}
+extension SAPFoundation.ComponentType : Swift.Equatable {}
+extension SAPFoundation.ComponentType : Swift.Hashable {}
+extension SAPFoundation.ComponentType : Swift.RawRepresentable {}
+extension SAPFoundation.TraceFlags : Swift.Equatable {}
+extension SAPFoundation.TraceFlags : Swift.Hashable {}
+extension SAPFoundation.TraceFlags : Swift.RawRepresentable {}
+extension SAPFoundation.BasicCredentialDiscoveryError : Swift.Equatable {}
+extension SAPFoundation.BasicCredentialDiscoveryError : Swift.Hashable {}
+extension SAPFoundation.SLSLoginInputField.InputType : Swift.Equatable {}
+extension SAPFoundation.SLSLoginInputField.InputType : Swift.Hashable {}
+extension SAPFoundation.SAPcpmsSettingsError.MalformedType : Swift.Equatable {}
+extension SAPFoundation.SAPcpmsSettingsError.MalformedType : Swift.Hashable {}
+extension SAPFoundation.UserIdentityObserverError : Swift.Equatable {}
+extension SAPFoundation.UserIdentityObserverError : Swift.Hashable {}
+extension SAPFoundation.ReachabilityType : Swift.Equatable {}
+extension SAPFoundation.ReachabilityType : Swift.Hashable {}
+extension SAPFoundation.SLSLoginInput.ClientMessageType : Swift.Equatable {}
+extension SAPFoundation.SLSLoginInput.ClientMessageType : Swift.Hashable {}
+extension SAPFoundation.SLSLoginInput.ClientMessageType : Swift.RawRepresentable {}

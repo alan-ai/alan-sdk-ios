@@ -1,0 +1,427 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SAPCommon
+import Foundation
+@_exported import SAPCommon
+import Swift
+import os
+public class Cipher : SAPCommon.Ciphering {
+  public enum KeySize : Swift.Int {
+    case aes128
+    case aes256
+    public typealias RawValue = Swift.Int
+    public init?(rawValue: Swift.Int)
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  convenience public init(password: Swift.String, salt: Swift.String, keySize: SAPCommon.Cipher.KeySize = .aes256, pseudoRandomAlgorithm: SAPCommon.PseudoRandomAlgorithm = .algorithmSha256, iterations: Swift.Int = 100000, dataIntegrityHashSize: SAPCommon.DataIntegrityHashSize = .hashSha256) throws
+  public init(key: Foundation.Data, dataIntegrityHashSize: SAPCommon.DataIntegrityHashSize = .hashSha256)
+  public func encrypt(data: Foundation.Data) throws -> Foundation.Data
+  public func decrypt(data: Foundation.Data) throws -> Foundation.Data
+  @objc deinit
+}
+public protocol DataStoring {
+  func put(data: Foundation.Data, for key: Swift.String) throws
+  func data(for key: Swift.String) throws -> Foundation.Data?
+  func removeData(for key: Swift.String) throws
+  func keys() throws -> Swift.Set<Swift.String>
+}
+public enum CipherError : SAPCommon.SAPError {
+  case `internal`(error: Foundation.NSError)
+  case invalidStructure(detail: Swift.String)
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public protocol Ciphering {
+  func encrypt(data: Foundation.Data) throws -> Foundation.Data
+  func decrypt(data: Foundation.Data) throws -> Foundation.Data
+}
+public class NoCipher : SAPCommon.Ciphering {
+  public init()
+  public func encrypt(data: Foundation.Data) throws -> Foundation.Data
+  public func decrypt(data: Foundation.Data) throws -> Foundation.Data
+  @objc deinit
+}
+open class ConsoleLogFormatter : SAPCommon.LogFormatter {
+  public init()
+  open var head: Swift.String {
+    get
+  }
+  open func format(_ record: SAPCommon.LogRecord) -> Swift.String
+  open func formatDate(_ date: Foundation.Date) -> Swift.String
+  @objc deinit
+}
+public protocol UsageSnapshotting : AnyObject {
+  func records(_ body: (SAPCommon.UsageRecord) -> Swift.Bool)
+  func recordCount() -> Swift.Int
+  func removeRecords()
+}
+open class FileLogHandler : SAPCommon.LogHandler {
+  public var logLevel: SAPCommon.LogLevel
+  final public let formatter: SAPCommon.LogFormatter
+  public static let defaultMaxFileSize: Swift.UInt64
+  @available(*, deprecated, renamed: "defaultMaxFileNum")
+  public static let defaultMaxBackups: Swift.Int
+  public static let defaultMaxFileNum: Swift.Int
+  public var maxFileSize: Swift.UInt64
+  public var maxFileNum: Swift.Int
+  open class var synchronizationQueue: Dispatch.DispatchQueue {
+    get
+  }
+  public init(fileURL: Foundation.URL, maxFileSize: Swift.UInt64 = defaultMaxFileSize, maxFileNum: Swift.Int = defaultMaxFileNum, formatter: SAPCommon.LogFormatter = FileLogFormatter()) throws
+  @available(*, deprecated, renamed: "init(fileURL:maxFileSize:maxFileNum:formatter:)")
+  public init(fileURL: Foundation.URL, maxFileSize: Swift.UInt64, maxBackups: Swift.Int, formatter: SAPCommon.LogFormatter = FileLogFormatter()) throws
+  @objc deinit
+  open func close()
+  open func logFiles() -> [Foundation.URL]
+  open func deleteLogFiles() throws
+  open func publish(_ record: SAPCommon.LogRecord)
+}
+public struct LogRecord {
+  public let loggerName: Swift.String
+  public let logLevel: SAPCommon.LogLevel
+  public let date: Foundation.Date
+  public let logMessage: Swift.String
+  public let function: Swift.String
+  public let file: Swift.String
+  public let line: Swift.Int
+  public let error: Swift.Error?
+  public let thread: Swift.String
+  public let correlationId: Swift.String?
+  public init(loggerName: Swift.String, logLevel: SAPCommon.LogLevel, date: Foundation.Date, logMessage: Swift.String, function: Swift.String, file: Swift.String, line: Swift.Int, error: Swift.Error?, thread: Swift.String, correlationId: Swift.String? = nil)
+}
+public struct UsageRecord {
+  public static let sessionIdentifierKey: Swift.String
+  public static let deviceIdentifierKey: Swift.String
+  public static let deviceModelKey: Swift.String
+  public static let systemVersionKey: Swift.String
+  public static let systemNameKey: Swift.String
+  public enum Event : Swift.CustomStringConvertible {
+    case sessionStart
+    case sessionEnd
+    case event(Swift.String)
+    case eventStart(Swift.String)
+    case eventEnd(Swift.String)
+    public var description: Swift.String {
+      get
+    }
+  }
+  public static func defaultSessionInfo() -> [Swift.String : Any]
+  public let event: SAPCommon.UsageRecord.Event
+  public let date: Foundation.Date
+  public let info: [Swift.String : Any]
+  public init(event: SAPCommon.UsageRecord.Event, date: Foundation.Date = Date(), info: [Swift.String : Any] = [:])
+}
+public enum KeychainStorageError : Swift.Error {
+  case failedToRead(osstatus: Darwin.OSStatus)
+  case failedToSave(osstatus: Darwin.OSStatus)
+  case failedToRemove(osstatus: Darwin.OSStatus)
+  case storeAlreadyExists
+  case storeDoesntExist
+  case storeNameIsntUTF8Encoded
+}
+extension KeychainStorageError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public enum LoggingError : Swift.Error {
+  case frameworkNotInitialized
+  case logFileCouldNotBeCreated(error: Swift.Error)
+}
+extension LoggingError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+@_inheritsConvenienceInitializers open class OSLogConsoleHandler : SAPCommon.ConsoleLogHandler {
+  public var osLogMessageType: Swift.StaticString
+  override public init(formatter: SAPCommon.LogFormatter = OSLogConsoleFormatter())
+  override open func publish(_ record: SAPCommon.LogRecord)
+  @objc deinit
+}
+@_inheritsConvenienceInitializers open class OSLogConsoleFormatter : SAPCommon.ConsoleLogFormatter {
+  override open func format(_ record: SAPCommon.LogRecord) -> Swift.String
+  override public init()
+  @objc deinit
+}
+open class ConsoleLogHandler : SAPCommon.LogHandler {
+  public var logLevel: SAPCommon.LogLevel
+  final public let formatter: SAPCommon.LogFormatter
+  open class var synchronizationQueue: Dispatch.DispatchQueue {
+    get
+  }
+  public init(formatter: SAPCommon.LogFormatter = ConsoleLogFormatter())
+  open func publish(_ record: SAPCommon.LogRecord)
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class Logger : Swift.Hashable, Swift.Equatable, Swift.CustomStringConvertible {
+  public static let synchronizationQueue: Dispatch.DispatchQueue
+  public var useParentHandlers: Swift.Bool
+  public static let root: SAPCommon.Logger
+  public var parent: SAPCommon.Logger? {
+    get
+  }
+  public var logLevel: SAPCommon.LogLevel? {
+    get
+    set
+  }
+  public class func shared(named name: Swift.String) -> SAPCommon.Logger
+  public func add(handler: SAPCommon.LogHandler)
+  public func remove(handler: SAPCommon.LogHandler)
+  public func removeHandlers()
+  public func log(_ message: Swift.String, error: Swift.Error? = nil, level: SAPCommon.LogLevel = .debug, fileName: Swift.String = #file, functionName: Swift.String = #function, lineNumber: Swift.Int = #line, correlationId: Swift.String? = nil)
+  public func error(_ message: Swift.String, error: Swift.Error? = nil, fileName: Swift.String = #file, functionName: Swift.String = #function, lineNumber: Swift.Int = #line, correlationId: Swift.String? = nil)
+  public func warn(_ message: Swift.String, error: Swift.Error? = nil, fileName: Swift.String = #file, functionName: Swift.String = #function, lineNumber: Swift.Int = #line, correlationId: Swift.String? = nil)
+  public func info(_ message: Swift.String, error: Swift.Error? = nil, fileName: Swift.String = #file, functionName: Swift.String = #function, lineNumber: Swift.Int = #line, correlationId: Swift.String? = nil)
+  public func debug(_ message: Swift.String, error: Swift.Error? = nil, fileName: Swift.String = #file, functionName: Swift.String = #function, lineNumber: Swift.Int = #line, correlationId: Swift.String? = nil)
+  public var isErrorEnabled: Swift.Bool {
+    get
+  }
+  public var isWarnEnabled: Swift.Bool {
+    get
+  }
+  public var isInfoEnabled: Swift.Bool {
+    get
+  }
+  public var isDebugEnabled: Swift.Bool {
+    get
+  }
+  public func dumpHierarchy()
+  public static func == (lhs: SAPCommon.Logger, rhs: SAPCommon.Logger) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+  @objc deinit
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public struct Feedback : Swift.Codable {
+  public static let minimumScore: Swift.Int
+  public static let maximumScore: Swift.Int
+  public var context: Swift.String {
+    get
+    set
+  }
+  public var score: Swift.Int {
+    get
+    set
+  }
+  public var comment: Swift.String {
+    get
+    set
+  }
+  public init(context: Swift.String = "", score: Swift.Int, comment: Swift.String = "")
+  public init(from decoder: Swift.Decoder) throws
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public struct SAPcpmsLogSettings {
+  public let entryExpiry: Swift.Int
+  public let logLevel: Swift.String
+  public let maxFileNum: Swift.Int
+  public let maxFileSize: Swift.Int
+  public init(entryExpiry: Swift.Int = 0, logLevel: Swift.String, maxFileNum: Swift.Int = 0, maxFileSize: Swift.Int = 5)
+}
+public protocol UsageStoring : AnyObject {
+  var storageID: Swift.String { get }
+  var initTimestamp: Foundation.Date { get }
+  func removeRecords(before date: Foundation.Date, after end: Foundation.Date?, targetID: Swift.String)
+  func snapshot(for targetID: Swift.String) -> SAPCommon.UsageSnapshotting
+  func store(record: SAPCommon.UsageRecord, for targetID: Swift.String)
+  func targetIdentifiers() -> [Swift.String]
+  func removeRecords(using snapshot: SAPCommon.UsageSnapshotting)
+  func records(for snapshot: SAPCommon.UsageSnapshotting, _ body: (SAPCommon.UsageRecord) -> Swift.Bool)
+  func recordCount(for snapshot: SAPCommon.UsageSnapshotting) -> Swift.Int
+}
+@_hasMissingDesignatedInitializers open class UsageReporter {
+  public var enabled: Swift.Bool {
+    get
+    set
+  }
+  public func report(_ record: SAPCommon.UsageRecord)
+  open func report(_ event: SAPCommon.UsageRecord.Event, date: Foundation.Date = Date(), info: [Swift.String : Any] = [:])
+  @objc deinit
+}
+public enum LogLevel : Swift.UInt, Swift.Comparable, Swift.CustomStringConvertible {
+  case off
+  case error
+  case warn
+  case info
+  case debug
+  public var description: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.UInt
+  public init?(rawValue: Swift.UInt)
+  public var rawValue: Swift.UInt {
+    get
+  }
+}
+public func == (lhs: SAPCommon.LogLevel, rhs: SAPCommon.LogLevel) -> Swift.Bool
+public func < (lhs: SAPCommon.LogLevel, rhs: SAPCommon.LogLevel) -> Swift.Bool
+@_hasMissingDesignatedInitializers public class Usage {
+  public static let defaultTargetID: Swift.String
+  public static let unattributedStorageID: Swift.String
+  public static let unattributedUserID: Swift.String
+  public class var shared: SAPCommon.Usage {
+    get
+  }
+  public var store: SAPCommon.UsageStoring? {
+    get
+  }
+  public var dataCollectionEnabled: Swift.Bool {
+    get
+  }
+  public var userConsent: Swift.Bool {
+    get
+  }
+  public var userID: Swift.String? {
+    get
+  }
+  public func configure(with store: SAPCommon.UsageStoring, retainLastUnattributedSession: Swift.Bool = false, addSessionData applicationIdentifier: Swift.String? = nil)
+  public func reporter(for targetID: Swift.String = defaultTargetID, injectUnattributed: Swift.Bool = true) -> SAPCommon.UsageReporter
+  public func register(reporter: SAPCommon.UsageReporter, for targetID: Swift.String = defaultTargetID, injectUnattributed: Swift.Bool = true)
+  public func unregisterReporter(from targetID: Swift.String)
+  public func targetIdentifiers() -> [Swift.String]
+  public func enableDataCollection(addSessionData applicationIdentifier: Swift.String? = nil)
+  public func disableDataCollection(addSessionData emitData: Swift.Bool = false)
+  public func consentForUser(_ userID: Foundation.UUID, given consent: Swift.Bool = false, addSessionData applicationIdentifier: Swift.String? = nil)
+  public func hasConsentForUser(_ userID: Foundation.UUID) -> Swift.Bool
+  public func outputEnabled() -> Swift.Bool
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SAPcpmsRecord {
+  public static let applicationIdentifierKey: Swift.String
+  public static let applicationVersionKey: Swift.String
+  public static let typeKey: Swift.String
+  public static let durationKey: Swift.String
+  public static let screenKey: Swift.String
+  public static let viewKey: Swift.String
+  public static let elementKey: Swift.String
+  public static let actionKey: Swift.String
+  public static let behaviorKey: Swift.String
+  public static let casesKey: Swift.String
+  public static let categoryKey: Swift.String
+  public static let resultKey: Swift.String
+  public static let unitKey: Swift.String
+  public static let measurementKey: Swift.String
+  public static let valueKey: Swift.String
+  public static let othersKey: Swift.String
+  public class func sessionStart(applicationIdentifier: Swift.String, applicationVersion: Swift.String? = nil) -> SAPCommon.UsageRecord
+  public class func sessionEnd() -> SAPCommon.UsageRecord
+  public class func event(type: Swift.String? = nil, key: Swift.String = "Other", date: Foundation.Date = Date(), duration: Swift.Double? = nil, screen: Swift.String? = nil, view: Swift.String? = nil, element: Swift.String? = nil, action: Swift.String? = nil, behaviour: Swift.String? = nil, case: Swift.String? = nil, category: Swift.String? = nil, result: Swift.String? = nil, unit: Swift.String? = nil, measurement: Swift.String? = nil, value: Swift.String? = nil, others: Any? = nil) -> SAPCommon.UsageRecord
+  public class func eventStart(type: Swift.String? = nil, key: Swift.String = "Other", date: Foundation.Date = Date(), duration: Swift.Double? = nil, screen: Swift.String? = nil, view: Swift.String? = nil, element: Swift.String? = nil, action: Swift.String? = nil, behaviour: Swift.String? = nil, case: Swift.String? = nil, category: Swift.String? = nil, result: Swift.String? = nil, unit: Swift.String? = nil, measurement: Swift.String? = nil, value: Swift.String? = nil, others: Any? = nil) -> SAPCommon.UsageRecord
+  public class func eventEnd(type: Swift.String? = nil, key: Swift.String = "Other", date: Foundation.Date = Date(), duration: Swift.Double? = nil, screen: Swift.String? = nil, view: Swift.String? = nil, element: Swift.String? = nil, action: Swift.String? = nil, behaviour: Swift.String? = nil, case: Swift.String? = nil, category: Swift.String? = nil, result: Swift.String? = nil, unit: Swift.String? = nil, measurement: Swift.String? = nil, value: Swift.String? = nil, others: Any? = nil) -> SAPCommon.UsageRecord
+  @objc deinit
+}
+@_inheritsConvenienceInitializers open class FileLogFormatter : SAPCommon.ConsoleLogFormatter {
+  override open var head: Swift.String {
+    get
+  }
+  override open func format(_ record: SAPCommon.LogRecord) -> Swift.String
+  override public init()
+  @objc deinit
+}
+public protocol LogHandler : AnyObject {
+  var logLevel: SAPCommon.LogLevel { get set }
+  func publish(_ record: SAPCommon.LogRecord)
+}
+@_hasMissingDesignatedInitializers open class SAPcpmsUsage {
+  open class var reporter: SAPCommon.UsageReporter {
+    get
+  }
+  open class func sessionStart(applicationIdentifier: Swift.String, applicationVersion: Swift.String? = nil)
+  open class func sessionEnd()
+  open class func event(type: Swift.String? = nil, key: Swift.String = "Other", date: Foundation.Date = Date(), duration: Swift.Double? = nil, screen: Swift.String? = nil, view: Swift.String? = nil, element: Swift.String? = nil, action: Swift.String? = nil, behaviour: Swift.String? = nil, case: Swift.String? = nil, category: Swift.String? = nil, result: Swift.String? = nil, unit: Swift.String? = nil, measurement: Swift.String? = nil, value: Swift.String? = nil, others: Any? = nil)
+  open class func eventStart(type: Swift.String? = nil, key: Swift.String = "Other", date: Foundation.Date = Date(), duration: Swift.Double? = nil, screen: Swift.String? = nil, view: Swift.String? = nil, element: Swift.String? = nil, action: Swift.String? = nil, behaviour: Swift.String? = nil, case: Swift.String? = nil, category: Swift.String? = nil, result: Swift.String? = nil, unit: Swift.String? = nil, measurement: Swift.String? = nil, value: Swift.String? = nil, others: Any? = nil)
+  open class func eventEnd(type: Swift.String? = nil, key: Swift.String = "Other", date: Foundation.Date = Date(), duration: Swift.Double? = nil, screen: Swift.String? = nil, view: Swift.String? = nil, element: Swift.String? = nil, action: Swift.String? = nil, behaviour: Swift.String? = nil, case: Swift.String? = nil, category: Swift.String? = nil, result: Swift.String? = nil, unit: Swift.String? = nil, measurement: Swift.String? = nil, value: Swift.String? = nil, others: Any? = nil)
+  public enum BehaviorEvent : Swift.String {
+    case viewDisplayed
+    case userInteraction
+    public typealias RawValue = Swift.String
+    public init?(rawValue: Swift.String)
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public class func logBehaviorEvent(behaviorEvent: SAPCommon.SAPcpmsUsage.BehaviorEvent, viewIdentifier: Swift.String, elementIdentifier: Swift.String? = nil, action: Swift.String? = nil, value: Swift.String? = nil)
+  @objc deinit
+}
+public protocol LogFormatter : AnyObject {
+  var head: Swift.String { get }
+  func format(_ record: SAPCommon.LogRecord) -> Swift.String
+  func formatDate(_ date: Foundation.Date) -> Swift.String
+}
+public protocol SAPError : Foundation.LocalizedError, Swift.CustomDebugStringConvertible, Swift.CustomStringConvertible {
+}
+extension SAPError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+  public var recoverySuggestion: Swift.String? {
+    get
+  }
+  public var helpAnchor: Swift.String? {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class KeychainStorage : SAPCommon.DataStoring {
+  final public let name: Swift.String
+  public var cipher: SAPCommon.Ciphering {
+    get
+  }
+  final public let accessGroup: Swift.String
+  public class func createStore(name: Swift.String, cipher: SAPCommon.Ciphering? = nil, accessGroup: Swift.String = "") throws -> SAPCommon.KeychainStorage
+  public class func openStore(name: Swift.String, cipher: SAPCommon.Ciphering? = nil, accessGroup: Swift.String = "") throws -> SAPCommon.KeychainStorage
+  public class func storeExists(name: Swift.String, accessGroup: Swift.String = "") throws -> Swift.Bool
+  public class func removeStore(name: Swift.String, accessGroup: Swift.String = "") throws
+  public func put(data: Foundation.Data, for key: Swift.String) throws
+  public func data(for key: Swift.String) throws -> Foundation.Data?
+  public func removeData(for key: Swift.String) throws
+  public func removeAllData() throws
+  public func keys() throws -> Swift.Set<Swift.String>
+  public func changeCipher(to newCipher: SAPCommon.Ciphering) throws
+  @objc deinit
+}
+extension SAPCommon.Cipher.KeySize : Swift.Equatable {}
+extension SAPCommon.Cipher.KeySize : Swift.Hashable {}
+extension SAPCommon.Cipher.KeySize : Swift.RawRepresentable {}
+extension SAPCommon.LogLevel : Swift.Hashable {}
+extension SAPCommon.LogLevel : Swift.RawRepresentable {}
+extension SAPCommon.SAPcpmsUsage.BehaviorEvent : Swift.Equatable {}
+extension SAPCommon.SAPcpmsUsage.BehaviorEvent : Swift.Hashable {}
+extension SAPCommon.SAPcpmsUsage.BehaviorEvent : Swift.RawRepresentable {}

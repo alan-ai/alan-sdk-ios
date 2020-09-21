@@ -1,0 +1,20 @@
+framework module SAPFoundation {
+
+    umbrella header "SAPFoundation.h"
+
+    header "sqlite3.h"
+    header "FMDatabase.h"
+    header "FMDatabasePool.h"
+    header "FMResultSet.h"
+    header "FMResultSet.h"
+    header "OpenSSLHelperProxy.h"
+    header "ObjcExceptionHelper.h"
+    
+    export *
+    module * { export * }
+}
+
+module SAPFoundation.Swift {
+    header "SAPFoundation-Swift.h"
+    requires objc
+}

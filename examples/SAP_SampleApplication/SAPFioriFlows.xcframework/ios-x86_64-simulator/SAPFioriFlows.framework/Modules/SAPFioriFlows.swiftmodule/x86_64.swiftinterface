@@ -1,0 +1,1330 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name SAPFioriFlows
+import AuthenticationServices
+import Foundation
+import LocalAuthentication
+import SAPCommon
+import SAPFiori
+@_exported import SAPFioriFlows
+import SAPFoundation
+import SafariServices
+import Swift
+import UIKit
+import WebKit
+public enum SLSLoginInputPresenterError : Swift.Error {
+  case cancelled
+  public static func == (a: SAPFioriFlows.SLSLoginInputPresenterError, b: SAPFioriFlows.SLSLoginInputPresenterError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension SLSLoginInputPresenterError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class OnboardingFlowController {
+  public static var presentationState: SAPFioriFlows.PresentationState
+  public static func onboard(on steps: [SAPFioriFlows.OnboardingStep], context: SAPFioriFlows.OnboardingContext = OnboardingContext(), shouldResetOnError: Swift.Bool = true, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  public static func restore(on steps: [SAPFioriFlows.OnboardingStep], context: SAPFioriFlows.OnboardingContext = OnboardingContext(), completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  public static func reset(on steps: [SAPFioriFlows.OnboardingStep], context: SAPFioriFlows.OnboardingContext = OnboardingContext(), completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+open class KeychainStoreManager : SAPFioriFlows.PersistentStoreManaging {
+  final public let accessGroup: Swift.String
+  public init(keychainAccessGroup: Swift.String = "", cipherHandler: @escaping (Swift.String?) throws -> SAPCommon.Ciphering? = KeychainStoreManager.cipher(for:))
+  open func createStore(name: Swift.String, passcode: Swift.String?) throws -> SAPCommon.DataStoring
+  open func openStore(name: Swift.String, passcode: Swift.String?) throws -> SAPCommon.DataStoring
+  open func removeStore(name: Swift.String, store: SAPCommon.DataStoring?) throws
+  open func changePasscode(store: SAPCommon.DataStoring, newPasscode: Swift.String?) throws
+  open func storeExists(name: Swift.String) throws -> Swift.Bool
+  public class func cipher(for passcode: Swift.String?) throws -> SAPCommon.Ciphering?
+  @objc deinit
+}
+extension StoreManager {
+  public func passcodePolicy() -> SAPFiori.FUIPasscodePolicy
+}
+extension OnboardingInfoKey {
+  public static let slsConfigurationParameters: SAPFioriFlows.OnboardingInfoKey
+}
+open class SLSAuthenticationStep : SAPFioriFlows.OnboardingStep {
+  final public let slsConfigurationParametersInfoKey: SAPFioriFlows.OnboardingInfoKey
+  final public let sapcpmsSettingsParametersInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public var infoScreenText: Swift.String
+  public var isAllowingOfflineRestore: Swift.Bool
+  public init(slsLoginInputPresenter: SAPFioriFlows.FlowPresentationDelegateClient & SAPFoundation.SLSLoginInputDelegate = SLSLoginInputPresenter(), slsConfigurationParametersInfoKey: SAPFioriFlows.OnboardingInfoKey = OnboardingInfoKey.slsConfigurationParameters, sapcpmsSettingsParametersInfoKey: SAPFioriFlows.OnboardingInfoKey = OnboardingInfoKey.sapcpmsSettingsParameters)
+  open func onboard(sapURLSession: SAPFoundation.SAPURLSession, authenticationURL: Foundation.URL, credentialStore: SAPFoundation.CodableStoring, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, slsConfigurationParameters: SAPFoundation.SLSConfigurationParameters, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(sapURLSession: SAPFoundation.SAPURLSession, authenticationURL: Foundation.URL, credentialStore: SAPFoundation.CodableStoring, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, slsConfigurationParameters: SAPFoundation.SLSConfigurationParameters, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(sapURLSession: SAPFoundation.SAPURLSession, completionHandler: @escaping () -> Swift.Void)
+  open func createUserIdentityStore(using credentialsStore: SAPFoundation.CodableStoring) -> SAPFoundation.UserIdentityStoring
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+open class SAPcpmsSessionConfigurationStep : SAPFioriFlows.SimpleTaskStep {
+  public init(infoKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsSettingsParameters)
+  @objc deinit
+  override public init(onboardHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, restoreHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+  override public init(flowHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+}
+public enum UsageCollectionConsentError : Swift.Error {
+  case cancelled
+  case missing
+  public static func == (a: SAPFioriFlows.UsageCollectionConsentError, b: SAPFioriFlows.UsageCollectionConsentError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension UsageCollectionConsentError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+@available(*, unavailable, renamed: "UsageCollectionConsentError")
+public typealias UsageUserConsentError = SAPFioriFlows.UsageCollectionConsentError
+public protocol ScanConfirmViewUI : AnyObject {
+  var confirmationMessageString: Swift.String? { get set }
+  var confirmationTitleString: Swift.String? { get set }
+  var continueButtonTitleString: Swift.String? { get set }
+  var cloudPlatformHostName: Swift.String! { get set }
+}
+extension FUIOnboardingScanConfirmView : SAPFioriFlows.ScanConfirmViewUI {
+  public var cloudPlatformHostName: Swift.String! {
+    get
+    set
+  }
+}
+public enum EULAError : Swift.Error {
+  case cancelled
+  case rejected
+  case missing
+  public static func == (a: SAPFioriFlows.EULAError, b: SAPFioriFlows.EULAError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension EULAError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+extension OnboardingInfoKey {
+  public static let userConsentContentInfoKey: SAPFioriFlows.OnboardingInfoKey
+}
+open class UserConsentStep : SAPFioriFlows.OnboardingStep, SAPFiori.FUIUserConsentViewControllerDelegate {
+  public var userConsentVersionStoreKey: Swift.String
+  public init(userConsentFormsContent: [SAPFioriFlows.UserConsentFormContent])
+  public init(userConsentContentInfoKey: SAPFioriFlows.OnboardingInfoKey = .userConsentContentInfoKey)
+  open func onboard(userConsentFormsContent: [SAPFioriFlows.UserConsentFormContent], presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(userConsentFormsContent: [SAPFioriFlows.UserConsentFormContent], presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  public func userConsentViewController(viewController: SAPFiori.FUIUserConsentViewController, didReceiveResponseToConsentForms forms: [SAPFiori.FUIUserConsentForm])
+  public func userConsentViewController(viewController: SAPFiori.FUIUserConsentViewController, didCancelConsentForms forms: [SAPFiori.FUIUserConsentForm])
+  @objc deinit
+}
+open class SAPcpmsCorrelationConfigurationStep : SAPFioriFlows.SimpleTaskStep {
+  public init()
+  @objc deinit
+  override public init(onboardHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, restoreHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+  override public init(flowHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+}
+public struct UserConsentPageContent {
+  public var title: Swift.String
+  public var titleAttributedText: Foundation.NSAttributedString?
+  public var body: Swift.String
+  public var bodyAttributedText: Foundation.NSAttributedString?
+  public var actionTitle: Swift.String
+  public var actionTitleAttributedText: Foundation.NSAttributedString?
+  public var actionUrl: Swift.String?
+  public var actionHandler: ((SAPFiori.FUIUserConsentPageViewController) -> Swift.Void)?
+  public init()
+}
+open class FioriBasicCredentialsViewControllerPresenter : SAPFioriFlows.FlowPresentationDelegateClient, SAPFoundation.BasicCredentialDiscovery, SAPFiori.FUIBasicAuthenticationDelegate {
+  public var basicViewControllerConfigurationHandler: (SAPFiori.FUIBasicAuthenticationScreen) -> Swift.Void
+  open var presentationDelegate: SAPFioriFlows.FlowPresentationDelegate! {
+    get
+    set
+  }
+  open var infoScreenConfigurationHandler: (SAPFiori.FUIInfoViewController) -> Swift.Void {
+    get
+    set
+  }
+  open var infoScreenPresentationOptions: SAPFioriFlows.InfoScreenPresentationOptions {
+    get
+    set
+  }
+  public init()
+  open func provideBasicCredential(for url: Foundation.URL, challenge: Foundation.URLAuthenticationChallenge, completionHandler: @escaping (SAPFoundation.BasicCredential?, Swift.Error?) -> Swift.Void)
+  public func didSignIn(_ controller: SAPFiori.FUIBasicAuthenticationScreen, username: Swift.String, password: Swift.String, completion: @escaping ((Swift.String?) -> Swift.Void))
+  public func didCancel(_ controller: SAPFiori.FUIBasicAuthenticationScreen)
+  @objc deinit
+}
+open class SAPcpmsDestinationsDownloadStep : SAPFioriFlows.OnboardingStep {
+  public var settingsInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public var infoScreenText: Swift.String
+  public init()
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(sapURLSession: SAPFoundation.SAPURLSession, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, completionHandler: @escaping ([SAPFioriFlows.OnboardingInfoKey : Any]?, Swift.Error?) -> Swift.Void)
+  open func restore(sapURLSession: SAPFoundation.SAPURLSession, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, completionHandler: @escaping ([SAPFioriFlows.OnboardingInfoKey : Any]?, Swift.Error?) -> Swift.Void)
+  open func reset(completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+extension OnboardingInfoKey {
+  public static let otpParameters: SAPFioriFlows.OnboardingInfoKey
+}
+open class OTPSessionConfigurationStep : SAPFioriFlows.OnboardingStep {
+  final public let infoKey: SAPFioriFlows.OnboardingInfoKey
+  public var presenter: SAPFioriFlows.FlowPresentationDelegateClient!
+  public init(infoKey: SAPFioriFlows.OnboardingInfoKey = .otpParameters, webViewPresenter: SAPFioriFlows.FlowPresentationDelegateClient & SAPFoundation.WKWebViewPresenting = FioriWKWebViewPresenter())
+  open func createAuthenticator(otpParameters: SAPFoundation.OTPParameters, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate) -> SAPFoundation.OTPAuthenticator
+  open func onboard(otpParameters: SAPFoundation.OTPParameters, sapURLSession: SAPFoundation.SAPURLSession, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(otpParameters: SAPFoundation.OTPParameters, sapURLSession: SAPFoundation.SAPURLSession, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(sapURLSession: SAPFoundation.SAPURLSession, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+public protocol ConfigurationTransforming : AnyObject {
+  func transform(config: Any) throws -> [SAPFioriFlows.OnboardingInfoKey : Any]
+}
+open class CompositeStep : SAPFioriFlows.OnboardingStep {
+  public var infoScreenText: Swift.String
+  final public let steps: [SAPFioriFlows.OnboardingStep]
+  public init(steps: [SAPFioriFlows.OnboardingStep])
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+extension StoreManager {
+  public func validate(passcode: Swift.String) throws
+}
+extension StoreManager {
+  public func shouldTryPasscode(_ passcode: Swift.String, forInputMode inputMode: SAPFiori.FUIPasscodeInputMode, fromController passcodeController: SAPFiori.FUIPasscodeController) throws
+  public func didCancelPasscodeEntry(fromController passcodeController: SAPFiori.FUIPasscodeController)
+  public func didSkipPasscodeSetup(fromController passcodeController: SAPFiori.FUIPasscodeController)
+  public func shouldResetPasscode(fromController passcodeController: SAPFiori.FUIPasscodeController)
+  public func didSetBiometricIDOption(to enabled: Swift.Bool, fromController passcodeController: SAPFiori.FUIPasscodeController)
+}
+extension OnboardingInfoKey {
+  public static let sapcpmsUserIdentityDiscoveryConfigurationParameters: SAPFioriFlows.OnboardingInfoKey
+  public static let sapcpmsUserIdentityDiscoveryOAuth2AuthenticationParameters: SAPFioriFlows.OnboardingInfoKey
+}
+open class SAPcpmsUserIdentityDiscoveryAuthenticationStep : SAPFioriFlows.OnboardingStep {
+  final public let userIdentityConfigurationParametersInfoKey: SAPFioriFlows.OnboardingInfoKey
+  final public let oauth2AuthenticationParametersInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public var presenter: SAPFioriFlows.FlowPresentationDelegateClient!
+  public var infoScreenText: Swift.String
+  public var isAllowingOfflineRestore: Swift.Bool
+  public init(presenter webViewPresenter: SAPFioriFlows.FlowPresentationDelegateClient & SAPFoundation.WKWebViewPresenting = FioriWKWebViewPresenter(), userIdentityConfigurationParametersInfoKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsUserIdentityDiscoveryConfigurationParameters, oauth2ClientCredentialsAuthenticationParametersInfoKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsUserIdentityDiscoveryOAuth2AuthenticationParameters)
+  public init(presenter webViewPresenter: SAPFioriFlows.FlowPresentationDelegateClient & SAPFoundation.SFSafariViewControllerPresenting, userIdentityConfigurationParametersInfoKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsUserIdentityDiscoveryConfigurationParameters, oauth2ClientCredentialsAuthenticationParametersInfoKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsUserIdentityDiscoveryOAuth2AuthenticationParameters)
+  @available(iOS 12.0, *)
+  public init(presenter webViewPresenter: SAPFioriFlows.FlowPresentationDelegateClient & SAPFoundation.ASWebAuthenticationSessionPresenting, userIdentityConfigurationParametersInfoKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsUserIdentityDiscoveryConfigurationParameters, oauth2ClientCredentialsAuthenticationParametersInfoKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsUserIdentityDiscoveryOAuth2AuthenticationParameters)
+  open func onboard(sapURLSession: SAPFoundation.SAPURLSession, authenticationURL: Foundation.URL, credentialStore: SAPFoundation.CodableStoring, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, userIdentityConfigurationParameters: SAPFoundation.SAPcpmsUserIdentityConfigurationParameters, oauth2AuthenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(sapURLSession: SAPFoundation.SAPURLSession, authenticationURL: Foundation.URL, credentialStore: SAPFoundation.CodableStoring, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, userIdentityConfigurationParameters: SAPFoundation.SAPcpmsUserIdentityConfigurationParameters, oauth2AuthenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(sapURLSession: SAPFoundation.SAPURLSession, completionHandler: @escaping () -> Swift.Void)
+  open func createUserIdentityStore(using credentialsStore: SAPFoundation.CodableStoring) -> SAPFoundation.UserIdentityStoring
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+public struct EULAContent {
+  public let title: Swift.String
+  public let content: Foundation.NSAttributedString
+  public let version: Swift.String
+  public init(title: Swift.String, content: Foundation.NSAttributedString, version: Swift.String)
+}
+public protocol WelcomeStepUI : AnyObject {
+  var headlineLabel: UIKit.UILabel! { get }
+  var detailLabel: UIKit.UILabel! { get }
+  var primaryActionButton: SAPFiori.FUIOnboardingButton! { get }
+  var footnoteLabel: UIKit.UILabel! { get }
+  var footnoteActionButton: SAPFiori.FUIOnboardingButton! { get }
+  var isDemoModeAvailable: Swift.Bool { get set }
+}
+extension FUIWelcomeScreen : SAPFioriFlows.WelcomeStepUI {
+  public var isDemoModeAvailable: Swift.Bool {
+    get
+    set
+  }
+}
+open class FioriWKWebViewPresenter : SAPFoundation.WKWebViewPresenting, SAPFioriFlows.FlowPresentationDelegateClient {
+  open var webViewControllerConfigurationHandler: (SAPFiori.FUIWebViewContainer) -> SAPFiori.FUIWebViewContainer
+  public init(delegate: SAPFoundation.WebViewPresenterDelegate? = nil, webViewDelegate: SAPFoundation.SAPWKNavigationDelegate? = nil)
+  @objc deinit
+  open var presentationDelegate: SAPFioriFlows.FlowPresentationDelegate! {
+    get
+    set
+  }
+  open var infoScreenConfigurationHandler: (SAPFiori.FUIInfoViewController) -> Swift.Void {
+    get
+    set
+  }
+  open var infoScreenPresentationOptions: SAPFioriFlows.InfoScreenPresentationOptions {
+    get
+    set
+  }
+  weak open var delegate: SAPFoundation.WebViewPresenterDelegate?
+  weak open var webViewDelegate: SAPFoundation.SAPWKNavigationDelegate?
+  open func presentWebView(completionHandler: @escaping (WebKit.WKWebView?, Swift.Error?) -> Swift.Void)
+  open func reloadWebView()
+  open func dismissWebView()
+  open func showNotificationBanner()
+}
+extension FioriWKWebViewPresenter : SAPFiori.FUIWebViewContainerDelegate {
+  public func didTapCancel(on viewController: SAPFiori.FUIWebViewContainer)
+}
+public enum WelcomeScreenError : Swift.Error {
+  case demoModeRequested
+  public static func == (a: SAPFioriFlows.WelcomeScreenError, b: SAPFioriFlows.WelcomeScreenError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension WelcomeScreenError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+open class BasicAuthenticationStep : SAPFioriFlows.OnboardingStep {
+  public var retryCount: Swift.Int
+  public var infoScreenText: Swift.String
+  public var isAllowingOfflineRestore: Swift.Bool
+  public var settingsParametersInfoKey: SAPFioriFlows.OnboardingInfoKey
+  weak public var authenticationDelegate: SAPFoundation.AuthenticationDelegate?
+  public init(presenter: SAPFioriFlows.FioriBasicCredentialsViewControllerPresenter = FioriBasicCredentialsViewControllerPresenter(), retryCount: Swift.Int = 3)
+  open func onboard(sapURLSession: SAPFoundation.SAPURLSession, authenticationURL: Foundation.URL, credentialStore: SAPFoundation.CodableStoring, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(sapURLSession: SAPFoundation.SAPURLSession, authenticationURL: Foundation.URL, credentialStore: SAPFoundation.CodableStoring, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(sapURLSession: SAPFoundation.SAPURLSession, completionHandler: @escaping () -> Swift.Void)
+  open func createBasicCredentialStore(using credentialsStore: SAPFoundation.CodableStoring) -> SAPFoundation.BasicCredentialStoring
+  open func createBasicAuthenticationObserver(presenter: SAPFioriFlows.FioriBasicCredentialsViewControllerPresenter, credentialStore store: SAPFoundation.BasicCredentialStoring) -> SAPFoundation.BasicAuthenticationObserver
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+open class LanguageObserverConfigurationStep : SAPFioriFlows.SimpleTaskStep {
+  public init()
+  @objc deinit
+  override public init(onboardHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, restoreHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+  override public init(flowHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+}
+@available(*, unavailable, message: "This policy has been disabled due to a known security issue")
+open class SAPcpmsLockWipePolicyApplyStep : SAPFioriFlows.OnboardingStep {
+  final public let sapcpmsLockWipingPolicyInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public init(sapcpmsLockWipingPolicyInfoKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsLockWipingPolicy)
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(sapURLSession: SAPFoundation.SAPURLSession, credentialStore: SAPFoundation.CodableStoring, authenticationURL: Foundation.URL, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(sapURLSession: SAPFoundation.SAPURLSession, credentialStore: SAPFoundation.CodableStoring, authenticationURL: Foundation.URL, lockWipeDays: SAPFoundation.SAPcpmsLockWipePolicy?, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+open class SAPcpmsLogSettingsApplyStep : SAPFioriFlows.SimpleTaskStep {
+  public init(infoKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsLogSettings)
+  @objc deinit
+  override public init(onboardHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, restoreHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+  override public init(flowHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+}
+public protocol PersistentStoreManaging : AnyObject {
+  func createStore(name: Swift.String, passcode: Swift.String?) throws -> SAPCommon.DataStoring
+  func openStore(name: Swift.String, passcode: Swift.String?) throws -> SAPCommon.DataStoring
+  func removeStore(name: Swift.String, store: SAPCommon.DataStoring?) throws
+  func changePasscode(store: SAPCommon.DataStoring, newPasscode: Swift.String?) throws
+  func storeExists(name: Swift.String) throws -> Swift.Bool
+}
+public protocol ContextSupporting : AnyObject {
+  func applyContext(_ context: SAPFioriFlows.OnboardingContext)
+}
+open class SecureKeyValueStoreManager : SAPFioriFlows.PersistentStoreManaging, SAPFioriFlows.ContextSupporting {
+  public var secureStoreFolderPathInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public var secureStoreFolderPath: Swift.String?
+  public init(secureStoreFolderPathInfoKey: SAPFioriFlows.OnboardingInfoKey = .secureStoreFolderPath, secureStoreFolderPath: Swift.String? = nil)
+  open func createStore(name: Swift.String, passcode: Swift.String?) throws -> SAPCommon.DataStoring
+  open func openStore(name: Swift.String, passcode: Swift.String?) throws -> SAPCommon.DataStoring
+  open func removeStore(name: Swift.String, store: SAPCommon.DataStoring?) throws
+  open func changePasscode(store: SAPCommon.DataStoring, newPasscode: Swift.String?) throws
+  open func storeExists(name: Swift.String) throws -> Swift.Bool
+  open func applyContext(_ context: SAPFioriFlows.OnboardingContext)
+  @objc deinit
+}
+open class SimpleTaskStep : SAPFioriFlows.OnboardingStep {
+  public typealias FlowHandler = (SAPFioriFlows.OnboardingContext, @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void) -> Swift.Void
+  public typealias ResetHandler = (SAPFioriFlows.OnboardingContext, @escaping () -> Swift.Void) -> Swift.Void
+  public init(onboardHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, restoreHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = SimpleTaskStep.defaultResetHandler)
+  public init(flowHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = SimpleTaskStep.defaultResetHandler)
+  public static func defaultResetHandler(context: SAPFioriFlows.OnboardingContext, completionHandler: () -> Swift.Void)
+  public func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  public func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  public func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+public enum UserConsentError : Swift.Error {
+  case cancelled
+  case rejected
+  case missing
+  public static func == (a: SAPFioriFlows.UserConsentError, b: SAPFioriFlows.UserConsentError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension UserConsentError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public enum OnboardingError : Swift.Error {
+  case shouldUseAlternateOperation(Any)
+  case authenticationFailed(description: Swift.String, response: Foundation.URLResponse?, data: Foundation.Data?, error: Swift.Error?)
+  case missingArgument(Swift.String, source: Swift.String)
+  case invalidArgument(Swift.String, Any, source: Swift.String)
+  case cancelled(error: Swift.Error)
+}
+extension OnboardingError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public protocol OnboardingControlling {
+  func openFlow(_ completionHandler: @escaping (SAPFioriFlows.OnboardingFlow?, Swift.Error?) -> Swift.Void)
+  func resetFlow(for onboardingID: Foundation.UUID, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+}
+open class SLSLoginInputPresenter : SAPFioriFlows.FlowPresentationDelegateClient, SAPFoundation.SLSLoginInputDelegate, SAPFiori.FUIDynamicAuthenticationDelegate {
+  open var presentationDelegate: SAPFioriFlows.FlowPresentationDelegate! {
+    get
+    set
+  }
+  open var infoScreenConfigurationHandler: (SAPFiori.FUIInfoViewController) -> Swift.Void {
+    get
+    set
+  }
+  open var infoScreenPresentationOptions: SAPFioriFlows.InfoScreenPresentationOptions {
+    get
+    set
+  }
+  public var loginViewControllerConfigurationHandler: (SAPFiori.FUIDynamicAuthenticationScreen) -> Swift.Void
+  public init()
+  open func slsUserIdentityDiscovery(_ sls: SAPFoundation.SLSUserIdentityDiscovery, needsInputForLogin userInputForLogin: SAPFoundation.SLSLoginInput, completionHandler: @escaping ([SAPFoundation.SLSLoginInputFieldValue]?, Swift.Error?) -> Swift.Void)
+  open func slsUserIdentityDiscoveryDidFinishReceivingInput(_ sls: SAPFoundation.SLSUserIdentityDiscovery)
+  @objc deinit
+}
+extension SLSLoginInputPresenter {
+  public func verify(_ controller: SAPFiori.FUIDynamicAuthenticationScreen, informationStrings: [Swift.String], completion: @escaping ((Swift.String?) -> Swift.Void))
+  public func didCancel(_ controller: SAPFiori.FUIDynamicAuthenticationScreen)
+}
+extension OnboardingInfoKey {
+  public static let oauth2AuthenticationParameters: SAPFioriFlows.OnboardingInfoKey
+  public static let oauth2ClientCredentialsAuthenticationParameters: SAPFioriFlows.OnboardingInfoKey
+}
+@_hasMissingDesignatedInitializers open class OAuth2AuthenticationStep : SAPFioriFlows.OnboardingStep {
+  final public let authorizationInfoKey: SAPFioriFlows.OnboardingInfoKey
+  final public let clientCredentialsInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public var settingsParametersInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public var infoScreenText: Swift.String
+  public var isAllowingOfflineRestore: Swift.Bool
+  weak public var authenticationDelegate: SAPFoundation.AuthenticationDelegate?
+  convenience public init(presenter: SAPFioriFlows.FlowPresentationDelegateClient & SAPFoundation.WKWebViewPresenting = FioriWKWebViewPresenter(), authorizationInfoKey: SAPFioriFlows.OnboardingInfoKey = .oauth2AuthenticationParameters, clientCredentialsInfoKey: SAPFioriFlows.OnboardingInfoKey = .oauth2ClientCredentialsAuthenticationParameters)
+  convenience public init(presenter: SAPFioriFlows.FlowPresentationDelegateClient & SAPFoundation.SFSafariViewControllerPresenting, authorizationInfoKey: SAPFioriFlows.OnboardingInfoKey = .oauth2AuthenticationParameters, clientCredentialsInfoKey: SAPFioriFlows.OnboardingInfoKey = .oauth2ClientCredentialsAuthenticationParameters)
+  @available(iOS 12.0, *)
+  convenience public init(presenter: SAPFioriFlows.FlowPresentationDelegateClient & SAPFoundation.ASWebAuthenticationSessionPresenting, authorizationInfoKey: SAPFioriFlows.OnboardingInfoKey = .oauth2AuthenticationParameters, clientCredentialsInfoKey: SAPFioriFlows.OnboardingInfoKey = .oauth2ClientCredentialsAuthenticationParameters)
+  open func reset(sapURLSession: SAPFoundation.SAPURLSession, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(authenticationURL: Foundation.URL, authenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession, credentialStore: SAPFoundation.CodableStoring, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(authenticationURL: Foundation.URL, authenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession, credentialStore: SAPFoundation.CodableStoring, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func onboard(authenticationURL: Foundation.URL, authenticationParameters: SAPFoundation.OAuth2ClientCredentialsAuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession, credentialStore: SAPFoundation.CodableStoring, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(authenticationURL: Foundation.URL, authenticationParameters: SAPFoundation.OAuth2ClientCredentialsAuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession, credentialStore: SAPFoundation.CodableStoring, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func createTokenStore(using credentialsStore: SAPFoundation.CodableStoring) -> SAPFoundation.OAuth2TokenStore
+  open func createSAPURLSessionForAuthenticator() -> SAPFoundation.SAPURLSession
+  open func createOAuth2Observer(authenticator: SAPFoundation.OAuth2Authentication, credentialStore: SAPFoundation.CodableStoring, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil) -> SAPFoundation.OAuth2Observer
+  open func createAuthorizationCodeGrantAuthenticator(authenticationParameters: SAPFoundation.OAuth2AuthenticationParameters, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate) -> SAPFoundation.OAuth2Authentication
+  open func createClientCredentialsGrantAuthenticator(authenticationParameters: SAPFoundation.OAuth2ClientCredentialsAuthenticationParameters) -> SAPFoundation.OAuth2Authentication
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+public enum SAPcpmsLockWipePolicyError : Swift.Error {
+  case internalError(error: Swift.Error?)
+  case lockDisconnectedPeriod(error: Swift.Error?)
+  case wipeDisconnectedPeriod
+}
+extension SAPcpmsLockWipePolicyError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public enum SAPcpmsLockWipePolicyInternalError : Swift.Error {
+  case dateUnavailable
+  case futureDateUnavailable
+  case invalidResponse(response: Foundation.URLResponse)
+}
+extension SAPcpmsLockWipePolicyInternalError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+extension OnboardingInfoKey {
+  @available(*, unavailable, renamed: "usageCollectionConsentResponseInfoKey")
+  public static let usageUserConsentResponseInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public static let usageCollectionConsentResponseInfoKey: SAPFioriFlows.OnboardingInfoKey
+}
+open class UsageCollectionConsentStep : SAPFioriFlows.OnboardingStep, SAPFiori.FUIUserConsentViewControllerDelegate {
+  public var version: Swift.String {
+    get
+  }
+  public var title: Swift.String {
+    get
+  }
+  public var body: Swift.String {
+    get
+  }
+  @available(*, unavailable, renamed: "usageCollectionConsentVersionStoreKey")
+  public var usageUserConsentVersionStoreKey: Swift.String
+  public var usageCollectionConsentVersionStoreKey: Swift.String
+  @available(*, unavailable, renamed: "usageCollectionConsentResponseInfoKey")
+  open var usageUserConsentResponseInfoKey: SAPFioriFlows.OnboardingInfoKey
+  open var usageCollectionConsentResponseInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public init(version: Swift.String = "1.0", title: Swift.String? = nil, body: Swift.String? = nil, additionalUserPageContent: [SAPFioriFlows.UserConsentPageContent]? = nil)
+  open func onboard(userConsentFormsContent: [SAPFioriFlows.UserConsentFormContent], presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping (Swift.Bool, Swift.Error?) -> Swift.Void)
+  open func restore(userConsentFormsContent: [SAPFioriFlows.UserConsentFormContent], presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping (Swift.Bool, Swift.Error?) -> Swift.Void)
+  open func reset(credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  public func userConsentViewController(viewController: SAPFiori.FUIUserConsentViewController, didReceiveResponseToConsentForms forms: [SAPFiori.FUIUserConsentForm])
+  public func userConsentViewController(viewController: SAPFiori.FUIUserConsentViewController, didCancelConsentForms forms: [SAPFiori.FUIUserConsentForm])
+  @available(*, unavailable, renamed: "UsageCollectionConsentOptIn")
+  public static func UsageUserConsentOptIn(viewController: UIKit.UIViewController, title: Swift.String? = nil, message: Swift.String? = nil, completionHandler: @escaping (Swift.Bool) -> Swift.Void)
+  public static func UsageCollectionConsentOptIn(viewController: UIKit.UIViewController, title: Swift.String? = nil, message: Swift.String? = nil, completionHandler: @escaping (Swift.Bool) -> Swift.Void)
+  @available(*, unavailable, renamed: "UsageCollectionConsentOptOut")
+  public static func UsageUserConsentOptOut(viewController: UIKit.UIViewController, title: Swift.String? = nil, message: Swift.String? = nil, completionHandler: @escaping (Swift.Bool) -> Swift.Void)
+  public static func UsageCollectionConsentOptOut(viewController: UIKit.UIViewController, title: Swift.String? = nil, message: Swift.String? = nil, completionHandler: @escaping (Swift.Bool) -> Swift.Void)
+  @objc deinit
+}
+@available(*, unavailable, renamed: "UsageCollectionConsentStep")
+public typealias UsageUserConsentStep = SAPFioriFlows.UsageCollectionConsentStep
+open class ModalUIViewControllerPresenter : SAPFioriFlows.FlowPresentationDelegate {
+  public var animated: Swift.Bool
+  public var modalPresentationStyle: UIKit.UIModalPresentationStyle?
+  public var modalTransitionStyle: UIKit.UIModalTransitionStyle?
+  public init(topPresentedViewControllerHandler: @escaping (UIKit.UIViewController?) -> UIKit.UIViewController? = topPresentedViewController)
+  open var state: SAPFioriFlows.PresentationState {
+    get
+    set
+  }
+  open func setSplashScreen(_ splashScreen: UIKit.UIViewController & SAPFioriFlows.InfoTextSettable)
+  open func clearSplashScreen()
+  open func setInfoText(_ text: Swift.String)
+  open func present(_ viewController: UIKit.UIViewController, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func dismiss(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public static func topPresentedViewController(base: UIKit.UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIKit.UIViewController?
+  @objc deinit
+}
+extension OnboardingInfoKey {
+  public static let eulaContentInfoKey: SAPFioriFlows.OnboardingInfoKey
+}
+open class EULAStep : SAPFioriFlows.OnboardingStep, SAPFiori.FUIEULADelegate {
+  public var customizationHandler: (SAPFiori.FUIEULAViewController) -> Swift.Void
+  public var eulaVersionStoreKey: Swift.String
+  public init(eulaContent: SAPFioriFlows.EULAContent)
+  public init(eulaContentInfoKey: SAPFioriFlows.OnboardingInfoKey = .eulaContentInfoKey)
+  open func onboard(eulaContent: SAPFioriFlows.EULAContent, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(eulaContent: SAPFioriFlows.EULAContent, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  open func eulaAccepted(on viewController: SAPFiori.FUIEULAViewController)
+  open func eulaRejected(on viewController: SAPFiori.FUIEULAViewController)
+  open func eulaCancelled(on viewController: SAPFiori.FUIEULAViewController)
+  @objc deinit
+}
+open class SAPcpmsSettingsDownloadStep : SAPFioriFlows.OnboardingStep {
+  final public let transformer: SAPFioriFlows.ConfigurationTransforming
+  final public let settingsInfoKey: SAPFioriFlows.OnboardingInfoKey
+  final public let sapcpmsSettingsStoreKey: Swift.String
+  final public let previousSettingsInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public var infoScreenText: Swift.String
+  public init(transformer: SAPFioriFlows.ConfigurationTransforming = ConfigurationTransformer(transformationMap: SAPcpmsSettingsTransformationMap), settingsInfoKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsSettingsParameters, previousSettingsInfoKey: SAPFioriFlows.OnboardingInfoKey = .previousSettings)
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(sapURLSession: SAPFoundation.SAPURLSession, credentialStore: SAPFoundation.CodableStoring, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, completionHandler: @escaping ([SAPFioriFlows.OnboardingInfoKey : Any]?, Swift.Error?) -> Swift.Void)
+  open func restore(sapURLSession: SAPFoundation.SAPURLSession, credentialStore: SAPFoundation.CodableStoring, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, completionHandler: @escaping ([SAPFioriFlows.OnboardingInfoKey : Any]?, Swift.Error?) -> Swift.Void)
+  open func reset(store: SAPFoundation.CodableStoring, completionHandler: @escaping () -> Swift.Void)
+  public func loadPersistedSettingsData(from credentialStore: SAPFoundation.CodableStoring) throws -> [SAPFioriFlows.OnboardingInfoKey : Any]
+  @objc deinit
+}
+public class OnboardingController : SAPFioriFlows.OnboardingControlling {
+  final public let flowProvider: SAPFioriFlows.OnboardingFlowProviding
+  final public let onboardingIDManager: SAPFioriFlows.OnboardingIDManaging
+  weak public var delegate: SAPFioriFlows.OnboardingControllerDelegate?
+  public init(flowProvider: SAPFioriFlows.OnboardingFlowProviding, onboardingIDManager: SAPFioriFlows.OnboardingIDManaging = SingleUserOnboardingIDManager(), delegate: SAPFioriFlows.OnboardingControllerDelegate? = nil)
+  public func openFlow(_ completionHandler: @escaping (SAPFioriFlows.OnboardingFlow?, Swift.Error?) -> Swift.Void)
+  public func resetFlow(for onboardingID: Foundation.UUID, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func onboard(flow: SAPFioriFlows.OnboardingFlow, completionHandler: @escaping (SAPFioriFlows.OnboardingFlow?, Swift.Error?) -> Swift.Void)
+  public func restore(flow: SAPFioriFlows.OnboardingFlow, completionHandler: @escaping (SAPFioriFlows.OnboardingFlow?, Swift.Error?) -> Swift.Void)
+  public func reset(flow: SAPFioriFlows.OnboardingFlow, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+public protocol ActivationStepUI {
+  var headlineLabel: UIKit.UILabel! { get }
+  var detailLabel: UIKit.UILabel! { get }
+  var primaryActionButton: SAPFiori.FUIOnboardingButton! { get }
+  var subheadlineLabel: UIKit.UILabel! { get }
+  var secondaryActionButton: SAPFiori.FUIOnboardingButton! { get }
+}
+extension FUIActivationScreen : SAPFioriFlows.ActivationStepUI {
+}
+open class SAPPassportObserverConfigurationStep : SAPFioriFlows.SimpleTaskStep {
+  public init()
+  @objc deinit
+  override public init(onboardHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, restoreHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+  override public init(flowHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+}
+public struct InfoScreenPresentationOptions : Swift.OptionSet {
+  public let rawValue: Swift.Int
+  public init(rawValue: Swift.Int)
+  public static let onboard: SAPFioriFlows.InfoScreenPresentationOptions
+  public static let restore: SAPFioriFlows.InfoScreenPresentationOptions
+  public static let general: SAPFioriFlows.InfoScreenPresentationOptions
+  public static let `default`: SAPFioriFlows.InfoScreenPresentationOptions
+  public typealias Element = SAPFioriFlows.InfoScreenPresentationOptions
+  public typealias ArrayLiteralElement = SAPFioriFlows.InfoScreenPresentationOptions
+  public typealias RawValue = Swift.Int
+}
+extension InfoScreenPresentationOptions {
+  public init(presentationState: SAPFioriFlows.PresentationState)
+}
+public struct CredentialStoreID : Swift.RawRepresentable, Swift.Hashable, Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public static let shared: SAPFioriFlows.CredentialStoreID
+  public static let `default`: SAPFioriFlows.CredentialStoreID
+  public var rawValue: Swift.String
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(rawValue: Swift.String)
+  public init(_ rawValue: Swift.String)
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+@objc open class FioriSFSafariViewControllerPresenter : ObjectiveC.NSObject, SAPFoundation.SFSafariViewControllerPresenting, SAPFioriFlows.FlowPresentationDelegateClient {
+  public init(delegate: SAPFoundation.WebViewPresenterDelegate? = nil)
+  open var presentationDelegate: SAPFioriFlows.FlowPresentationDelegate! {
+    get
+    set
+  }
+  open var infoScreenConfigurationHandler: (SAPFiori.FUIInfoViewController) -> Swift.Void {
+    get
+    set
+  }
+  open var infoScreenPresentationOptions: SAPFioriFlows.InfoScreenPresentationOptions {
+    get
+    set
+  }
+  weak public var delegate: SAPFoundation.WebViewPresenterDelegate?
+  public func presentWebView(with url: Foundation.URL, completionHandler: @escaping (SafariServices.SFSafariViewController?, Swift.Error?) -> Swift.Void)
+  public func dismissWebView()
+  @objc deinit
+  @objc override dynamic public init()
+}
+extension FioriSFSafariViewControllerPresenter : SafariServices.SFSafariViewControllerDelegate {
+  @objc dynamic public func safariViewControllerDidFinish(_ controller: SafariServices.SFSafariViewController)
+}
+open class PasscodePolicyApplyStep : SAPFioriFlows.OnboardingStep {
+  public var defaultPasscodePolicy: SAPFiori.FUIPasscodePolicy?
+  final public let passcodePolicyInfoKey: SAPFioriFlows.OnboardingInfoKey
+  final public let previousSettingsInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public var storeID: Foundation.UUID?
+  public init(passcodePolicyInfoKey: SAPFioriFlows.OnboardingInfoKey = .passcodePolicy, previousSettingsInfoKey: SAPFioriFlows.OnboardingInfoKey = .previousSettings)
+  public func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  public func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  public func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+extension SAPcpmsLogUploader {
+  public class func uploadLogs(_ onboardingSession: SAPFioriFlows.OnboardingSession, completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsLogUploader.defaultCompletionHandler)
+}
+extension OnboardingSession {
+  public func uploadLogs(completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsLogUploader.defaultCompletionHandler)
+}
+public enum FoundationExtensionError : Swift.Error {
+  case couldNotInit(object: Any)
+  case missingSettingsParameters
+}
+public protocol OnboardingIDManaging : AnyObject {
+  func flowToStart(completionHandler: @escaping (SAPFioriFlows.OnboardingFlow.FlowType) -> Swift.Void)
+  func store(onboardingID: Foundation.UUID, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  func remove(onboardingID: Foundation.UUID, completionHandler: () -> Swift.Void)
+}
+open class DiscoveryServiceConfigurationTransformer : SAPFioriFlows.ConfigurationTransforming {
+  open var sapcpmsSettingsParametersKey: SAPFioriFlows.OnboardingInfoKey
+  open var authenticationURLKey: SAPFioriFlows.OnboardingInfoKey
+  open var samlOnboardingInfoKey: SAPFioriFlows.OnboardingInfoKey
+  open var oauthAuthorizationCodeGrantOnboardingInfoKey: SAPFioriFlows.OnboardingInfoKey
+  open var applicationID: Swift.String
+  open var applicationVersion: Swift.String
+  open var deviceID: Swift.String
+  open var authenticationPath: Swift.String
+  open var customConfigurationTransformer: SAPFioriFlows.ConfigurationTransforming?
+  public init(applicationID: Swift.String? = nil, applicationVersion: Swift.String? = nil, deviceID: Swift.String? = nil, authenticationPath: Swift.String? = nil, customConfigurationTransformer: SAPFioriFlows.ConfigurationTransforming? = nil)
+  open func transform(config: Any) throws -> [SAPFioriFlows.OnboardingInfoKey : Any]
+  @objc deinit
+}
+public class StoreManager : SAPFiori.FUIPasscodeValidationDelegate, SAPFiori.FUIPasscodeControllerDelegate {
+  weak public var passcodeValidationDelegate: SAPFiori.FUIPasscodeValidationDelegate?
+  public var secureStoreNamePrefix: Swift.String
+  public var passcodePolicyInfoKey: SAPFioriFlows.OnboardingInfoKey!
+  public var accessGroup: Swift.String?
+  public var defaultPasscodePolicy: SAPFiori.FUIPasscodePolicy?
+  public var passcodePolicyRules: [SAPFiori.FUIPasscodeRule]?
+  public var showsResetButton: Swift.Bool
+  public var showsCancelButton: Swift.Bool
+  public var cancelPasscodeChangeAlertTitleText: Swift.String
+  public var cancelPasscodeAlertTitleText: Swift.String
+  public var fuiFeedbackScreenTitleText: Swift.String
+  public var fuiFeedbackScreenHeadlineDescription: Swift.String
+  public var fuiFeedbackScreenDescription: Swift.String
+  public var fuiFeedbackScreenButtonText: Swift.String
+  public var fuiFeedbackScreenDisableTouchIDTitleText: Swift.String
+  public var fuiFeedbackScreenDisableTouchIDHeadlineDescription: Swift.String
+  public var fuiFeedbackScreenDisableTouchIDDetailDescription: Swift.String
+  public var fuiFeedbackScreenDisableTouchIDButtonText: Swift.String
+  public var fuiFeedbackScreenDisableFaceIDTitleText: Swift.String
+  public var fuiFeedbackScreenDisableFaceIDHeadlineDescription: Swift.String
+  public var fuiFeedbackScreenDisableFaceIDDetailDescription: Swift.String
+  public var fuiFeedbackScreenDisableFaceIDButtonText: Swift.String
+  public var fuiFeedbackScreenTurnOffPasscodeTitleText: Swift.String
+  public var fuiFeedbackScreenTurnOffPasscodeHeadlineDescription: Swift.String
+  public var fuiFeedbackScreenTurnOffPasscodeDetailDescription: Swift.String
+  public var fuiFeedbackScreenTurnOffPasscodeAndTouchIDDetailDescription: Swift.String
+  public var fuiFeedbackScreenTurnOffPasscodeAndFaceIDDetailDescription: Swift.String
+  public var fuiFeedbackScreenTurnOffPasscodeButtonText: Swift.String
+  public var fuiFeedbackScreenMigrationHeadline: Swift.String
+  public var fuiFeedbackScreenMigrationDescription: Swift.String
+  public var fuiFeedbackScreenMigrationButtonText: Swift.String
+  public var passcodeState: SAPFioriFlows.PasscodeState {
+    get
+  }
+  public var availablePasscodeActions: [SAPFioriFlows.PasscodeAction] {
+    get
+  }
+  convenience public init(storeID: Foundation.UUID, credentialStore: SAPFoundation.CompositeCodableStoring, persistentStoreManager: SAPFioriFlows.PersistentStoreManaging = SecureKeyValueStoreManager(), presentationDelegate: SAPFioriFlows.FlowPresentationDelegate? = nil, passcodePolicy: SAPFiori.FUIPasscodePolicy? = nil)
+  public init()
+  public func removeStore() throws
+  public var presentationDelegate: SAPFioriFlows.FlowPresentationDelegate!
+  public func createStore(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func openStore(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func performPasscodeAction(_ action: SAPFioriFlows.PasscodeAction, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func changePasscodePolicy(to newPolicy: SAPFiori.FUIPasscodePolicy?, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func reset(storeID: Foundation.UUID, credentialStore: SAPFoundation.CompositeCodableStoring, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+public enum OnboardingResult {
+  case success(SAPFioriFlows.OnboardingContext)
+  case failed(Swift.Error)
+}
+public protocol OnboardingStep : AnyObject {
+  func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+}
+public protocol FlowPresentationDelegate : AnyObject {
+  func present(_ viewController: UIKit.UIViewController, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  func dismiss(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  func setInfoText(_ text: Swift.String)
+  var state: SAPFioriFlows.PresentationState { get set }
+}
+public enum PresentationState : Swift.Int {
+  case general
+  case onboarding
+  case restoring
+  public typealias RawValue = Swift.Int
+  public init?(rawValue: Swift.Int)
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public protocol FlowPresentationDelegateClient : AnyObject {
+  var presentationDelegate: SAPFioriFlows.FlowPresentationDelegate! { get set }
+}
+public protocol InfoTextSettable {
+  func setInfoText(_ text: Swift.String)
+}
+extension FUIInfoViewController : SAPFioriFlows.InfoTextSettable {
+  public func setInfoText(_ text: Swift.String)
+}
+extension OnboardingInfoKey {
+  public static let samlAuthenticationParameters: SAPFioriFlows.OnboardingInfoKey
+}
+@_hasMissingDesignatedInitializers open class SAMLAuthenticationStep : SAPFioriFlows.OnboardingStep {
+  final public let infoKey: SAPFioriFlows.OnboardingInfoKey
+  public var infoScreenText: Swift.String
+  public var isAllowingOfflineRestore: Swift.Bool
+  public var settingsParametersInfoKey: SAPFioriFlows.OnboardingInfoKey
+  weak public var authenticationDelegate: SAPFoundation.AuthenticationDelegate?
+  convenience public init(presenter: SAPFioriFlows.FlowPresentationDelegateClient & SAPFoundation.WKWebViewPresenting = FioriWKWebViewPresenter(), infoKey: SAPFioriFlows.OnboardingInfoKey = .samlAuthenticationParameters)
+  open func onboard(authenticationURL: Foundation.URL, authenticationParameters: SAPFoundation.SAMLAuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, credentialStore: SAPFoundation.CodableStoring? = nil, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(authenticationURL: Foundation.URL, authenticationParameters: SAPFoundation.SAMLAuthenticationParameters, sapURLSession: SAPFoundation.SAPURLSession, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, credentialStore: SAPFoundation.CodableStoring? = nil, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(sapURLSession: SAPFoundation.SAPURLSession, completionHandler: @escaping () -> Swift.Void)
+  open func createSAMLAuthenticator(authenticationParameters: SAPFoundation.SAMLAuthenticationParameters, presentationDelegate: SAPFioriFlows.FlowPresentationDelegate) -> SAPFoundation.SAMLAuthentication
+  open func createSAMLObserver(authenticator: SAPFoundation.SAMLAuthentication) -> SAPFoundation.SAMLObserver
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+@available(iOS 12.0, *)
+open class FioriASWebAuthenticationSessionPresenter : SAPFoundation.ASWebAuthenticationSessionPresenting, SAPFioriFlows.FlowPresentationDelegateClient {
+  open var callbackURLScheme: Swift.String?
+  public init(delegate: SAPFoundation.WebViewPresenterDelegate? = nil)
+  open var presentationDelegate: SAPFioriFlows.FlowPresentationDelegate! {
+    get
+    set
+  }
+  open var infoScreenConfigurationHandler: (SAPFiori.FUIInfoViewController) -> Swift.Void {
+    get
+    set
+  }
+  open var infoScreenPresentationOptions: SAPFioriFlows.InfoScreenPresentationOptions {
+    get
+    set
+  }
+  weak open var delegate: SAPFoundation.WebViewPresenterDelegate?
+  open func presentWebView(with url: Foundation.URL, sessionCompletionHandler: @escaping AuthenticationServices.ASWebAuthenticationSession.CompletionHandler, completionHandler: @escaping (AuthenticationServices.ASWebAuthenticationSession?, Swift.Error?) -> Swift.Void)
+  open func reloadWebView()
+  open func dismissWebView()
+  open func showNotificationBanner()
+  @objc deinit
+}
+open class OnboardingSession {
+  final public let onboardingID: Foundation.UUID
+  final public let authenticationURL: Foundation.URL?
+  final public let credentialStore: SAPFoundation.CompositeCodableStoring
+  final public let sapURLSession: SAPFoundation.SAPURLSession
+  final public let settingsParameters: SAPFoundation.SAPcpmsSettingsParameters?
+  final public let flowType: SAPFioriFlows.OnboardingFlow.FlowType
+  final public let presentationDelegate: SAPFioriFlows.FlowPresentationDelegate
+  required public init(flow: SAPFioriFlows.OnboardingFlow)
+  open func onboardingContext() -> SAPFioriFlows.OnboardingContext
+  open func invalidate()
+  open func storeManager() throws -> SAPFioriFlows.StoreManager
+  @objc deinit
+}
+extension OnboardingSession {
+  public enum LogoutError : Swift.Error {
+    case noResponseData
+    case invalidResponse(description: Swift.String?, statusCode: Swift.Int?)
+  }
+  public func logout(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+}
+public enum PasscodeAction {
+  case createPasscode
+  case turnOffPasscode
+  case changePasscode
+  case turnOnBiometric
+  case turnOffBiometric
+  public static func == (a: SAPFioriFlows.PasscodeAction, b: SAPFioriFlows.PasscodeAction) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public enum PasscodeState {
+  case noPasscode
+  case passcode
+  case passcodeWithBiometric
+  public static func == (a: SAPFioriFlows.PasscodeState, b: SAPFioriFlows.PasscodeState) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension SAPcpmsUserRoles {
+  convenience public init?(_ onboardingSession: SAPFioriFlows.OnboardingSession)
+}
+extension OnboardingSession {
+  public func userRoles(completionHandler: @escaping (SAPFoundation.SAPcpmsUserRoles.SAPcpmsUserInfo?, Swift.Error?) -> Swift.Void)
+}
+open class StoreSelectorStep : SAPFioriFlows.OnboardingStep {
+  final public let step: SAPFioriFlows.OnboardingStep
+  final public let credentialStoreID: SAPFioriFlows.CredentialStoreID
+  public init(step: SAPFioriFlows.OnboardingStep, credentialStoreID: SAPFioriFlows.CredentialStoreID)
+  public func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  public func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  public func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+extension SAPcpmsRemoteNotificationClient {
+  convenience public init?(_ onboardingSession: SAPFioriFlows.OnboardingSession)
+}
+extension OnboardingSession {
+  public func registerDeviceToken(deviceToken: Foundation.Data, withParameters parameters: SAPFoundation.SAPcpmsRemoteNotificationParameters?, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func unregisterDeviceToken(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func updateNotificationStatus(userInfo: [Swift.AnyHashable : Any], completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+}
+public struct UserConsentFormContent {
+  public let version: Swift.String
+  public let isRequired: Swift.Bool
+  public let pages: [SAPFioriFlows.UserConsentPageContent]
+  public init(version: Swift.String, isRequired: Swift.Bool, pages: [SAPFioriFlows.UserConsentPageContent])
+}
+open class SAPcpmsUserIdentityDiscoveryConfigurationTransformer : SAPFioriFlows.ConfigurationTransforming {
+  final public let userIdentityConfigurationParametersKey: SAPFioriFlows.OnboardingInfoKey
+  final public let oauth2AuthenticationParametersKey: SAPFioriFlows.OnboardingInfoKey
+  public init(userIdentityConfigurationParametersKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsUserIdentityDiscoveryConfigurationParameters, oauth2AuthenticationParametersKey: SAPFioriFlows.OnboardingInfoKey = .sapcpmsUserIdentityDiscoveryOAuth2AuthenticationParameters)
+  open func transform(config: Any) throws -> [SAPFioriFlows.OnboardingInfoKey : Any]
+  @objc deinit
+}
+extension OnboardingInfoKey {
+  public static let sapcpmsLogSettings: SAPFioriFlows.OnboardingInfoKey
+  public static let sapcpmsUsagePolicy: SAPFioriFlows.OnboardingInfoKey
+  public static let sapcpmsLockWipingPolicy: SAPFioriFlows.OnboardingInfoKey
+  public static let sapcpmsNetworkSynchronizationPolicy: SAPFioriFlows.OnboardingInfoKey
+}
+extension FUIPasscodePolicy {
+  public init(sapcpmsSettingsPasswordPolicy: Any) throws
+}
+extension FUIInfoViewController {
+  public static func createSplashScreenInstanceFromStoryboard() -> SAPFiori.FUIInfoViewController
+}
+open class SAPcpmsUserBlockedConfigurationStep : SAPFioriFlows.SimpleTaskStep {
+  public init(userBlockedHandler: @escaping (SAPFoundation.SAPcpmsUserBlockedError) -> Swift.Void)
+  @objc deinit
+  override public init(onboardHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, restoreHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+  override public init(flowHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+}
+@_hasMissingDesignatedInitializers public class SAPcpmsDefaultSteps {
+  public static var configuration: [SAPFioriFlows.OnboardingStep] {
+    get
+  }
+  public static var settingsDownload: [SAPFioriFlows.OnboardingStep] {
+    get
+  }
+  public static var applyDuringOnboard: [SAPFioriFlows.OnboardingStep] {
+    get
+  }
+  public static var applyDuringRestore: [SAPFioriFlows.OnboardingStep] {
+    get
+  }
+  @objc deinit
+}
+public protocol ApplicationUIManaging : AnyObject {
+  func hideApplicationScreen(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  func showSplashScreenForOnboarding(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  func showSplashScreenForUnlock(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  func showApplicationScreen(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+}
+extension ApplicationUIManaging {
+  public func showSplashScreenForUnlock(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+}
+public class OnboardingSessionManager<T> where T : SAPFioriFlows.OnboardingSession {
+  public enum State {
+    case initial
+    case inFlow
+    case locked(with: T)
+    case opened(with: T)
+  }
+  public var state: SAPFioriFlows.OnboardingSessionManager<T>.State {
+    get
+    set
+  }
+  final public let onboardingController: SAPFioriFlows.OnboardingControlling
+  public var presentationDelegate: SAPFioriFlows.ApplicationUIManaging
+  public var onboardingSession: T? {
+    get
+  }
+  public init(onboardingController: SAPFioriFlows.OnboardingControlling, presentationDelegate: SAPFioriFlows.ApplicationUIManaging)
+  convenience public init(presentationDelegate: SAPFioriFlows.ApplicationUIManaging, flowProvider: SAPFioriFlows.OnboardingFlowProviding, onboardingIDManager: SAPFioriFlows.OnboardingIDManaging = SingleUserOnboardingIDManager(), delegate: SAPFioriFlows.OnboardingControllerDelegate? = nil)
+  public func open(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func close()
+  public func removeSession(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func lock(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func unlock(completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  @objc deinit
+}
+open class WelcomeScreenStep : SAPFioriFlows.OnboardingStep, SAPFiori.FUIWelcomeControllerDelegate, SAPFiori.FUIOnboardingScanViewControllerDelegate {
+  public var scanConfirmView: UIKit.UIView?
+  public var welcomeScreenCustomizationHandler: ((SAPFioriFlows.WelcomeStepUI) -> Swift.Void)?
+  public var activationScreenCustomizationHandler: ((SAPFioriFlows.ActivationStepUI) -> Swift.Void)?
+  public var runRestoreIfStoreExists: Swift.Bool
+  public var scanConfirmViewCustomizationHandler: ((SAPFioriFlows.ScanConfirmViewUI, [Swift.AnyHashable : Any?]) -> Swift.Void)?
+  required public init(transformer: SAPFioriFlows.ConfigurationTransforming = DiscoveryServiceConfigurationTransformer(), providers: [SAPFoundation.ConfigurationProviding]? = nil)
+  open func onboard(presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping ([SAPFioriFlows.OnboardingInfoKey : Any]?, Swift.Error?) -> Swift.Void)
+  public func restore(credentialStore: SAPFoundation.CodableStoring, completionHandler: @escaping ([SAPFioriFlows.OnboardingInfoKey : Any]?, Swift.Error?) -> Swift.Void)
+  open func reset(completionHandler: @escaping () -> Swift.Void)
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  public func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  @objc open func shouldContinueUserOnboarding(_ welcomeController: SAPFiori.FUIWelcomeController)
+  @objc open func didSelectDemoMode(_ welcomeController: SAPFiori.FUIWelcomeController)
+  @objc public func welcomeController(_ welcomeController: SAPFiori.FUIWelcomeController, willNavigateToScannerScreen scanController: SAPFiori.FUIOnboardingScanViewController)
+  @objc public func welcomeController(_ welcomeController: SAPFiori.FUIWelcomeController, shouldTryUserEmail userEmail: Swift.String)
+  @objc public func welcomeController(_ welcomeController: SAPFiori.FUIWelcomeController, willNavigateToActivationScreen activationScreen: SAPFiori.FUIActivationScreen)
+  @objc open func scanViewController(_ scanViewController: SAPFiori.FUIOnboardingScanViewController, shouldValidateScanResult scanResult: Swift.String) -> Swift.Bool
+  @objc deinit
+}
+extension WelcomeScreenStep : SAPFoundation.ConfigurationLoaderDelegate {
+  public func configurationProvider(_ provider: SAPFoundation.ConfigurationProviding?, didCompleteWith result: Swift.Bool)
+  public func configurationProvider(_ loader: SAPFoundation.ConfigurationLoader, requestedInput: [Swift.String : [Swift.String : Any]], completionHandler: @escaping ([Swift.String : [Swift.String : Any]]) -> Swift.Void)
+  public func configurationProvider(_ provider: SAPFoundation.ConfigurationProviding, didEncounter error: Swift.Error)
+}
+extension WelcomeScreenStep : SAPFoundation.ConfigurationPersisting {
+  public func persistConfiguration(_ configuration: [Swift.AnyHashable : Any])
+  public func resetPersistedConfiguration()
+}
+extension OnboardingInfoKey {
+  public static let usageStoreDbEncryptionKey: SAPFioriFlows.OnboardingInfoKey
+}
+open class SAPcpmsUsagePolicyApplyStep : SAPFioriFlows.OnboardingStep {
+  open var sapCPmsSettingsParameterKey: SAPFioriFlows.OnboardingInfoKey
+  open var usageStoreDbEncryptionKey: SAPFioriFlows.OnboardingInfoKey
+  public init()
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(onboardingID: Foundation.UUID, encryptionKey: Swift.String, sapURLSession: SAPFoundation.SAPURLSession, sapcpmsSettingsParameters: SAPFoundation.SAPcpmsSettingsParameters, sapcpmsUsagePolicy: SAPFoundation.SAPcpmsUsagePolicy?, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(onboardingID: Foundation.UUID, encryptionKey: Swift.String, sapURLSession: SAPFoundation.SAPURLSession, sapcpmsSettingsParameters: SAPFoundation.SAPcpmsSettingsParameters, sapcpmsUsagePolicy: SAPFoundation.SAPcpmsUsagePolicy?, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+extension OnboardingInfoKey {
+  public static let passcodePolicy: SAPFioriFlows.OnboardingInfoKey
+  public static let secureStoreFolderPath: SAPFioriFlows.OnboardingInfoKey
+}
+open class StoreManagerStep : SAPFioriFlows.OnboardingStep {
+  public static let onboardingPasscodeHash: Swift.String
+  public var secureStoreNamePrefix: Swift.String
+  final public let passcodePolicyInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public var persistentStoreManager: SAPFioriFlows.PersistentStoreManaging! {
+    get
+  }
+  weak public var passcodeValidationDelegate: SAPFiori.FUIPasscodeValidationDelegate?
+  public var defaultPasscodePolicy: SAPFiori.FUIPasscodePolicy?
+  public var passcodePolicyRules: [SAPFiori.FUIPasscodeRule]
+  public var showsCancelButtonOnRestore: Swift.Bool
+  public var showsResetButtonOnRestore: Swift.Bool
+  public var backgroundImageForTouchIDView: UIKit.UIImage?
+  public var storeID: Foundation.UUID?
+  public var accessGroup: Swift.String?
+  public var runRestoreIfStoreExists: Swift.Bool
+  public init(passcodePolicyInfoKey: SAPFioriFlows.OnboardingInfoKey = .passcodePolicy, persistentStoreManager: SAPFioriFlows.PersistentStoreManaging = SecureKeyValueStoreManager())
+  open func onboard(presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, onboardingID: Foundation.UUID, credentialStore: SAPFoundation.CompositeCodableStoring, passcodePolicy: SAPFiori.FUIPasscodePolicy? = nil, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(presentationDelegate: SAPFioriFlows.FlowPresentationDelegate, onboardingID: Foundation.UUID, credentialStore: SAPFoundation.CompositeCodableStoring, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(onboardingID: Foundation.UUID, credentialStore: SAPFoundation.CompositeCodableStoring, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  open func passcodePolicy() -> SAPFiori.FUIPasscodePolicy
+  @objc deinit
+}
+public enum StoreManagerError : Swift.Error {
+  case passcodeRetryLimitReached
+  case resetPasscode
+  case skipPasscodeSetup
+  case cancelPasscodeEntry
+  case passcodeChangeFailed
+  case invalidPasscodeAction
+  case storeAlreadyExists(path: Swift.String)
+  case storeDoesntExist(path: Swift.String)
+  case failedToCreateStore
+  case failedToOpenStore
+}
+extension StoreManagerError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var failureReason: Swift.String? {
+    get
+  }
+}
+public struct OnboardingContext {
+  public var onboardingID: Foundation.UUID
+  public var sapURLSession: SAPFoundation.SAPURLSession
+  public var credentialStore: SAPFoundation.CompositeCodableStoring
+  public var credentialStores: [SAPFioriFlows.CredentialStoreID : SAPFoundation.CompositeCodableStoring]
+  public var presentationDelegate: SAPFioriFlows.FlowPresentationDelegate
+  public var info: [SAPFioriFlows.OnboardingInfoKey : Any]
+  public init(onboardingID: Foundation.UUID = UUID(), sapURLSession: SAPFoundation.SAPURLSession = SAPURLSession(), credentialStore: SAPFoundation.CompositeCodableStoring = CompositeStorage(), presentationDelegate: SAPFioriFlows.FlowPresentationDelegate = ModalUIViewControllerPresenter(), info: [SAPFioriFlows.OnboardingInfoKey : Any] = [:])
+  public init(onboardingID: Foundation.UUID = UUID(), credentialStore: SAPFoundation.CompositeCodableStoring = CompositeStorage(), presentationDelegate: SAPFioriFlows.FlowPresentationDelegate = ModalUIViewControllerPresenter(), info: [SAPFioriFlows.OnboardingInfoKey : Any] = [:])
+}
+extension OnboardingInfoKey {
+  public static let authenticationURL: SAPFioriFlows.OnboardingInfoKey
+  public static let sapcpmsSettingsParameters: SAPFioriFlows.OnboardingInfoKey
+  public static let previousSettings: SAPFioriFlows.OnboardingInfoKey
+}
+open class ConfigurationTransformer : SAPFioriFlows.ConfigurationTransforming {
+  open var transformationMap: [Swift.String : SAPFioriFlows.ConfigurationTransforming]
+  public init(transformationMap: [Swift.String : SAPFioriFlows.ConfigurationTransforming])
+  open func transform(config: Any) throws -> [SAPFioriFlows.OnboardingInfoKey : Any]
+  @objc deinit
+}
+public func transformToValue<T>(_ object: Any) throws -> T
+public func transformToURL(_ object: Any) throws -> Foundation.URL
+public var SAPcpmsSettingsTransformationMap: [Swift.String : SAPFioriFlows.ConfigurationTransforming]
+open class SingleUserOnboardingIDManager : SAPFioriFlows.OnboardingIDManaging {
+  public static let defaultStoringKey: Swift.String
+  final public let storingKey: Swift.String
+  public init(storingKey: Swift.String = SingleUserOnboardingIDManager.defaultStoringKey)
+  public func flowToStart(completionHandler: @escaping (SAPFioriFlows.OnboardingFlow.FlowType) -> Swift.Void)
+  public func store(onboardingID: Foundation.UUID, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  public func remove(onboardingID: Foundation.UUID, completionHandler: () -> Swift.Void)
+  @objc deinit
+}
+open class NUIStyleSheetApplyStep : SAPFioriFlows.SimpleTaskStep {
+  public init(fileURL: Foundation.URL)
+  @objc deinit
+  override public init(onboardHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, restoreHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+  override public init(flowHandler: @escaping SAPFioriFlows.SimpleTaskStep.FlowHandler, resetHandler: @escaping SAPFioriFlows.SimpleTaskStep.ResetHandler = super)
+}
+open class SAPcpmsClientResourcesDownloadStep : SAPFioriFlows.OnboardingStep {
+  public var settingsInfoKey: SAPFioriFlows.OnboardingInfoKey
+  public var infoScreenText: Swift.String
+  final public let sapcpmsClientResourcesStoreKeyPrefix: Swift.String
+  public struct ClientResourceInfo {
+    public let mandatory: Swift.Bool
+    public let canOverwrite: Swift.Bool
+    public let name: Swift.String?
+    public let version: Swift.String?
+    public let folderURL: Foundation.URL?
+    public init(mandatory: Swift.Bool = false, canOverwrite: Swift.Bool = true, name: Swift.String? = nil, version: Swift.String? = nil, folderURL: Foundation.URL? = nil)
+  }
+  final public let clientResourceInfoList: [SAPFioriFlows.SAPcpmsClientResourcesDownloadStep.ClientResourceInfo]!
+  public init(clientResourceInfoList: [SAPFioriFlows.SAPcpmsClientResourcesDownloadStep.ClientResourceInfo] = [ClientResourceInfo()])
+  open func onboard(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func restore(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping (SAPFioriFlows.OnboardingResult) -> Swift.Void)
+  open func reset(context: SAPFioriFlows.OnboardingContext, completionHandler: @escaping () -> Swift.Void)
+  open func onboard(sapURLSession: SAPFoundation.SAPURLSession, credentialStore: SAPFoundation.CodableStoring, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func restore(sapURLSession: SAPFoundation.SAPURLSession, credentialStore: SAPFoundation.CodableStoring, settingsParameters: SAPFoundation.SAPcpmsSettingsParameters, completionHandler: @escaping (Swift.Error?) -> Swift.Void)
+  open func reset(completionHandler: @escaping () -> Swift.Void)
+  @objc deinit
+}
+public enum OnboardingErrorDisposition {
+  case stop(Swift.Error)
+  case retry
+}
+public protocol OnboardingControllerDelegate : AnyObject {
+  func onboardingController(_: SAPFioriFlows.OnboardingControlling, willStart: SAPFioriFlows.OnboardingFlow, completionHandler: @escaping (SAPFioriFlows.OnboardingFlow?, Swift.Error?) -> Swift.Void)
+  func onboardingController(_: SAPFioriFlows.OnboardingControlling, didComplete: SAPFioriFlows.OnboardingFlow, completionHandler: @escaping (SAPFioriFlows.OnboardingFlow?, Swift.Error?) -> Swift.Void)
+  func onboardingController(_: SAPFioriFlows.OnboardingControlling, didFail: SAPFioriFlows.OnboardingFlow, with: Swift.Error, completionHandler: @escaping (SAPFioriFlows.OnboardingErrorDisposition) -> Swift.Void)
+}
+extension OnboardingControllerDelegate {
+  public func onboardingController(_: SAPFioriFlows.OnboardingControlling, willStart flow: SAPFioriFlows.OnboardingFlow, completionHandler: @escaping (SAPFioriFlows.OnboardingFlow?, Swift.Error?) -> Swift.Void)
+  public func onboardingController(_: SAPFioriFlows.OnboardingControlling, didComplete flow: SAPFioriFlows.OnboardingFlow, completionHandler: @escaping (SAPFioriFlows.OnboardingFlow?, Swift.Error?) -> Swift.Void)
+  public func onboardingController(_: SAPFioriFlows.OnboardingControlling, didFail flow: SAPFioriFlows.OnboardingFlow, with error: Swift.Error, completionHandler: @escaping (SAPFioriFlows.OnboardingErrorDisposition) -> Swift.Void)
+}
+public struct OnboardingInfoKey : Swift.RawRepresentable, Swift.Equatable, Swift.Hashable, Swift.CustomStringConvertible, Swift.CustomDebugStringConvertible {
+  public var rawValue: Swift.String
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(rawValue: Swift.String)
+  public init(_ rawValue: Swift.String)
+  public var description: Swift.String {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+  public typealias RawValue = Swift.String
+}
+extension SAPcpmsUsageUploader {
+  public class func upload(onboardingSession: SAPFioriFlows.OnboardingSession, completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsUsageUploader.defaultCompletionHandler)
+}
+extension OnboardingSession {
+  public func uploadUsageData(completionHandler: @escaping (Swift.Error?) -> Swift.Void = SAPcpmsUsageUploader.defaultCompletionHandler)
+}
+open class BaseTransformer<T> : SAPFioriFlows.ConfigurationTransforming {
+  public init(targetKey: SAPFioriFlows.OnboardingInfoKey, transformer: @escaping (Any) throws -> T = transformToValue)
+  open func transform(config: Any) throws -> [SAPFioriFlows.OnboardingInfoKey : Any]
+  @objc deinit
+}
+public enum FioriPresenterError : Swift.Error {
+  case failed(detail: Swift.String, error: Swift.Error?)
+  case missing(detail: Swift.String)
+  case cancelled
+}
+extension FioriPresenterError : SAPCommon.SAPError {
+  public var description: Swift.String {
+    get
+  }
+  public var errorDescription: Swift.String? {
+    get
+  }
+  public var debugDescription: Swift.String {
+    get
+  }
+}
+public enum OnboardingControllerError : Swift.Error {
+  case mismatchingOnboardingIDs
+  public static func == (a: SAPFioriFlows.OnboardingControllerError, b: SAPFioriFlows.OnboardingControllerError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+public protocol OnboardingFlowProviding : AnyObject {
+  func flow(for onboardingController: SAPFioriFlows.OnboardingControlling, flowType: SAPFioriFlows.OnboardingFlow.FlowType, completionHandler: @escaping (SAPFioriFlows.OnboardingFlow?, Swift.Error?) -> Swift.Void)
+}
+public struct OnboardingFlow {
+  public enum FlowType : Swift.Equatable {
+    case onboard
+    case restore(onboardingID: Foundation.UUID)
+    case reset(onboardingID: Foundation.UUID)
+    public static func == (a: SAPFioriFlows.OnboardingFlow.FlowType, b: SAPFioriFlows.OnboardingFlow.FlowType) -> Swift.Bool
+  }
+  public let flowType: SAPFioriFlows.OnboardingFlow.FlowType
+  public var context: SAPFioriFlows.OnboardingContext
+  public var steps: [SAPFioriFlows.OnboardingStep]
+  public init(flowType: SAPFioriFlows.OnboardingFlow.FlowType, context: SAPFioriFlows.OnboardingContext? = nil, steps: [SAPFioriFlows.OnboardingStep])
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class NotificationBannerView : UIKit.UIView {
+  public var dismissHandler: (() -> Swift.Void)?
+  public var showsCloseImage: Swift.Bool {
+    get
+    set
+  }
+  public var text: Swift.String! {
+    get
+    set
+  }
+  public var font: UIKit.UIFont! {
+    get
+    set
+  }
+  public var textColor: UIKit.UIColor! {
+    get
+    set
+  }
+  public var bgColor: UIKit.UIColor! {
+    get
+    set
+  }
+  public var closeImage: UIKit.UIImage! {
+    get
+    set
+  }
+  @objc required dynamic public init?(coder aDecoder: Foundation.NSCoder)
+  @objc override dynamic public func traitCollectionDidChange(_ previousTraitCollection: UIKit.UITraitCollection?)
+  public func show(message: Swift.String, in vc: UIKit.UIViewController, animated: Swift.Bool = true, completion: @escaping (Swift.Bool) -> Swift.Void = { _  in  })
+  public func showView(message: Swift.String, in vc: UIKit.UIView, animated: Swift.Bool = true, completion: @escaping (Swift.Bool) -> Swift.Void = { _  in  })
+  @objc public func close()
+  public func dismiss(animated: Swift.Bool)
+  @objc deinit
+}
+extension SAPFioriFlows.SLSLoginInputPresenterError : Swift.Equatable {}
+extension SAPFioriFlows.SLSLoginInputPresenterError : Swift.Hashable {}
+extension SAPFioriFlows.UsageCollectionConsentError : Swift.Equatable {}
+extension SAPFioriFlows.UsageCollectionConsentError : Swift.Hashable {}
+extension SAPFioriFlows.EULAError : Swift.Equatable {}
+extension SAPFioriFlows.EULAError : Swift.Hashable {}
+extension SAPFioriFlows.WelcomeScreenError : Swift.Equatable {}
+extension SAPFioriFlows.WelcomeScreenError : Swift.Hashable {}
+extension SAPFioriFlows.UserConsentError : Swift.Equatable {}
+extension SAPFioriFlows.UserConsentError : Swift.Hashable {}
+extension SAPFioriFlows.PresentationState : Swift.Equatable {}
+extension SAPFioriFlows.PresentationState : Swift.Hashable {}
+extension SAPFioriFlows.PresentationState : Swift.RawRepresentable {}
+extension SAPFioriFlows.PasscodeAction : Swift.Equatable {}
+extension SAPFioriFlows.PasscodeAction : Swift.Hashable {}
+extension SAPFioriFlows.PasscodeState : Swift.Equatable {}
+extension SAPFioriFlows.PasscodeState : Swift.Hashable {}
+extension SAPFioriFlows.OnboardingControllerError : Swift.Equatable {}
+extension SAPFioriFlows.OnboardingControllerError : Swift.Hashable {}

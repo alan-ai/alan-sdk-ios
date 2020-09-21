@@ -1,0 +1,14 @@
+framework module SAPCommon {
+
+    umbrella header "SAPCommon.h"
+
+    header "CommonCrypto.h"
+    
+    export *
+    module * { export * }
+}
+
+module SAPCommon.Swift {
+    header "SAPCommon-Swift.h"
+    requires objc
+}

@@ -1,0 +1,11 @@
+framework module SAPOData {
+  umbrella header "SAPOData.h"
+
+  export *
+  module * { export * }
+}
+
+module SAPOData.Swift {
+    header "SAPOData-Swift.h"
+    requires objc
+}

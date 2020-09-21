@@ -3,11 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		040DFD834DF0573BC9D07DE4 /* ODataOnboardingStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = D012FD0A0301DB850B7603D1 /* ODataOnboardingStep.swift */; };
+		059F214F25189BF400E6BA57 /* SAPOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059F214325189AB100E6BA57 /* SAPOData.xcframework */; };
+		059F215025189BF400E6BA57 /* SAPOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059F214325189AB100E6BA57 /* SAPOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		059F215125189BF500E6BA57 /* SAPFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059F214725189AB200E6BA57 /* SAPFoundation.xcframework */; };
+		059F215225189BF500E6BA57 /* SAPFoundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059F214725189AB200E6BA57 /* SAPFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		059F215325189BF600E6BA57 /* SAPFioriFlows.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059F214425189AB100E6BA57 /* SAPFioriFlows.xcframework */; };
+		059F215425189BF600E6BA57 /* SAPFioriFlows.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059F214425189AB100E6BA57 /* SAPFioriFlows.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		059F215525189BF700E6BA57 /* SAPFiori.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059F214525189AB100E6BA57 /* SAPFiori.xcframework */; };
+		059F215625189BF700E6BA57 /* SAPFiori.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059F214525189AB100E6BA57 /* SAPFiori.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		059F215725189BF800E6BA57 /* SAPCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059F214625189AB200E6BA57 /* SAPCommon.xcframework */; };
+		059F215825189BF800E6BA57 /* SAPCommon.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 059F214625189AB200E6BA57 /* SAPCommon.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05EBB0F422704AFE00196BEB /* AlanSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EBB0F222704AFE00196BEB /* AlanSDK.framework */; };
 		05EBB0F522704AFE00196BEB /* UIWindow+Alan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EBB0F322704AFE00196BEB /* UIWindow+Alan.swift */; };
 		05EBB0F722704B8200196BEB /* AlanSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05EBB0F222704AFE00196BEB /* AlanSDK.framework */; };
@@ -42,17 +52,7 @@
 		7A1315C21D4B982000A5DA56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A1315C11D4B982000A5DA56 /* Assets.xcassets */; };
 		7A1315C51D4B982000A5DA56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A1315C31D4B982000A5DA56 /* LaunchScreen.storyboard */; };
 		7A5744B621DE553600E58C7F /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5744B521DE553600E58C7F /* UITests.swift */; };
-		7ABA471D219D6EAD005B471C /* SAPOData.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABA4717219D6EAD005B471C /* SAPOData.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7ABA471E219D6EAD005B471C /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7ABA471F219D6EAD005B471C /* SAPCommon.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABA4719219D6EAD005B471C /* SAPCommon.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7ABA4720219D6EAD005B471C /* SAPFioriFlows.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABA471A219D6EAD005B471C /* SAPFioriFlows.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7ABA4721219D6EAD005B471C /* SAPFoundation.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABA471B219D6EAD005B471C /* SAPFoundation.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7ABA4722219D6EAD005B471C /* SAPFiori.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABA471C219D6EAD005B471C /* SAPFiori.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		7ABA4724219D6EC7005B471C /* SAPCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABA4719219D6EAD005B471C /* SAPCommon.framework */; };
-		7ABA4725219D6EC7005B471C /* SAPFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABA471B219D6EAD005B471C /* SAPFoundation.framework */; };
-		7ABA4726219D6EC7005B471C /* SAPFioriFlows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABA471A219D6EAD005B471C /* SAPFioriFlows.framework */; };
-		7ABA4727219D6EC7005B471C /* SAPFiori.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABA471C219D6EAD005B471C /* SAPFiori.framework */; };
-		7ABA4728219D6EC7005B471C /* SAPOData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7ABA4717219D6EAD005B471C /* SAPOData.framework */; };
 		8358468223C4CC8953E17CAF /* Product.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 278F342B78E9ED7F60E70826 /* Product.storyboard */; };
 		87A2E5B8579C620901549D79 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0C42629D6B628D9C1B079A6 /* Product.swift */; };
 		889A506DF0B41222BAC6B251 /* PurchaseOrderItem.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C77ED704E255AE34CD371EB /* PurchaseOrderItem.storyboard */; };
@@ -106,13 +106,13 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				7ABA471D219D6EAD005B471C /* SAPOData.framework in Embed Frameworks */,
+				059F215625189BF700E6BA57 /* SAPFiori.xcframework in Embed Frameworks */,
+				059F215425189BF600E6BA57 /* SAPFioriFlows.xcframework in Embed Frameworks */,
 				7ABA471E219D6EAD005B471C /* (null) in Embed Frameworks */,
-				7ABA471F219D6EAD005B471C /* SAPCommon.framework in Embed Frameworks */,
-				7ABA4720219D6EAD005B471C /* SAPFioriFlows.framework in Embed Frameworks */,
-				7ABA4721219D6EAD005B471C /* SAPFoundation.framework in Embed Frameworks */,
 				05EBB0F822704B8200196BEB /* AlanSDK.framework in Embed Frameworks */,
-				7ABA4722219D6EAD005B471C /* SAPFiori.framework in Embed Frameworks */,
+				059F215825189BF800E6BA57 /* SAPCommon.xcframework in Embed Frameworks */,
+				059F215025189BF400E6BA57 /* SAPOData.xcframework in Embed Frameworks */,
+				059F215225189BF500E6BA57 /* SAPFoundation.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +121,11 @@
 
 /* Begin PBXFileReference section */
 		025D64B18BA8403E76122AE1 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProductDetailViewController.swift; path = ViewControllers/Product/ProductDetailViewController.swift; sourceTree = "<group>"; };
+		059F214325189AB100E6BA57 /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SAPOData.xcframework; sourceTree = "<group>"; };
+		059F214425189AB100E6BA57 /* SAPFioriFlows.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SAPFioriFlows.xcframework; sourceTree = "<group>"; };
+		059F214525189AB100E6BA57 /* SAPFiori.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SAPFiori.xcframework; sourceTree = "<group>"; };
+		059F214625189AB200E6BA57 /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SAPCommon.xcframework; sourceTree = "<group>"; };
+		059F214725189AB200E6BA57 /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = SAPFoundation.xcframework; sourceTree = "<group>"; };
 		05EBB0F222704AFE00196BEB /* AlanSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlanSDK.framework; sourceTree = "<group>"; };
 		05EBB0F322704AFE00196BEB /* UIWindow+Alan.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIWindow+Alan.swift"; sourceTree = "<group>"; };
 		05EBB0F622704B7100196BEB /* AlanDeliveries.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AlanDeliveries.entitlements; sourceTree = "<group>"; };
@@ -161,11 +166,6 @@
 		7A5744B321DE553600E58C7F /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A5744B521DE553600E58C7F /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
 		7A5744B721DE553700E58C7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7ABA4717219D6EAD005B471C /* SAPOData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPOData.framework; sourceTree = "<group>"; };
-		7ABA4719219D6EAD005B471C /* SAPCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPCommon.framework; sourceTree = "<group>"; };
-		7ABA471A219D6EAD005B471C /* SAPFioriFlows.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFioriFlows.framework; sourceTree = "<group>"; };
-		7ABA471B219D6EAD005B471C /* SAPFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFoundation.framework; sourceTree = "<group>"; };
-		7ABA471C219D6EAD005B471C /* SAPFiori.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SAPFiori.framework; sourceTree = "<group>"; };
 		7BA30E1EB6F505943D7CE83C /* PurchaseOrderHeaderDetailViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PurchaseOrderHeaderDetailViewController.swift; path = ViewControllers/PurchaseOrderHeader/PurchaseOrderHeaderDetailViewController.swift; sourceTree = "<group>"; };
 		8067A8D511BF95056CA41394 /* Base */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProductCategory.storyboard; sourceTree = "<group>"; };
 		80B5FC7E9F61FE39127E3AFC /* CollectionType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectionType.swift; path = Model/CollectionType.swift; sourceTree = "<group>"; };
@@ -204,13 +204,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7ABA4724219D6EC7005B471C /* SAPCommon.framework in Frameworks */,
-				7ABA4725219D6EC7005B471C /* SAPFoundation.framework in Frameworks */,
-				7ABA4726219D6EC7005B471C /* SAPFioriFlows.framework in Frameworks */,
+				059F215325189BF600E6BA57 /* SAPFioriFlows.xcframework in Frameworks */,
+				059F215525189BF700E6BA57 /* SAPFiori.xcframework in Frameworks */,
+				059F215125189BF500E6BA57 /* SAPFoundation.xcframework in Frameworks */,
 				05EBB0F422704AFE00196BEB /* AlanSDK.framework in Frameworks */,
-				7ABA4727219D6EC7005B471C /* SAPFiori.framework in Frameworks */,
+				059F215725189BF800E6BA57 /* SAPCommon.xcframework in Frameworks */,
+				059F214F25189BF400E6BA57 /* SAPOData.xcframework in Frameworks */,
 				05EBB0F722704B8200196BEB /* AlanSDK.framework in Frameworks */,
-				7ABA4728219D6EC7005B471C /* SAPOData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,11 +363,11 @@
 		7A1315CC1D4B990B00A5DA56 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				7ABA4719219D6EAD005B471C /* SAPCommon.framework */,
-				7ABA471C219D6EAD005B471C /* SAPFiori.framework */,
-				7ABA471A219D6EAD005B471C /* SAPFioriFlows.framework */,
-				7ABA471B219D6EAD005B471C /* SAPFoundation.framework */,
-				7ABA4717219D6EAD005B471C /* SAPOData.framework */,
+				059F214625189AB200E6BA57 /* SAPCommon.xcframework */,
+				059F214525189AB100E6BA57 /* SAPFiori.xcframework */,
+				059F214425189AB100E6BA57 /* SAPFioriFlows.xcframework */,
+				059F214725189AB200E6BA57 /* SAPFoundation.xcframework */,
+				059F214325189AB100E6BA57 /* SAPOData.xcframework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -943,7 +943,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -967,7 +968,10 @@
 				);
 				INFOPLIST_FILE = AlanDeliveries/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.alan.saptest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -991,7 +995,10 @@
 				);
 				INFOPLIST_FILE = AlanDeliveries/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = app.alan.saptest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -1010,7 +1017,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sap.UITests;
@@ -1033,7 +1044,11 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = UITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sap.UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
