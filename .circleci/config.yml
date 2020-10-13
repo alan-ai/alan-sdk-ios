@@ -1,0 +1,20 @@
+# For a detailed guide to building and testing on iOS, read the docs:
+# https://circleci.com/docs/2.0/testing-ios/
+
+version: 2.1
+
+jobs:
+  build:
+    macos:
+      xcode: 11.3.0
+    steps:
+      - checkout
+      - run:
+          name: Build Food App (from examples/FoodApp)
+          command: cd examples/FoodApp && xcodebuild
+      - run:
+          name: Compress app for storage
+          command: zip -r app.zip build/Release/circleci-demo-macos.app
+      - store_artifacts:
+          path: app.zip
+          destination: app
