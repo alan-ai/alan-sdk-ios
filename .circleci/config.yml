@@ -18,7 +18,7 @@ jobs:
       - run:
           name: decode Provisioning Profiles
           command: base64 -D -o ~/Library/MobileDevice/Provisioning\ Profiles/App_Store.mobileprovision \<<< $App_Store_Profile
-      - run: bundle exec fastlane test
+      - run: bundle exec fastlane clean
       - run:
           name: Build Food App iOS simulator (from examples/FoodApp)
           command: cd examples/FoodApp && xcodebuild -configuration Release -sdk iphonesimulator

@@ -11,9 +11,9 @@ platform :ios do
     )
   end
   
-  desc "Build and run tests"
-  lane :test do
-    scan
+  desc "Clean"
+  lane :clean do
+    xcclean
   end
-  
+
 end
