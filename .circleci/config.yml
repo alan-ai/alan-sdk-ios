@@ -11,10 +11,4 @@ jobs:
       - checkout
       - run:
           name: Build Food App (from examples/FoodApp)
-          command: cd examples/FoodApp && xcodebuild
-      - run:
-          name: Compress app for storage
-          command: zip -r app.zip build/Release/circleci-demo-macos.app
-      - store_artifacts:
-          path: app.zip
-          destination: app
+          command: cd examples/FoodApp && xcodebuild -configuration Release -sdk iphonesimulator
