@@ -11,13 +11,13 @@ jobs:
       - checkout
       - run:
           name: decode Certificates
-          command: base64 -D -o Certificates.p12 <<< $Certificates
+          command: base64 -D -o Certificates.p12 \<<< $Certificates
       - run:
           name: make Provisioning Profiles directory
           command: mkdir -pv ~/Library/MobileDevice/Provisioning\ Profiles/
       - run:
           name: decode Provisioning Profiles
-          command: base64 -D -o ~/Library/MobileDevice/Provisioning\ Profiles/App_Store.mobileprovision <<< $App_Store_Profile
+          command: base64 -D -o ~/Library/MobileDevice/Provisioning\ Profiles/App_Store.mobileprovision \<<< $App_Store_Profile
       - run:
           name: Build Food App iOS simulator (from examples/FoodApp)
           command: cd examples/FoodApp && xcodebuild -configuration Release -sdk iphonesimulator
