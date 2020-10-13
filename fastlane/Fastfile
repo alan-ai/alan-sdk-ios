@@ -14,7 +14,7 @@ platform :ios do
   
   desc "Clean"
   lane :clean do
-    xcclean
+    clear_derived_data
   end
 
 end
