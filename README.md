@@ -4,6 +4,7 @@
 [Blog](https://alan.app/blog/) • [Twitter](https://twitter.com/alanvoiceai)
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-ios)](https://github.com/alan-ai/alan-sdk-ios/releases)
+[![CircleCI](https://circleci.com/gh/alan-ai/alan-sdk-ios.svg?style=shield)](https://github.com/alan-ai/alan-sdk-ios/releases)
 
 Add a voice assistant to your application. With no or minimal changes to the existing UI.
 
