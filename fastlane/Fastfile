@@ -10,4 +10,10 @@ platform :ios do
       certificate_password: ENV["CERTIFICATE_PASSWORD"] || "default"
     )
   end
+  
+  desc "Build and run tests"
+  lane :test do
+    scan
+  end
+  
 end
