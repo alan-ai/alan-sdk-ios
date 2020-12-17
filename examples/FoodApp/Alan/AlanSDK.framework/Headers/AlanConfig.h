@@ -144,6 +144,19 @@
 - (nonnull instancetype)initWithKey:(nonnull NSString *)key host:(nullable NSString *)host dataObject:(nullable NSDictionary *)dataObject dialogId:(nullable NSString *)dialogId;
 
 /**
+ Creates AlanConfig object with key, host, dialogId and given data
+ 
+ @param key Project key
+ @param host Host to connect
+ @param dataObject Given data object which will be passed to Alan Studio project
+ @param dialogId Dialog Id
+ @param platform Plarform/plugin name
+ @param platformVersion Plarform/plugin version
+ @return AlanConfig object
+ */
+- (nonnull instancetype)initWithKey:(nonnull NSString *)key host:(nullable NSString *)host dataObject:(nullable NSDictionary *)dataObject dialogId:(nullable NSString *)dialogId platform:(nullable NSString*)platform platformVersion:(nullable NSString*)platformVersion;
+
+/**
  Creates AlanConfig object with key, host and draggable option flag
 
  @param key Project key
