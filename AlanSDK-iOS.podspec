@@ -23,5 +23,7 @@ Pod::Spec.new do |s|
     s.xcconfig = {
         'ENABLE_BITCODE' => 'NO'
     }
+    s.ios.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+    s.ios.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
     
 end
