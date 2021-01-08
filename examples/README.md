@@ -20,3 +20,9 @@ An example on how to integrate the Alan iOS SDK into a food delivery app.
 
 ## SAP_SampleApplication
 An example on how to integrate the Alan iOS SDK into an existing SAP app.
+
+## Have questions?
+
+If you have any questions or something is missing in the documentation:
+- Join [Alan AI Slack community](https://app.slack.com/client/TL55N530A) for support
+- Contact us at [support@alan.app](mailto:support@alan.app)
