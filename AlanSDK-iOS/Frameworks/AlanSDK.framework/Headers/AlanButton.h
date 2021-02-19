@@ -10,6 +10,26 @@
 
 @class AlanConfig;
 
+/// AlanButton states
+typedef NS_ENUM(NSInteger, AlanSDKButtonState) {
+    /// Offline
+    AlanSDKButtonStateOffline,
+    /// Connecting
+    AlanSDKButtonStateConnecting,
+    /// Online (connected)
+    AlanSDKButtonStateOnline,
+    /// Idle
+    AlanSDKButtonStateIdle,
+    /// Listen
+    AlanSDKButtonStateListen,
+    /// Process
+    AlanSDKButtonStateProcess,
+    /// Reply
+    AlanSDKButtonStateReply,
+    /// No mic permission
+    AlanSDKButtonStateNoPermission,
+};
+
 /**
  AlanButton
  This class provides a view with voice button
@@ -114,6 +134,26 @@ Calls specific Alan studio project api
  * @return Version of AlanSDK as string
  */
 - (NSString*)getSDKVersion;
+
+
+typedef void(^AlanEventCallback)(NSString* payload);
+/**
+ * Callback to handle event payload
+ */
+@property (nonatomic, copy) AlanEventCallback onEvent;
+
+typedef void(^AlanCommandCallback)(NSDictionary* command);
+/**
+ * Callback to handle command data
+ */
+@property (nonatomic, copy) AlanCommandCallback onCommand;
+
+typedef void(^AlanButtonStateCallback)(AlanSDKButtonState state);
+
+/**
+ * Callback to handle button state
+ */
+@property (nonatomic, copy) AlanButtonStateCallback onButtonState;
 
 
 @end
