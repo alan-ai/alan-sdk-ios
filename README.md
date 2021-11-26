@@ -6,40 +6,40 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-ios)](https://github.com/alan-ai/alan-sdk-ios/releases)
 [![CircleCI](https://circleci.com/gh/alan-ai/alan-sdk-ios.svg?style=shield)](https://circleci.com/gh/alan-ai/alan-sdk-ios)
 
-Quickly add voice to your app. Create a voice assistant or build a multimodal interface with two input modes &mdash; speech and gestures &mdash; working in sync.
+Quickly add voice to your app. Create an in-app voice assistant to enable human-like conversations and provide a personalized voice experience for every user.
 
 <img src="https://storage.googleapis.com/alan-public-images/github/phone-finance.gif" height="325px" align="right"/>
 
 ## Alan is a Voice AI Platform
 
-Alan is a conversational voice AI platform that lets you create an intelligent voice assistant for your app. It offers all necessary tools to design, embed and host your conversational experiences:
+Alan is a conversational voice AI platform that lets you create an intelligent voice assistant for your app. It offers all necessary tools to design, embed and host your voice solutions:
 
 #### Alan Studio
-A web portal where you can write, test and manage dialog scenarios for your voice assistant or chatbot.
+A powerful web-based IDE where you can write, test and debug dialog scenarios for your voice assistant or chatbot.
 
 #### Alan Client SDKs
 
-With Alan Client SDKs, you can quickly embed Alan's voice to your app.
+Alan's lightweight SDKs to quickly embed a voice assistant to your app.
 
 #### Alan Cloud
 
-Alan's AI-backend that maintains voice deployments and accomplishes all Spoken Language Understanding (SLU) and Natural Language Processing (NLP) tasks.
+Alan's AI-backend powered by the industry’s best Automatic Speech Recognition (ASR), Natural Language Understanding (NLU) and Speech Synthesis. The Alan Cloud provisions and handles the infrastructure required to maintain your voice deployments and perform all the voice processing tasks.
 
 To get more details on how Alan works, see <a href="https://alan.app/platform" target="_blank">Alan Platform</a>.
 
 ## Why Alan?
 
 * **No or minimum changes to your UI**: To voice enable your app, you only need to get the Alan Client SDK and drop it to your app.
-* **Serverless environment**: No need to plan for, deploy and maintain any infrastructure or speech components. Alan does all maintenance and voice processing tasks on behalf of your app.
+* **Serverless environment**: No need to plan for, deploy and maintain any infrastructure or speech components - the Alan Platform does the bulk of the work.
 * **On-the-fly updates**: All changes to the dialogs become available immediately.
 * **Voice flow testing and analytics**: Alan Studio provides advanced tools for testing your dialog flows and getting the analytics data on users' interactions, all in the same console.
 
 ## How to start
 
-To add voice on an iOS app:
+To create a voice assistant for your iOS app written in Swift or Objective-C:
 
 1. <a href="https://studio.alan.app/register" target="_blank">Sign up for Alan Studio</a> to build voice scripts in JavaScript and test them.
-2. Use the Alan iOS SDK to embed the Alan button to your app. For details, see <a href="https://alan.app/docs/client-api/ios/ios-api" target="_blank">Alan AI documentation</a>.
+2. Use the Alan iOS SDK to embed a voice assistant to your application. For details, see <a href="https://alan.app/docs/client-api/ios/ios-api" target="_blank">Alan AI documentation</a>.
 
 ## Downloads
 * [Alan iOS SDK on CocoaPods.org](https://cocoapods.org/pods/AlanSDK-iOS)
