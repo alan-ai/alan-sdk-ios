@@ -1,4 +1,4 @@
-# Alan voice assistant SDK for iOS
+# In-app voice assistant SDK for iOS
 
 [Alan Platform](https://alan.app/) • [Alan Studio](https://studio.alan.app/register) • [Docs](https://alan.app/docs) • [FAQ](https://alan.app/docs/usage/additional/faq) •
 [Blog](https://alan.app/blog/) • [Twitter](https://twitter.com/alanvoiceai)
@@ -6,7 +6,7 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-ios)](https://github.com/alan-ai/alan-sdk-ios/releases)
 [![CircleCI](https://circleci.com/gh/alan-ai/alan-sdk-ios.svg?style=shield)](https://circleci.com/gh/alan-ai/alan-sdk-ios)
 
-Quickly add voice to your app. Create an in-app voice assistant to enable human-like conversations and provide a personalized voice experience for every user.
+Quickly add voice to your app with the Alan Platform. Create an in-app voice assistant to enable human-like conversations and provide a personalized voice experience for every user.
 
 <img src="https://storage.googleapis.com/alan-public-images/github/phone-finance.gif" height="325px" align="right"/>
 
