@@ -30,6 +30,16 @@ typedef NS_ENUM(NSInteger, AlanSDKButtonState) {
     AlanSDKButtonStateNoPermission,
 };
 
+/// AlanButton states
+typedef NS_ENUM(NSInteger, AlanSDKButtonSound) {
+    /// Activate sound
+    AlanSDKButtonSoundActivate,
+    /// Ready to listen
+    AlanSDKButtonSoundReadyToListen,
+    /// Deactivate
+    AlanSDKButtonSoundDeactivate,
+};
+
 /**
  AlanButton
  This class provides a view with voice button
