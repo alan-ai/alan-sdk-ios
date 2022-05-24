@@ -6,11 +6,11 @@
 //  Alan Studio - https://studio.alan.app
 //
 
-#import "AlanConfig.h"
-#import "AlanButton.h"
-#import "AlanText.h"
-#import "AlanHint.h"
-#import "AlanLog.h"
+#import <AlanSDK/AlanConfig.h>
+#import <AlanSDK/AlanButton.h>
+#import <AlanSDK/AlanText.h>
+#import <AlanSDK/AlanHint.h>
+#import <AlanSDK/AlanLog.h>
 
 //! Project version number for AlanSDK.
 FOUNDATION_EXPORT double AlanSDKVersionNumber;

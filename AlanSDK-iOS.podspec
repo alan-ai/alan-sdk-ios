@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     
     s.name             = 'AlanSDK-iOS'
-    s.version          = '3.5.0'
+    s.version          = '3.6.0'
     s.summary          = 'Conversational Voice AI Platform.'
     s.description      = <<-DESC
     The Alan Voice AI Platform provides a framework for fast and easy development and deployment of voice experiences for your applications.

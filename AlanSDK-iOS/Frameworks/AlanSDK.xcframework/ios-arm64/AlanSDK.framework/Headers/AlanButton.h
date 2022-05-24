@@ -176,5 +176,16 @@ typedef void(^AlanButtonStateCallback)(AlanSDKButtonState state);
  */
 @property (nonatomic, copy) AlanButtonStateCallback onButtonState;
 
+/**
+ * Turn on/off wakeword
+ */
+- (void)setWakewordEnabled:(BOOL)enabled;
+
+/**
+ * Get wakeword status
+ *
+ * @return Enabled or disabled
+ */
+- (BOOL)getWakewordEnabled;
 
 @end
