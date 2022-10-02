@@ -17,3 +17,6 @@ FOUNDATION_EXPORT double AlanSDKVersionNumber;
 
 //! Project version string for AlanSDK.
 FOUNDATION_EXPORT const unsigned char AlanSDKVersionString[];
+
+/// Version string
+FOUNDATION_EXPORT NSString *kAlanSDKVersionString;

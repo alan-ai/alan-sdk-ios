@@ -6,11 +6,11 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		LIvI2KVjSGwRR81qw3a8NvUk2BM=
+		8CXvBA0PXncidC3l/4g5Hsc7ThE=
 		</data>
 		<key>Headers/AlanButton.h</key>
 		<data>
-		QXH5ymtVFQY+EVw1mLulA2zjtIc=
+		qMsP2X0wfHqcSXPUARMu2UUB0VU=
 		</data>
 		<key>Headers/AlanConfig.h</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Headers/AlanSDK.h</key>
 		<data>
-		U7JiIKEU/fdEOBWz6Z8g0hox2t8=
+		Q/1IaUtCVDVDMs5mlOwYRqYp+jw=
 		</data>
 		<key>Headers/AlanText.h</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		8fi52vJ9FfC3gj6ZkF7u2H04ltg=
+		0iRmcX+5F9bpR4+vX8GD+0l1K18=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -71,14 +71,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			16Qby/yCJS8yUN4GALHWmH0doYyqVq1/LWby0ztm7r4=
+			nbhjItZWCI3/ZLIKTu7z81k+9hdNc8E/XehVCw3bcKc=
 			</data>
 		</dict>
 		<key>Headers/AlanButton.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			+ppv4JrsoobspFJxI7z9Is5KFwPeDja1fTKGinGFa8E=
+			RYT/ous3PXGPb7PpMxLip0Bh2QKFP+BO0KneIMAjetA=
 			</data>
 		</dict>
 		<key>Headers/AlanConfig.h</key>
@@ -106,7 +106,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			X/Hg+3Km0nk5RJPUdHj69lBEFnV4+5fmSz7JL7P8rog=
+			wSdj0VGA1QM9Rw42+WCc9g9iEJQcJqD5hnmVUEv54WM=
 			</data>
 		</dict>
 		<key>Headers/AlanText.h</key>

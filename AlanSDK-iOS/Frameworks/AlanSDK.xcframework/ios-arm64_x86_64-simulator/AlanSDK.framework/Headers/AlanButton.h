@@ -61,6 +61,13 @@ typedef NS_ENUM(NSInteger, AlanSDKButtonSound) {
 - (instancetype)initWithConfig:(AlanConfig *)config;
 
 /**
+ * Sends text via Alan
+ *
+ * @param textString Texts to be sent
+ */
+- (void)sendText:(NSString *)textString;
+
+/**
  Plays text via Alan
 
  @param text Text to be played
@@ -187,5 +194,10 @@ typedef void(^AlanButtonStateCallback)(AlanSDKButtonState state);
  * @return Enabled or disabled
  */
 - (BOOL)getWakewordEnabled;
+
+/**
+ * Shows QR code scanner
+ */
+- (void)openScan;
 
 @end
