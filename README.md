@@ -6,7 +6,7 @@
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-ios)](https://github.com/alan-ai/alan-sdk-ios/releases)
 [![CircleCI](https://circleci.com/gh/alan-ai/alan-sdk-ios.svg?style=shield)](https://circleci.com/gh/alan-ai/alan-sdk-ios)
 
-Quickly create AI assistants and AI chats with the Alan AI Platform. Enable human-like conversations and perform actions in any app through voice commands.
+Quickly create AI assistants with the Alan AI Platform. Enable human-like conversations and perform actions in any app through voice commands.
 
 <img src="https://storage.googleapis.com/alan-public-images/github/phone-finance.gif" height="325px" align="right"/>
 
