@@ -163,6 +163,12 @@ typedef void(^AlanActivateCompletionCallback)(BOOL didActivate);
  */
 - (NSString*)getSDKVersion;
 
+/**
+ * Provides information about current wake word model
+ *
+ * @return wake word model path
+ */
+- (NSString*)getWakeWordModel;
 
 typedef void(^AlanEventCallback)(NSString* payload);
 /**
@@ -199,5 +205,15 @@ typedef void(^AlanButtonStateCallback)(AlanSDKButtonState state);
  * Shows QR code scanner
  */
 - (void)openScan;
+
+/**
+ * Shows popup with chat
+ */
+- (void)openChat;
+
+/**
+ * Closes popup with chat
+ */
+- (void)closeChat;
 
 @end

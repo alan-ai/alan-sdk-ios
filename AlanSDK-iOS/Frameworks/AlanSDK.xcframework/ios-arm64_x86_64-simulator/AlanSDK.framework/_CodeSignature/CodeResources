@@ -6,11 +6,11 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		q+uwsqure8+UpDrl9CaW46qzVSQ=
+		dObvCzO5UagFbkpJKDrqRGRuCYA=
 		</data>
 		<key>Headers/AlanButton.h</key>
 		<data>
-		qMsP2X0wfHqcSXPUARMu2UUB0VU=
+		FjGzd7BjlnNgO6NsM/8y/hzqdCs=
 		</data>
 		<key>Headers/AlanConfig.h</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Fffz7KuUa05Dp8Wk+tU4n8gL6MU=
+		Sw8gIvZWBLMd+bD6Did4NvmFqrc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -43,10 +43,6 @@
 		<key>frameworks-strip.sh</key>
 		<data>
 		scD8uUqNrNQLfjOJfbxSrNThI+k=
-		</data>
-		<key>model_20191008.tflite</key>
-		<data>
-		tZ+YjL9agk8Qkh7xhCnHq2Kqols=
 		</data>
 		<key>voice_notification_next.m4a</key>
 		<data>
@@ -71,14 +67,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			S5PBk1ozX0lIfcBJk+SHsHqvMqQQulyDv576OQdesTs=
+			eUGk5d+qBhwZORbVRDnUTE6IFYuqGZRAnSOp4O8WRD4=
 			</data>
 		</dict>
 		<key>Headers/AlanButton.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RYT/ous3PXGPb7PpMxLip0Bh2QKFP+BO0KneIMAjetA=
+			irFJB+GUu0b5v28EoqnCwbA4wFxv+jbysmvKmkdchB4=
 			</data>
 		</dict>
 		<key>Headers/AlanConfig.h</key>
@@ -128,13 +124,6 @@
 			<key>hash2</key>
 			<data>
 			16Z+p+9XRjsjMH6miUL0CFVaEJ5HqJ26dh9c9WnPULQ=
-			</data>
-		</dict>
-		<key>model_20191008.tflite</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			9z/0XK5aobO+s2rTJaeawJcnxBtqrWQAG9CI4j2jQ7A=
 			</data>
 		</dict>
 		<key>voice_notification_next.m4a</key>
