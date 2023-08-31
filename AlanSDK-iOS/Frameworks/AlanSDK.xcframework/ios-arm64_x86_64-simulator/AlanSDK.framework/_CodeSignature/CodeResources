@@ -6,11 +6,11 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		pZ+aRSodh4QjUaQdNiaO+soMNXE=
+		XoArmtUjSy9cDM1nALkh5uIwGfU=
 		</data>
 		<key>Headers/AlanButton.h</key>
 		<data>
-		FjGzd7BjlnNgO6NsM/8y/hzqdCs=
+		pJaceBhUSmJriE/I+V8cPbokKv4=
 		</data>
 		<key>Headers/AlanConfig.h</key>
 		<data>
@@ -24,21 +24,53 @@
 		<data>
 		G72JIHSPOZlxwCy+TmhxoLBXuGw=
 		</data>
+		<key>Headers/AlanSDK-Swift.h</key>
+		<data>
+		Xb5jBYsw4MaxeRxA8BgY31XPS24=
+		</data>
 		<key>Headers/AlanSDK.h</key>
 		<data>
-		Q/1IaUtCVDVDMs5mlOwYRqYp+jw=
+		Rhvas/CriUGU8HivT8ELP98FBPg=
 		</data>
 		<key>Headers/AlanText.h</key>
 		<data>
 		njTsYqGZo/B0FtQboRmt0mnEfyc=
 		</data>
+		<key>Headers/AlanTextChat.h</key>
+		<data>
+		lJxq9Bpcbpb1dFmN2PTIC2Y0ARw=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		26gwANFNgxgwBST2SLCzWCZi/XI=
+		AAtrn1VUi5LW44QNuMKFwu2HpbI=
+		</data>
+		<key>Modules/AlanSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
+		<data>
+		qVsFyMMu9PsBiBpdus9tZ9DAwFY=
+		</data>
+		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<data>
+		we8srR+2jcYIOsf2x566kw8nB+U=
+		</data>
+		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<data>
+		rcygaW+2CErreRuqmCNUFhoZeMc=
+		</data>
+		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
+		<data>
+		RcSSjAKNjvRtWoI/EyvSaa7zFg0=
+		</data>
+		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
+		<data>
+		rcygaW+2CErreRuqmCNUFhoZeMc=
+		</data>
+		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
+		<data>
+		dmE+/ThNhBVlcvqEoMZB9mHifW4=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		Xkrx8ovKObtJq3AzURh+mOxPLas=
+		b84HnGFmJQCANL/2dGNEOGXvSkk=
 		</data>
 		<key>frameworks-strip.sh</key>
 		<data>
@@ -67,14 +99,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			a2+/miZ4BP2yL4L58ZLR8eWQFlJr7LiiZ1RuqDkvoy4=
+			ZqrPI7tisSar+Q3tlFRjr6RWrIqyVEWnVUmNGn9kh10=
 			</data>
 		</dict>
 		<key>Headers/AlanButton.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			irFJB+GUu0b5v28EoqnCwbA4wFxv+jbysmvKmkdchB4=
+			QDXdgehW7YRcw6INyahVIr1TyQHxKKCuCTAc9AA9CUU=
 			</data>
 		</dict>
 		<key>Headers/AlanConfig.h</key>
@@ -98,11 +130,18 @@
 			oJLkYh/5+lScHK4OgMxYRvSRrWhAQcy7ULiHpR3GhwY=
 			</data>
 		</dict>
+		<key>Headers/AlanSDK-Swift.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			2z2cB8hbl6q7zfVJH+HkgTjiSLrbE2bI6yyROTDaH18=
+			</data>
+		</dict>
 		<key>Headers/AlanSDK.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wSdj0VGA1QM9Rw42+WCc9g9iEJQcJqD5hnmVUEv54WM=
+			hBvbvz28XlhO9bw1hkmJmsB5N7PPvH1TuEwSbbSciAU=
 			</data>
 		</dict>
 		<key>Headers/AlanText.h</key>
@@ -112,11 +151,60 @@
 			yFA6m8+liZ072n2n3i53CYGOtkXEwKRJibncpLtajXo=
 			</data>
 		</dict>
+		<key>Headers/AlanTextChat.h</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			1Ab9w1SyGSQbMp/aa00viQ7Hi2IFqUBPVoH6p8GfhgQ=
+			</data>
+		</dict>
+		<key>Modules/AlanSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			kYKZWmDf7HIw7XvAWW0htM2UYQGrsBFEA0lWqwlY+bs=
+			</data>
+		</dict>
+		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			G8S/Kc+9ybxmfAOsN5xAS7YtLOcDQVeDx7lJU6ibg6g=
+			</data>
+		</dict>
+		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mRli9mJTjFeL61K3T64sd0wmccfWNFFLJNlMn2BPaOc=
+			</data>
+		</dict>
+		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			JTwq63xZpdT0Ys04Opwgz5AqR1svHEOFnd+4C/PPYnI=
+			</data>
+		</dict>
+		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			mRli9mJTjFeL61K3T64sd0wmccfWNFFLJNlMn2BPaOc=
+			</data>
+		</dict>
+		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			QOMF9+fK2a5KJLKjpDRc0iF4A179mYqyE/XffcoRAYM=
+			</data>
+		</dict>
 		<key>Modules/module.modulemap</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6sjSbP+fzpdZGrP+szF/Pq8ZV6A9ArOrdVqDjCV/VwM=
+			puWQzDTaHndOUBsct3KQOGA4bXFTQklnEZ4iCxO+9XQ=
 			</data>
 		</dict>
 		<key>frameworks-strip.sh</key>

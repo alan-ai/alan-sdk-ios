@@ -4,3 +4,8 @@ framework module AlanSDK {
   export *
   module * { export * }
 }
+
+module AlanSDK.Swift {
+  header "AlanSDK-Swift.h"
+  requires objc
+}

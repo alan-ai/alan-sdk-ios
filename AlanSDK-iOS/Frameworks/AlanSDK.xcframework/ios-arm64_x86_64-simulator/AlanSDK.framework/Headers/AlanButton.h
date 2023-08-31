@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class AlanConfig;
+@class AlanTextChat;
 
 /// AlanButton states
 typedef NS_ENUM(NSInteger, AlanSDKButtonState) {
@@ -215,5 +216,8 @@ typedef void(^AlanButtonStateCallback)(AlanSDKButtonState state);
  * Closes popup with chat
  */
 - (void)closeChat;
+
+/// Text chat options and public API
+@property (strong, nonatomic, readonly) AlanTextChat* textChat;
 
 @end

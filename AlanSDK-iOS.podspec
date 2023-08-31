@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
     
     s.name             = 'AlanSDK-iOS'
-    s.version          = '3.10.0'
+    s.version          = '3.11.0'
     s.summary          = 'Conversational Voice AI Platform.'
     s.description      = <<-DESC
     The Alan Voice AI Platform provides a framework for fast and easy development and deployment of voice experiences for your applications.
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
     
     s.frameworks = 'UIKit', 'CoreVideo', 'CoreMedia', 'CoreImage', 'CoreImage', 'CoreAudio', 'AVFoundation', 'AudioToolbox', 'VideoToolbox', 'Accelerate', 'MediaPlayer'
     
-    s.ios.deployment_target = '11.0'
+    s.ios.deployment_target = '15.0'
     s.ios.vendored_frameworks = 'AlanSDK-iOS/Frameworks/AlanSDK.xcframework'
     
 end

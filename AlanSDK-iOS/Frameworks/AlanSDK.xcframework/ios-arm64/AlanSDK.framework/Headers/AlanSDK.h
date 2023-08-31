@@ -11,6 +11,7 @@
 #import <AlanSDK/AlanText.h>
 #import <AlanSDK/AlanHint.h>
 #import <AlanSDK/AlanLog.h>
+#import <AlanSDK/AlanTextChat.h>
 
 //! Project version number for AlanSDK.
 FOUNDATION_EXPORT double AlanSDKVersionNumber;

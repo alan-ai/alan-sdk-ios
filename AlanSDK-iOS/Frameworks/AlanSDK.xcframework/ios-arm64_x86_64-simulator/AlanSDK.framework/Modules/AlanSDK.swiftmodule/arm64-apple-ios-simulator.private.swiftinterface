@@ -1,0 +1,91 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AlanSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+@_exported import AlanSDK
+import Combine
+import Foundation
+import Swift
+import SwiftUI
+import UIKit
+import _Concurrency
+import _StringProcessing
+@_hasMissingDesignatedInitializers public class MessagesModel : Combine.ObservableObject {
+  public func update(reqId: Swift.String, resId: Swift.String, text: Swift.String, images: [Swift.String], links: [[Swift.String : Swift.String]], isFinal: Swift.Bool, type: AlanSDK.MessageType)
+  public func add(message: AlanSDK.Message)
+  public func add(messages: [AlanSDK.Message])
+  public func clear()
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+@objc public enum MessageType : Swift.Int {
+  case parsed
+  case text
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+public struct Message : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: AlanSDK.Message, b: AlanSDK.Message) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension AlanSDK.Message : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+public struct WrappedHStack<Data, V> : SwiftUI.View where Data : Swift.RandomAccessCollection, V : SwiftUI.View {
+  public typealias ViewGenerator = (Data.Element) -> V
+  public init(_ models: Data, horizontalSpacing: CoreFoundation.CGFloat = 2, verticalSpacing: CoreFoundation.CGFloat = 2, variant: AlanSDK.WrappedHStackVariant = .lists, @SwiftUI.ViewBuilder viewGenerator: @escaping AlanSDK.WrappedHStack<Data, V>.ViewGenerator)
+  @_Concurrency.MainActor(unsafe) public var body: some SwiftUI.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7AlanSDK13WrappedHStackV4bodyQrvp", 0) __<Data, V>
+}
+public func viewHeightReader(_ binding: SwiftUI.Binding<CoreFoundation.CGFloat>) -> some SwiftUI.View
+
+public enum WrappedHStackVariant {
+  case lists
+  case stacks
+  public static func == (a: AlanSDK.WrappedHStackVariant, b: AlanSDK.WrappedHStackVariant) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class MessagesTheme : Combine.ObservableObject {
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class MessagesViewWrapper : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc public func messagesView() -> UIKit.UIViewController
+  @objc public func appendUserTextInput(text: Swift.String)
+  @objc public func clearMessages()
+  @objc public func updateTheme(parsedFontSize: CoreFoundation.CGFloat, parsedBackgroundColor: UIKit.UIColor, parsedColor: UIKit.UIColor, textFontSize: CoreFoundation.CGFloat, textBackgroundColor: UIKit.UIColor, textColor: UIKit.UIColor)
+  @objc deinit
+}
+public struct LinkItem : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public static func == (a: AlanSDK.LinkItem, b: AlanSDK.LinkItem) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension AlanSDK.LinkItem : Swift.Identifiable {
+  public var id: Swift.String {
+    get
+  }
+  public typealias ID = Swift.String
+}
+extension AlanSDK.MessageType : Swift.Equatable {}
+extension AlanSDK.MessageType : Swift.Hashable {}
+extension AlanSDK.MessageType : Swift.RawRepresentable {}
+extension AlanSDK.WrappedHStackVariant : Swift.Equatable {}
+extension AlanSDK.WrappedHStackVariant : Swift.Hashable {}
