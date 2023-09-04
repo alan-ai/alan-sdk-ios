@@ -22,7 +22,7 @@ jobs:
       - run: bundle exec fastlane clean
       - run:
           name: Build Food App iOS simulator (from examples/FoodApp)
-          command: cd examples/FoodApp && xcodebuild -configuration Release -sdk iphonesimulator
+          command: cd examples/FoodApp && xcodebuild -configuration Release -arch arm64 -sdk iphonesimulator
       - run:
           name: Build Food App iOS device (from examples/FoodApp)
-          command: cd examples/FoodApp && xcodebuild -configuration Release -sdk iphoneos
+          command: cd examples/FoodApp && xcodebuild -configuration Release -arch arm64 -sdk iphoneos

@@ -20,6 +20,7 @@
 		05FCDBDC2343941F0074A5A7 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCDBDB2343941F0074A5A7 /* ItemViewController.swift */; };
 		05FCDBDE23439A4F0074A5A7 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCDBDD23439A4F0074A5A7 /* Data.swift */; };
 		8BD052392AA5E308000A4673 /* AlanSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD052382AA5E308000A4673 /* AlanSDK.xcframework */; };
+		8BD0523A2AA5F27B000A4673 /* AlanSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD052382AA5E308000A4673 /* AlanSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -29,6 +30,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				8BD0523A2AA5F27B000A4673 /* AlanSDK.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
