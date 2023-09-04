@@ -1,6 +1,0 @@
-framework module AlanSDK {
-  umbrella header "AlanSDK.h"
-
-  export *
-  module * { export * }
-}

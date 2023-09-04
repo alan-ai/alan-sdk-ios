@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,13 +14,12 @@
 		052AA0B5234200330082D8F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 052AA0B3234200330082D8F2 /* LaunchScreen.storyboard */; };
 		0550E6D323447E7300478872 /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550E6D223447E7300478872 /* CheckoutViewController.swift */; };
 		0550E6D52344A0D200478872 /* CheckoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0550E6D42344A0D200478872 /* CheckoutManager.swift */; };
-		05A70959234F9DF50052B7D9 /* AlanSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05A70957234F9DE60052B7D9 /* AlanSDK.framework */; };
-		05A7095A234F9DF50052B7D9 /* AlanSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 05A70957234F9DE60052B7D9 /* AlanSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		05A7095C234F9E330052B7D9 /* Alan+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A7095B234F9E330052B7D9 /* Alan+UIApplication.swift */; };
 		05FCDBD3234379CD0074A5A7 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCDBD2234379CD0074A5A7 /* MenuViewController.swift */; };
 		05FCDBD523437BD90074A5A7 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCDBD423437BD90074A5A7 /* ContainerViewController.swift */; };
 		05FCDBDC2343941F0074A5A7 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCDBDB2343941F0074A5A7 /* ItemViewController.swift */; };
 		05FCDBDE23439A4F0074A5A7 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FCDBDD23439A4F0074A5A7 /* Data.swift */; };
+		8BD052392AA5E308000A4673 /* AlanSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BD052382AA5E308000A4673 /* AlanSDK.xcframework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,7 +29,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				05A7095A234F9DF50052B7D9 /* AlanSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,12 +45,12 @@
 		052AA0B6234200330082D8F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0550E6D223447E7300478872 /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		0550E6D42344A0D200478872 /* CheckoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutManager.swift; sourceTree = "<group>"; };
-		05A70957234F9DE60052B7D9 /* AlanSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlanSDK.framework; sourceTree = "<group>"; };
 		05A7095B234F9E330052B7D9 /* Alan+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alan+UIApplication.swift"; sourceTree = "<group>"; };
 		05FCDBD2234379CD0074A5A7 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		05FCDBD423437BD90074A5A7 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		05FCDBDB2343941F0074A5A7 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 		05FCDBDD23439A4F0074A5A7 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		8BD052382AA5E308000A4673 /* AlanSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AlanSDK.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05A70959234F9DF50052B7D9 /* AlanSDK.framework in Frameworks */,
+				8BD052392AA5E308000A4673 /* AlanSDK.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +104,7 @@
 		05A70956234F9DD10052B7D9 /* Alan */ = {
 			isa = PBXGroup;
 			children = (
-				05A70957234F9DE60052B7D9 /* AlanSDK.framework */,
+				8BD052382AA5E308000A4673 /* AlanSDK.xcframework */,
 				05A7095B234F9E330052B7D9 /* Alan+UIApplication.swift */,
 			);
 			path = Alan;
@@ -123,7 +121,6 @@
 				052AA0A2234200320082D8F2 /* Frameworks */,
 				052AA0A3234200320082D8F2 /* Resources */,
 				051828F52344F8080025CE54 /* Embed Frameworks */,
-				055AEF40234CE3FD008A5170 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -179,26 +176,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		055AEF40234CE3FD008A5170 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "sh \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlanSDK.framework/frameworks-strip.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		052AA0A1234200320082D8F2 /* Sources */ = {
