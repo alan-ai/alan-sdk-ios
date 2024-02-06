@@ -1,15 +1,17 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.8.1 (swiftlang-5.8.0.124.5 clang-1403.0.22.11.100)
+// swift-compiler-version: Apple Swift version 5.9.2 (swiftlang-5.9.2.2.56 clang-1500.1.0.2.5)
 // swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AlanSDK
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 @_exported import AlanSDK
 import Combine
+import DeveloperToolsSupport
 import Foundation
 import Swift
 import SwiftUI
 import UIKit
 import _Concurrency
 import _StringProcessing
+import _SwiftConcurrencyShims
 @_hasMissingDesignatedInitializers public class MessagesModel : Combine.ObservableObject {
   public func update(reqId: Swift.String, resId: Swift.String, text: Swift.String, images: [Swift.String], links: [[Swift.String : Swift.String]], isFinal: Swift.Bool, type: AlanSDK.MessageType)
   public func add(message: AlanSDK.Message)

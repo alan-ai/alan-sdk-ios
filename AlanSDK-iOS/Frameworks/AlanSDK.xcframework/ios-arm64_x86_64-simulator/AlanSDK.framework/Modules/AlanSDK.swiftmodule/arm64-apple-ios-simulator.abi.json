@@ -1782,6 +1782,34 @@
             "mangledName": "$ss12IdentifiableP"
           }
         ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AlanSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
+        "declKind": "Import",
+        "moduleName": "AlanSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AlanSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "DeveloperToolsSupport",
+        "printedName": "DeveloperToolsSupport",
+        "declKind": "Import",
+        "moduleName": "AlanSDK"
       }
     ],
     "json_format_version": 8
@@ -2024,6 +2052,468 @@
       "offset": 7135,
       "length": 11,
       "value": "0xeeeeefff"
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 723,
+      "length": 7,
+      "value": "\"blank\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 874,
+      "length": 20,
+      "value": "\"button-inner-shape\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1055,
+      "length": 29,
+      "value": "\"button-inner-shape-speaking\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1248,
+      "length": 31,
+      "value": "\"button-inner-shape-speaking-1\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1414,
+      "length": 15,
+      "value": "\"button-loader\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1575,
+      "length": 21,
+      "value": "\"button-logo-default\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1742,
+      "length": 21,
+      "value": "\"button-logo-hovered\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1908,
+      "length": 21,
+      "value": "\"button-logo-state-1\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 2076,
+      "length": 22,
+      "value": "\"button-logo-state-10\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 2243,
+      "length": 21,
+      "value": "\"button-logo-state-2\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 2409,
+      "length": 21,
+      "value": "\"button-logo-state-3\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 2575,
+      "length": 21,
+      "value": "\"button-logo-state-4\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 2741,
+      "length": 21,
+      "value": "\"button-logo-state-5\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 2907,
+      "length": 21,
+      "value": "\"button-logo-state-6\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 3073,
+      "length": 21,
+      "value": "\"button-logo-state-7\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 3239,
+      "length": 21,
+      "value": "\"button-logo-state-8\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 3405,
+      "length": 21,
+      "value": "\"button-logo-state-9\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 3560,
+      "length": 15,
+      "value": "\"button-no-mic\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 3717,
+      "length": 19,
+      "value": "\"button-no-network\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 3887,
+      "length": 24,
+      "value": "\"button-speaking-back-1\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 4064,
+      "length": 25,
+      "value": "\"button-speaking-back-10\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 4242,
+      "length": 25,
+      "value": "\"button-speaking-back-11\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 4420,
+      "length": 25,
+      "value": "\"button-speaking-back-12\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 4598,
+      "length": 25,
+      "value": "\"button-speaking-back-13\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 4776,
+      "length": 25,
+      "value": "\"button-speaking-back-14\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 4954,
+      "length": 25,
+      "value": "\"button-speaking-back-15\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 5132,
+      "length": 25,
+      "value": "\"button-speaking-back-16\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 5308,
+      "length": 24,
+      "value": "\"button-speaking-back-2\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 5483,
+      "length": 24,
+      "value": "\"button-speaking-back-3\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 5658,
+      "length": 24,
+      "value": "\"button-speaking-back-4\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 5833,
+      "length": 24,
+      "value": "\"button-speaking-back-5\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 6008,
+      "length": 24,
+      "value": "\"button-speaking-back-6\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 6183,
+      "length": 24,
+      "value": "\"button-speaking-back-7\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 6358,
+      "length": 24,
+      "value": "\"button-speaking-back-8\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 6533,
+      "length": 24,
+      "value": "\"button-speaking-back-9\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 6697,
+      "length": 18,
+      "value": "\"icon-arrow-input\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 6857,
+      "length": 19,
+      "value": "\"icon-arrow-output\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 7016,
+      "length": 18,
+      "value": "\"icon-arrows-open\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 7170,
+      "length": 16,
+      "value": "\"icon-auth-data\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 7341,
+      "length": 26,
+      "value": "\"icon-close-panel-default\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 7509,
+      "length": 19,
+      "value": "\"icon-command-data\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 7668,
+      "length": 18,
+      "value": "\"icon-cross-wrong\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 7824,
+      "length": 17,
+      "value": "\"icon-debug-chat\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 7994,
+      "length": 25,
+      "value": "\"icon-mute-panel-default\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 8162,
+      "length": 20,
+      "value": "\"icon-mute-panel-on\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 8320,
+      "length": 17,
+      "value": "\"icon-qr-scanner\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 8477,
+      "length": 18,
+      "value": "\"icon-qr-scanning\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 8631,
+      "length": 16,
+      "value": "\"icon-trash-bin\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 8802,
+      "length": 26,
+      "value": "\"icon-trash-panel-default\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 8970,
+      "length": 19,
+      "value": "\"icon-visual-state\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 9135,
+      "length": 21,
+      "value": "\"icon_button_crossed\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 9300,
+      "length": 20,
+      "value": "\"icon_button_loader\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 9466,
+      "length": 21,
+      "value": "\"icon_button_loading\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 9627,
+      "length": 18,
+      "value": "\"icon_button_logo\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 9787,
+      "length": 19,
+      "value": "\"icon_button_shape\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 9954,
+      "length": 22,
+      "value": "\"icon_button_speaking\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 10116,
+      "length": 18,
+      "value": "\"icon_button_wifi\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 10272,
+      "length": 17,
+      "value": "\"icon_flower_big\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 10423,
+      "length": 15,
+      "value": "\"icon_gear_big\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 10576,
+      "length": 17,
+      "value": "\"icon_gear_small\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 10725,
+      "length": 14,
+      "value": "\"icon_mic_big\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 10873,
+      "length": 14,
+      "value": "\"keyboardIcon\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 11011,
+      "length": 9,
+      "value": "\"micIcon\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 11154,
+      "length": 14,
+      "value": "\"sendTextIcon\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 11304,
+      "length": 15,
+      "value": "\"smallMicReply\""
+    },
+    {
+      "filePath": "\/Users\/sergeyyuryev\/Documents\/Alan\/AlanSDK_Native\/AlanSDK_iOS\/.build\/Build\/Intermediates.noindex\/AlanSDK.build\/Release-iphonesimulator\/AlanSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 11455,
+      "length": 15,
+      "value": "\"smallMicWhite\""
     }
   ]
 }
