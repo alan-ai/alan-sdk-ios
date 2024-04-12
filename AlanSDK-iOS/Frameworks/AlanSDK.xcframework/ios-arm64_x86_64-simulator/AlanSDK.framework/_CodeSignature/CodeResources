@@ -6,7 +6,7 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		GWmqgCGcsqN8Tkz/hiR2u1MPblY=
+		zCjN6s6pNF+vvom3LUF8GGQE1TA=
 		</data>
 		<key>Headers/AlanButton.h</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Headers/AlanSDK-Swift.h</key>
 		<data>
-		DXCQxkHg+EQM/SKNMPyvXVWc7X8=
+		qWRfSWJ+P4CJnQ1hkCWT5axKon0=
 		</data>
 		<key>Headers/AlanSDK.h</key>
 		<data>
@@ -42,11 +42,11 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		p7EkgSQE46UW00wo4JKynhxj/WU=
+		0lTcSeWyqkyniAzUFz7KCRKN8+E=
 		</data>
 		<key>Modules/AlanSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		EDwaM4KJXTcMZoHP5P618bOoFA0=
+		/oV/d2sGNWvSatAcnCUaj3odiTY=
 		</data>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -54,19 +54,19 @@
 		</data>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		QPFgIU+5/kolSCMyZe8pXiVo/U4=
+		+k+kFPG98smvVxzObiLaFXA4/pk=
 		</data>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		LWB0gRBiWrX+pz8nhuBcLUy7Gfg=
+		xBbM6wmjQa8kVV8M2mUKP3KJUdU=
 		</data>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		QPFgIU+5/kolSCMyZe8pXiVo/U4=
+		+k+kFPG98smvVxzObiLaFXA4/pk=
 		</data>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		K+8cferQjj4nv4//axLTXwM5tLk=
+		sd9jO6W+AsxYBYE3QkpHTUh9DxM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -99,7 +99,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ChnOqrwKifVFos5XfrGE4dGP1mrqPBDdyV9J64LLT3I=
+			4wxMeVdcrdBlH/6ejrxLRRmx8UXsNCJKqtmdw16IOso=
 			</data>
 		</dict>
 		<key>Headers/AlanButton.h</key>
@@ -134,7 +134,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bePZtMQQdT+tKTGfjkM6hsfEdtiHVxraZMWYillzgFo=
+			hzVyR1zYi/gWhnjTeWikbzOz8ZVA97c9k3PB19WOork=
 			</data>
 		</dict>
 		<key>Headers/AlanSDK.h</key>
@@ -162,7 +162,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			32fum08M4MdZx+BeKKKqaBneRxrgilXsTAThCkCH/OM=
+			23sfdEXY89NC+B8dcoagLPw/Qph+eWZz/kvuXibqyEI=
 			</data>
 		</dict>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -176,28 +176,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			At7ZPbqmhfzA9ypRqA0LBqzbMyZFJzPIL2RqPNKKqGw=
+			R/BJ7xOdamC3OSkrSp35SNCyPRvCiA9FBXPCJVlFWEY=
 			</data>
 		</dict>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jPBaxLgoT/mo4nKMh49t34KdbWJOCeS4w0bpktLtmKc=
+			gTZtx0GVwHZMSVwq8UjHHeh6lYSD5Wxtho8q7Gd9aJQ=
 			</data>
 		</dict>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			At7ZPbqmhfzA9ypRqA0LBqzbMyZFJzPIL2RqPNKKqGw=
+			R/BJ7xOdamC3OSkrSp35SNCyPRvCiA9FBXPCJVlFWEY=
 			</data>
 		</dict>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YXQ4A+rL5/zio+gZqkPoOd328XoqvoE2Iz8COwAcobA=
+			QLtfbqpsLbpVoyIngyGVKYJ+Z9Yc29M2tnKw0VDcqmk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
