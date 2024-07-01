@@ -6,23 +6,23 @@
 	<dict>
 		<key>Assets.car</key>
 		<data>
-		zCjN6s6pNF+vvom3LUF8GGQE1TA=
+		jIpq2DmGHSII+1QF03Bij5jQ2kg=
 		</data>
 		<key>Headers/AlanButton.h</key>
 		<data>
-		pJaceBhUSmJriE/I+V8cPbokKv4=
+		OROJAX0onxNFVdYCJW+5o67fl1A=
 		</data>
 		<key>Headers/AlanConfig.h</key>
 		<data>
-		oXQUPasGLcype996OPmpz/4e3UM=
+		XusOGjRU7tbo5g/amFW8YMoGqHE=
 		</data>
 		<key>Headers/AlanHint.h</key>
 		<data>
-		wD5nwHaWEiRP/1DPiMutPNV6VGU=
+		ifjyQ1eIzrjHxjIBlKZrfeAONDA=
 		</data>
 		<key>Headers/AlanLog.h</key>
 		<data>
-		G72JIHSPOZlxwCy+TmhxoLBXuGw=
+		mXND4QL8GfWYNs1dlJ5LJEAsg90=
 		</data>
 		<key>Headers/AlanSDK-Swift.h</key>
 		<data>
@@ -30,11 +30,11 @@
 		</data>
 		<key>Headers/AlanSDK.h</key>
 		<data>
-		Rhvas/CriUGU8HivT8ELP98FBPg=
+		6lPl85GgTtGmRGvTsNkR4RarDoM=
 		</data>
 		<key>Headers/AlanText.h</key>
 		<data>
-		njTsYqGZo/B0FtQboRmt0mnEfyc=
+		qAa80UZs5On1az4r7TAw/VuIIqU=
 		</data>
 		<key>Headers/AlanTextChat.h</key>
 		<data>
@@ -42,11 +42,11 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		fw/y5EZjaf7EY/F5Fkgxp+1xdTc=
+		HPIFFCR9DBFDVILriY3e5fOSpS0=
 		</data>
 		<key>Modules/AlanSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		EqvV9S2971ZpvYPpwXfhnuGHsG4=
+		QBs+n6yfkIPa6vrF5KxIk3oRxeY=
 		</data>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -66,7 +66,7 @@
 		</data>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		sd9jO6W+AsxYBYE3QkpHTUh9DxM=
+		no1yKCM6W75oKd+MNlxM7fES+1U=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -99,35 +99,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			4wxMeVdcrdBlH/6ejrxLRRmx8UXsNCJKqtmdw16IOso=
+			/hf1lstX8omhgdqhl1HU8TF7SAXEPd/LOHK89ysSXnQ=
 			</data>
 		</dict>
 		<key>Headers/AlanButton.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			QDXdgehW7YRcw6INyahVIr1TyQHxKKCuCTAc9AA9CUU=
+			hcEHAvCOtoV2j2w7KzQMQ5sG8lLyHVQEL+jHC5SV4Wg=
 			</data>
 		</dict>
 		<key>Headers/AlanConfig.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FlGDgpgt0r/bzCrpT6/3V6tZ3gnHiXA65UoMvYxWiTQ=
+			vI6gvsscx89lLyD0Pncs+5DJyXMa1RRZscmESMs2lXA=
 			</data>
 		</dict>
 		<key>Headers/AlanHint.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			GQIcbRj3eJsFt7IDOSY3fhmVNlMlkyc4/9XKanl0GqY=
+			aPPaCdRAg1ouglHORk+DX/783coPZSPB8ivCmYvWs+g=
 			</data>
 		</dict>
 		<key>Headers/AlanLog.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			oJLkYh/5+lScHK4OgMxYRvSRrWhAQcy7ULiHpR3GhwY=
+			JuP5mQkzxM+OYm3pWP5MSQWNio19dnmFirk+kxXKuFE=
 			</data>
 		</dict>
 		<key>Headers/AlanSDK-Swift.h</key>
@@ -141,14 +141,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hBvbvz28XlhO9bw1hkmJmsB5N7PPvH1TuEwSbbSciAU=
+			JP/QAwRyjU1ig2KznpivyTjNCr0ilPciwe9PKsMAELk=
 			</data>
 		</dict>
 		<key>Headers/AlanText.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yFA6m8+liZ072n2n3i53CYGOtkXEwKRJibncpLtajXo=
+			Dc8I2F5debg/mWT/GAuqrbR3L+1azfH7XrBe1dXWsHQ=
 			</data>
 		</dict>
 		<key>Headers/AlanTextChat.h</key>
@@ -162,7 +162,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hI8vxC15o06HondiQmGEDd+y5XlE6OV3GC+DEcpiKh8=
+			qZWhauX+VyBA1/gKuJaRXHRVa/Qcl9ZGTrgICB5dPvY=
 			</data>
 		</dict>
 		<key>Modules/AlanSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -197,7 +197,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QLtfbqpsLbpVoyIngyGVKYJ+Z9Yc29M2tnKw0VDcqmk=
+			tWULT81fw3u+r5lFemLWC5XQ+FTJlajewrOlfabjExQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
