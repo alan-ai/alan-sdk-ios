@@ -1,38 +1,25 @@
-# Alan AI: Conversational AI SDK for iOS
+# The Self-Coding System for Your App &mdash; Alan AI SDK for iOS
 
 [Alan AI Platform](https://alan.app/) • [Alan AI Studio](https://studio.alan.app/register) • [Docs](https://alan.app/docs) • [FAQ](https://alan.app/docs/usage/additional/faq) •
 [Blog](https://alan.app/blog/) • [Twitter](https://twitter.com/alanvoiceai)
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/alan-ai/alan-sdk-ios)](https://github.com/alan-ai/alan-sdk-ios/releases)
-[![CircleCI](https://circleci.com/gh/alan-ai/alan-sdk-ios.svg?style=shield)](https://circleci.com/gh/alan-ai/alan-sdk-ios)
 
 Quickly create AI agents with the Alan AI Platform. Enable human-like conversations and perform actions in any app through voice commands.
 
-<img src="https://storage.googleapis.com/alan-public-images/github/phone-finance.gif" height="325px" align="right"/>
+## The Intelligent App Platform
 
-## Actionable AI Platform
+Alan AI is transforming enterprise software with a new approach, **Application-Level AI**. Instead of relying on manual development or isolated AI tools, we embed an intelligent layer into your application that builds features on demand.
 
-Alan AI is an Actionable AI Platform that lets you create a voice AI agent for your app. It offers all necessary tools to design, embed and host conversational experiences:
+Powered by our proprietary **Three-Layer AI (3LAI)** architecture, our system generates both business logic and UI in real time—no developers needed. It works across your entire app stack: the user interface, business logic, and data management.
 
-#### Alan AI Studio
-A powerful web-based IDE where you can write, test and debug dialog scenarios for your AI agent.
+The **Intelligent App Platform** lets companies integrate AI-driven interfaces into their existing apps in days, not months.
 
-#### Alan AI SDKs
+It creates a safe and validated environment from your app’s APIs, GUIs, and documentation, enabling accurate, context-aware code generation. At runtime, the AI acts like a self-coding engine—instantly creating new features based on user needs.
 
-Alan AI's lightweight SDKs to quickly embed an AI agent to your app.
+With Alan AI, your software becomes truly adaptive—responding, evolving, and scaling automatically.
 
-#### Alan AI Cloud
-
-Alan AI's backend powered by the industry’s best Automatic Speech Recognition (ASR), Natural Language Understanding (NLU) and Speech Synthesis. Alan AI provisions and handles the infrastructure required to maintain your conversational experiences and perform all the data processing tasks.
-
-To get more details on how Alan AI works, see <a href="https://alan.app/platform" target="_blank">Alan AI Platform</a>.
-
-## Why Alan AI?
-
-* **No or minimum changes to your UI**: To create a conversational experience, you only need to get the Alan AI SDK and drop it to your app.
-* **Serverless environment**: No need to plan for, deploy and maintain any infrastructure or speech components - the Alan AI Platform does the bulk of the work.
-* **On-the-fly updates**: All changes to the dialogs become available immediately.
-* **Dialog flow testing and analytics**: Alan AI Studio provides advanced tools for testing your dialog flows and getting the conversational analytics data on users' interactions, all in the same console.
+This repository contains the **Alan AI SDK for iOS**, enabling you to embed Alan's intelligent layer into your Android applications.
 
 ## How to start
 
